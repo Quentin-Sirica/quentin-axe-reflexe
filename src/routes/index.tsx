@@ -31,7 +31,7 @@ const steps = [
     n: "01",
     tag: "L'Axe — Ennéagramme",
     title: "L'Identité",
-    body: "On part de votre identité profonde. On définit votre profil parmi les 9 types de personnalité pour comprendre votre propre 'paire de lunettes' face à la compétition. C'est notre socle.",
+    body: "On part de votre identité profonde. On définit votre profil parmi les 150 types de personnalité pour comprendre votre propre 'paire de lunettes' face à la compétition. C'est notre socle.",
   },
   {
     n: "02",
@@ -176,7 +176,7 @@ function Hero() {
           <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border max-w-md">
             {[
               { k: "17", v: "ans de terrain" },
-              { k: "9", v: "profils Ennéagramme" },
+              { k: "150", v: "profils Ennéagramme" },
               { k: "1:1", v: "suivi élite" },
             ].map((s) => (
               <div key={s.v}>
