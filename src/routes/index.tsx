@@ -31,7 +31,7 @@ const steps = [
     n: "01",
     tag: "L'Axe — Ennéagramme",
     title: "L'Identité",
-    body: "On part de votre identité profonde. On définit votre profil parmi les 9 types de personnalité pour comprendre votre propre 'paire de lunettes' face à la compétition. C'est notre socle.",
+    body: "On part de votre identité profonde. On définit votre profil parmi les 150 types de personnalité pour comprendre votre propre 'paire de lunettes' face à la compétition. C'est notre socle.",
   },
   {
     n: "02",
