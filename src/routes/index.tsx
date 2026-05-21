@@ -177,7 +177,7 @@ function Hero() {
             {[
               { k: "17", v: "ans de terrain" },
               { k: "150", v: "joueurs/joueuses accompagnés" },
-              { k: "5/5", v: "suivi élite" },
+              { k: "5/5", v: "avis positifs" },
             ].map((s) => (
               <div key={s.v}>
                 <div className="font-display text-3xl text-primary">{s.k}</div>
