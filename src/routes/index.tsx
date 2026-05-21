@@ -176,7 +176,7 @@ function Hero() {
           <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border max-w-md">
             {[
               { k: "17", v: "ans de terrain" },
-              { k: "9", v: "profils Ennéagramme" },
+              { k: "150", v: "profils Ennéagramme" },
               { k: "1:1", v: "suivi élite" },
             ].map((s) => (
               <div key={s.v}>
