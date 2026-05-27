@@ -677,3 +677,152 @@ function Footer() {
     </footer>
   );
 }
+
+function ExcuseCloud() {
+  // tailles & positions variées pour effet "pensées" organique
+  const sizes = ["text-sm", "text-base", "text-lg", "text-base", "text-sm", "text-xl", "text-base", "text-sm", "text-lg", "text-base", "text-sm", "text-base"];
+  const rotations = [-3, 2, -1, 3, -2, 1, -3, 2, -1, 3, -2, 1];
+  const opacities = [0.95, 0.75, 1, 0.85, 0.7, 1, 0.9, 0.75, 0.95, 0.85, 0.7, 0.9];
+  const delays = [0, 0.6, 1.2, 0.3, 0.9, 1.5, 0.2, 0.8, 1.4, 0.5, 1.1, 1.7];
+
+  return (
+    <div className="relative">
+      <div className="absolute -top-2 left-4 font-display text-3xl text-primary/40 select-none">···</div>
+      <div className="absolute -bottom-4 right-8 font-display text-4xl text-clay/40 select-none">···</div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 sm:gap-y-10">
+        {fakeExcuses.map((q, i) => {
+          const rot = rotations[i % rotations.length];
+          return (
+            <div
+              key={i}
+              className={`thought-bubble float-soft ${i % 3 === 1 ? "sm:mt-6" : ""} ${i % 3 === 2 ? "sm:mt-12" : ""}`}
+              style={{
+                ["--rot" as string]: `${rot}deg`,
+                transform: `rotate(${rot}deg)`,
+                opacity: opacities[i % opacities.length],
+                animationDelay: `${delays[i % delays.length]}s`,
+              }}
+            >
+              <p className={`font-display ${sizes[i % sizes.length]} text-foreground/90 leading-snug`}>
+                {q}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ResultsSection() {
+  return (
+    <section className="relative py-28 border-t border-border">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-3xl">
+          <SectionLabel n="R/03b" tag="Résultats concrets" />
+          <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
+            Les résultats que vous pouvez
+            <span className="text-primary"> viser</span>.
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground">
+            Pas de promesses magiques. Des trajectoires réelles : casser un palier, viser un classement,
+            accéder au haut niveau, devenir DE — ou simplement arrêter de stagner après 5 ans.
+          </p>
+        </div>
+
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {objectives.map((o) => (
+            <div key={o.n} className="bg-card border border-border rounded-md p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-baseline justify-between mb-4">
+                <span className="font-display font-bold text-3xl text-primary">{o.n}</span>
+                <span className="h-px w-8 bg-clay" />
+              </div>
+              <h3 className="font-display font-bold text-lg mb-2">{o.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                // Preuves terrain
+              </div>
+              <h3 className="font-display font-bold text-3xl text-balance">
+                Ce qu'en disent les joueurs accompagnés.
+              </h3>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {testimonials.map((t, i) => (
+              <figure key={i} className="relative bg-card border border-border rounded-md p-6 flex flex-col">
+                <span className="absolute -top-4 left-5 font-display text-5xl text-primary/30 leading-none select-none">"</span>
+                <blockquote className="text-foreground/90 leading-relaxed italic flex-1">
+                  {t.quote}
+                </blockquote>
+                <figcaption className="mt-6 pt-4 border-t border-border">
+                  <div className="font-display font-semibold">{t.name}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-clay mt-1">
+                    {t.progress} · {t.sport}
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 font-display text-lg text-foreground hover:text-primary transition-colors"
+          >
+            Votre histoire peut être la prochaine.
+            <span className="text-primary">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OtherAudiences() {
+  return (
+    <section className="relative pt-4 pb-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="bg-card border border-border rounded-lg p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-start gap-6">
+            <div className="sm:w-1/3">
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-clay mb-2">
+                // Aussi disponible
+              </div>
+              <h3 className="font-display font-bold text-xl leading-snug">
+                Quentin accompagne également :
+              </h3>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1 mt-3 text-sm font-mono text-foreground/70 hover:text-primary transition-colors"
+              >
+                Demander un format sur mesure →
+              </a>
+            </div>
+            <ul className="sm:w-2/3 grid sm:grid-cols-3 gap-4">
+              {otherAudiences.map((a) => (
+                <li key={a.title} className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-clay" />
+                    <span className="font-display font-semibold text-sm">{a.title}</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground leading-relaxed pl-3.5">
+                    {a.body}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
