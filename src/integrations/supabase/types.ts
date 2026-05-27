@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      enneagramme_leads: {
+        Row: {
+          answers: Json
+          created_at: string
+          dominant_profile: number
+          email: string
+          first_name: string
+          id: string
+          profile_scores: Json
+          ranking: string | null
+          sport: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          dominant_profile: number
+          email: string
+          first_name: string
+          id?: string
+          profile_scores?: Json
+          ranking?: string | null
+          sport: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          dominant_profile?: number
+          email?: string
+          first_name?: string
+          id?: string
+          profile_scores?: Json
+          ranking?: string | null
+          sport?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
