@@ -23,9 +23,49 @@ const fakeExcuses = [
   "Si j'arrivais à jouer en match comme à l'entraînement, je prendrais 3 classements.",
   "Je gagne jamais un super tie-break, c'est ma malédiction.",
   "J'ai pas confiance en mes coups aujourd'hui.",
+  "Je pourrai être mieux classé mais c'est parce que je fais pas beaucoup de tournois.",
+  "J'aurais dû re-corder avant le tournoi, mon cordage est rincé.",
+  "Le gars s'est auto-arbitré tout le match, il m'a volé au moins 4 points qui étaient sur la ligne.",
+  "Le match était programmé à 9h du matin, j'étais pas réveillé.",
+  "Les balles de ce tournoi, c'est des vrais cailloux, aucun contrôle.",
 ];
 
 const poisons = ["Calme-toi", "Respire", "Mets la balle dans le court", "Gagne le point !"];
+
+const objectives = [
+  { n: "01", title: "Monter de classement", body: "Franchir le palier qui résiste depuis deux saisons. Concrètement." },
+  { n: "02", title: "Viser le haut niveau", body: "Structurer un mental de compétiteur pour les tableaux régionaux et nationaux." },
+  { n: "03", title: "Devenir DE", body: "Préparer le passage en Diplôme d'État avec une exigence mentale alignée." },
+  { n: "04", title: "Casser un blocage", body: "Sortir de 3, 5, 10 ans de stagnation. Comprendre enfin ce qui coince." },
+];
+
+// témoignages réels — à compléter / remplacer par les vrais retours clients
+const testimonials = [
+  {
+    quote: "J'ai gagné mes deux premiers matchs de poule en championnat alors que je les perdais systématiquement depuis 3 ans. Rien n'avait changé techniquement.",
+    name: "Marc L.",
+    progress: "30/1 → 15/5",
+    sport: "Tennis",
+  },
+  {
+    quote: "Avant, je m'effondrais au 3ème set. Aujourd'hui c'est devenu mon set préféré. La méthode change la façon dont tu lis tes propres réactions.",
+    name: "Camille R.",
+    progress: "15/4 → 15/2",
+    sport: "Tennis",
+  },
+  {
+    quote: "On a pu jouer les phases finales en binôme sans s'engueuler une seule fois. Le mental collectif, ça se travaille.",
+    name: "Julien & Théo",
+    progress: "P500 → P250",
+    sport: "Padel",
+  },
+];
+
+const otherAudiences = [
+  { title: "Équipes de Padel", body: "Préparation collective avant compétition." },
+  { title: "Binômes Padel", body: "Synchroniser deux mentaux sur le court." },
+  { title: "Parent + Enfant", body: "Accompagner le jeune joueur et sa famille." },
+];
 
 const steps = [
   {
@@ -110,8 +150,10 @@ function LandingPage() {
       <ProblemSection />
       <AgitationSection />
       <SolutionSection />
+      <ResultsSection />
       <TestWidget />
       <OffersSection />
+      <OtherAudiences />
       <FinalCTA />
       <Footer />
     </div>
@@ -257,24 +299,7 @@ function ProblemSection() {
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-6">
             // Le nuage des fausses excuses
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 [grid-auto-flow:dense]">
-            {fakeExcuses.map((q, i) => (
-              <div
-                key={i}
-                className={`group relative bg-card border border-border rounded-md p-5 hover:border-primary/40 transition-colors ${
-                  i === 0 ? "md:col-span-2 md:row-span-2" : i === 3 ? "lg:col-span-2" : ""
-                }`}
-                style={{ transform: `rotate(${(i % 3) - 1}deg)` }}
-              >
-                <span className="absolute top-2 right-3 font-mono text-[10px] text-muted-foreground/40">
-                  #{(i + 1).toString().padStart(2, "0")}
-                </span>
-                <p className={`font-display ${i === 0 ? "text-2xl" : "text-base"} text-foreground/90 leading-snug`}>
-                  "{q}"
-                </p>
-              </div>
-            ))}
-          </div>
+          <ExcuseCloud />
         </div>
 
         <div className="mt-14 border-l-2 border-primary pl-6 max-w-3xl">
@@ -299,22 +324,46 @@ function AgitationSection() {
           </h2>
         </div>
         <div className="lg:col-span-7 space-y-8">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            On vous rabâche partout que <em className="text-foreground not-italic font-semibold">"le mental c'est 80 % du travail"</em>.
-            C'est faux. Le mental tout seul ne sert à rien. Si vous n'avez pas de plan tactique ou que vous êtes
-            à bout physiquement au 3ème set, votre mental va exploser. Tout est lié :
-            <span className="text-foreground"> Mental, Technique, Physique, Tactique.</span>
-            Un blocage mental n'est parfois que la conséquence d'une défaillance tactique.
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {["Mental", "Technique", "Physique", "Tactique"].map((p) => (
-              <div key={p} className="border border-border bg-card p-4 text-center">
-                <div className="font-display font-semibold">{p}</div>
-                <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">25%</div>
-              </div>
-            ))}
+          <div className="bg-card border border-border rounded-lg p-8 space-y-6">
+            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              // L'idée reçue
+            </div>
+            <p className="font-display text-2xl sm:text-3xl leading-tight">
+              <span className="line-through decoration-destructive decoration-2 text-foreground/60">
+                "Le mental c'est 80% du travail."
+              </span>
+              <span className="ml-3 inline-block font-mono text-sm align-middle bg-destructive text-destructive-foreground px-2 py-1 rounded">
+                FAUX
+              </span>
+            </p>
+            <p className="font-display text-xl text-foreground/90">
+              Le mental tout seul ne sert à rien.
+            </p>
           </div>
+
+          <div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
+              L'équation réelle de la performance
+            </div>
+            <div className="flex items-stretch justify-between gap-2 sm:gap-3">
+              {["Mental", "Technique", "Physique", "Tactique"].map((p, i) => (
+                <div key={p} className="flex items-center gap-2 sm:gap-3 flex-1">
+                  <div className="flex-1 border border-border bg-card p-4 text-center rounded-md">
+                    <div className="font-display font-semibold">{p}</div>
+                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">25%</div>
+                  </div>
+                  {i < 3 && (
+                    <span className="font-display text-2xl text-primary shrink-0">+</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="border-l-2 border-primary pl-5 font-display text-lg sm:text-xl leading-snug text-balance">
+            Un blocage mental n'est souvent que la conséquence d'une
+            <span className="text-primary"> défaillance tactique</span>.
+          </p>
 
           <div className="relative bg-destructive/5 border border-destructive/30 rounded-md p-8">
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-4">
@@ -626,5 +675,154 @@ function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function ExcuseCloud() {
+  // tailles & positions variées pour effet "pensées" organique
+  const sizes = ["text-sm", "text-base", "text-lg", "text-base", "text-sm", "text-xl", "text-base", "text-sm", "text-lg", "text-base", "text-sm", "text-base"];
+  const rotations = [-3, 2, -1, 3, -2, 1, -3, 2, -1, 3, -2, 1];
+  const opacities = [0.95, 0.75, 1, 0.85, 0.7, 1, 0.9, 0.75, 0.95, 0.85, 0.7, 0.9];
+  const delays = [0, 0.6, 1.2, 0.3, 0.9, 1.5, 0.2, 0.8, 1.4, 0.5, 1.1, 1.7];
+
+  return (
+    <div className="relative">
+      <div className="absolute -top-2 left-4 font-display text-3xl text-primary/40 select-none">···</div>
+      <div className="absolute -bottom-4 right-8 font-display text-4xl text-clay/40 select-none">···</div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 sm:gap-y-10">
+        {fakeExcuses.map((q, i) => {
+          const rot = rotations[i % rotations.length];
+          return (
+            <div
+              key={i}
+              className={`thought-bubble float-soft ${i % 3 === 1 ? "sm:mt-6" : ""} ${i % 3 === 2 ? "sm:mt-12" : ""}`}
+              style={{
+                ["--rot" as string]: `${rot}deg`,
+                transform: `rotate(${rot}deg)`,
+                opacity: opacities[i % opacities.length],
+                animationDelay: `${delays[i % delays.length]}s`,
+              }}
+            >
+              <p className={`font-display ${sizes[i % sizes.length]} text-foreground/90 leading-snug`}>
+                {q}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ResultsSection() {
+  return (
+    <section className="relative py-28 border-t border-border">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="max-w-3xl">
+          <SectionLabel n="R/03b" tag="Résultats concrets" />
+          <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
+            Les résultats que vous pouvez
+            <span className="text-primary"> viser</span>.
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground">
+            Pas de promesses magiques. Des trajectoires réelles : casser un palier, viser un classement,
+            accéder au haut niveau, devenir DE — ou simplement arrêter de stagner après 5 ans.
+          </p>
+        </div>
+
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {objectives.map((o) => (
+            <div key={o.n} className="bg-card border border-border rounded-md p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-baseline justify-between mb-4">
+                <span className="font-display font-bold text-3xl text-primary">{o.n}</span>
+                <span className="h-px w-8 bg-clay" />
+              </div>
+              <h3 className="font-display font-bold text-lg mb-2">{o.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                // Preuves terrain
+              </div>
+              <h3 className="font-display font-bold text-3xl text-balance">
+                Ce qu'en disent les joueurs accompagnés.
+              </h3>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {testimonials.map((t, i) => (
+              <figure key={i} className="relative bg-card border border-border rounded-md p-6 flex flex-col">
+                <span className="absolute -top-4 left-5 font-display text-5xl text-primary/30 leading-none select-none">"</span>
+                <blockquote className="text-foreground/90 leading-relaxed italic flex-1">
+                  {t.quote}
+                </blockquote>
+                <figcaption className="mt-6 pt-4 border-t border-border">
+                  <div className="font-display font-semibold">{t.name}</div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-clay mt-1">
+                    {t.progress} · {t.sport}
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 font-display text-lg text-foreground hover:text-primary transition-colors"
+          >
+            Votre histoire peut être la prochaine.
+            <span className="text-primary">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OtherAudiences() {
+  return (
+    <section className="relative pt-4 pb-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="bg-card border border-border rounded-lg p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-start gap-6">
+            <div className="sm:w-1/3">
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-clay mb-2">
+                // Aussi disponible
+              </div>
+              <h3 className="font-display font-bold text-xl leading-snug">
+                Quentin accompagne également :
+              </h3>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-1 mt-3 text-sm font-mono text-foreground/70 hover:text-primary transition-colors"
+              >
+                Demander un format sur mesure →
+              </a>
+            </div>
+            <ul className="sm:w-2/3 grid sm:grid-cols-3 gap-4">
+              {otherAudiences.map((a) => (
+                <li key={a.title} className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-clay" />
+                    <span className="font-display font-semibold text-sm">{a.title}</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground leading-relaxed pl-3.5">
+                    {a.body}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

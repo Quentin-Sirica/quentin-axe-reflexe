@@ -1,83 +1,66 @@
-## 1. Refonte design — Light mode "court & terre battue"
+## 1. Nuage des fausses excuses — repensé "pensée"
 
-Refonte des tokens dans `src/styles.css` :
-- `--background` : blanc cassé (oklch ~0.985 0.005 90)
-- `--foreground` : graphite très foncé pour contraste fort
-- `--primary` : jaune fluo tennis conservé (oklch 0.92 0.22 122)
-- `--clay` : orange terre battue mis en avant comme accent secondaire
-- `--card` : blanc pur avec bordure graphite fine
-- `--muted-foreground`, `--border` recalibrés pour fond clair
-- Suppression du gradient sombre dans `body`, remplacé par un fond blanc cassé avec une légère texture "ligne de court" graphite (très subtile)
-- `.court-grid` repassée en lignes graphite à faible opacité
-- `.glow-primary` : halo jaune plus discret adapté au fond clair
-- `.text-stroke` : stroke graphite
+Dans `ProblemSection` (src/routes/index.tsx) :
+- Ajouter les 5 nouvelles excuses à la liste `fakeexcuses` (en plus des 7 actuelles → 12 total).
+- Abandonner la grille rectangulaire en cartes. Remplacer par une composition type **"bulles de pensée"** plus organique :
+  - Conteneur `relative` avec hauteur minimum (ex. `min-h-[600px]`), excuses positionnées en absolu avec rotations légères et tailles variables.
+  - Chaque excuse devient une **bulle de pensée** : fond `bg-card`, bordure pointillée `border-dashed border-foreground/15`, coins très arrondis (`rounded-[28px]`), petite "queue" de bulle de BD (pseudo-élément `::after` triangulaire) pointant en bas.
+  - Tailles variables (`text-sm` / `text-base` / `text-xl`) selon importance, opacités variables (0.6 → 1) pour effet de profondeur.
+  - Animation subtile au scroll (float doux via CSS keyframes ou stagger en `animate-pulse` léger).
+  - Layout fluide CSS Grid `masonry`-like sur desktop + stack vertical sur mobile.
+  - Petits "..." en typo display autour pour évoquer le flux mental.
 
-Aucune classe couleur en dur ne sera ajoutée : tout passera par les tokens, donc les composants existants suivent automatiquement. Quelques ajustements ciblés sur les sections qui utilisaient `bg-graphite-deep` (Agitation, Offres) → passage à un gris très clair (`bg-secondary` ou `bg-clay/5`) pour rythmer la page.
+## 2. Jaune adouci
 
-## 2. Encarts "Outils mentaux" dans Solution & Méthode
+Dans `src/styles.css` :
+- `--primary` actuel `oklch(0.90 0.22 122)` → trop fluo, agressif sur fond clair.
+- Nouveau : `oklch(0.86 0.17 118)` (moins lumineux, moins saturé, légèrement plus vert/citron).
+- Ajuster `--accent` à l'identique.
+- Vérifier `glow-primary` reste cohérent (pas de modif nécessaire, color-mix s'adapte).
+- Le radial gradient du body (18% primary) reste valide.
 
-Ajout sous le bloc "Axe → Déblocage → Réflexe" d'un sous-bloc **"Le vocabulaire de la méthode"** : 4 cartes explicatives reprenant mot pour mot les définitions de Quentin (PDF outils_mentaux_tennis_v2) :
+## 3. Bloc "le mental c'est 80%" — épuré
 
-1. **L'Ennéagramme** — comprendre comment tu fonctionnes (9 profils, motivations, peurs, automatismes).
-2. **La PNL** — prendre du recul sur une situation à régler, identifier les automatismes pour les changer.
-3. **La Sophrologie** — respiration + 5 sens, relâcher, se booster, trouver ses ressources.
-4. **L'Imagerie mentale** — se voir/sentir/entendre faire, conditionner cerveau et corps entre les points.
+Dans `AgitationSection`, remplacer le paragraphe dense par une mise en page UX/UI claire :
+- Citation barrée mise en avant : `"Le mental c'est 80% du travail." → FAUX` (gros, display, jaune barré).
+- Une ligne punchline : *"Le mental seul ne sert à rien."*
+- Mini-équation visuelle horizontale en 4 piliers égaux : **Mental + Technique + Physique + Tactique** (les 4 cards existantes — on les fusionne ici, plus de duplication avec le paragraphe).
+- Une seule phrase de conclusion détachée en bas : *"Un blocage mental n'est souvent que la conséquence d'une défaillance tactique."*
+- Espacement aéré, hiérarchie typo claire (display 4xl → body lg → mono caption).
 
-Chaque carte : numéro 01/04, titre, courte définition (texte du PDF condensé/fidèle), micro-tag "Outil mental". Style cohérent avec les cards existantes, accent jaune sur le numéro.
+## 4. Nouvelle section "Résultats & témoignages"
 
-## 3. Simulateur Ennéagramme (lead magnet)
+Insérer une nouvelle section `ResultsSection` entre `SolutionSection` et `TestWidget` (ou en bas de SolutionSection sous le bloc "Outils mentaux") :
+- Label section `R/03b · Résultats concrets`.
+- Titre : **"Les résultats que vous pouvez viser."**
+- Copywriting d'intro : *"Pas de promesses magiques. Des trajectoires réelles : casser un palier, viser un classement, accéder au haut niveau, devenir DE — ou simplement arrêter de stagner après 5 ans."*
+- Grille 4 colonnes (objectifs identifiables) : **Monter de classement** · **Aller vers le haut niveau** · **Devenir DE** · **Casser un blocage qui dure**.
+  - Chaque carte : icône/numéro, titre, 1 ligne descriptive.
+- Sous-grille **3 témoignages** (placeholder) en format carte :
+  - Citation (italique), nom + classement initial → classement final, sport.
+  - Note : les 3 témoignages seront en données placeholder réalistes (Quentin pourra fournir les vrais). On ajoute une note "// témoignages réels — à compléter" en commentaire.
+- CTA discret en bas : *"Votre histoire peut être la prochaine."* → lien vers `#contact`.
 
-Remplacement complet du composant `TestWidget` par un vrai test interactif basé sur le doc `tennis_mental_profile_complet-1`.
+## 5. Encart "Autres cibles"
 
-### Flow utilisateur
-1. **Écran d'intro** — pitch + bouton "Démarrer le test (5 min)"
-2. **9 écrans de questions** — chacun avec 4 affirmations + "Aucune ne me correspond totalement". Consigne affichée en haut. Barre de progression 1/9 → 9/9. Multi-sélection (0–4).
-3. **Écran de capture lead** (après écran 9, avant révélation) — formulaire obligatoire :
-   - Prénom
-   - Email *(obligatoire)*
-   - Sport (Tennis / Padel / Badminton)
-   - Niveau / classement (optionnel)
-   - CTA "Révéler mon profil"
-4. **Écran résultat** — affichage du profil dominant :
-   - Numéro + nom + tagline (ex: "PROFIL 03 — Le Performeur · Perdre n'est pas une option")
-   - Illustration / pictogramme du profil (badge graphique généré, voir ci-dessous)
-   - 4 blocs : Forces / Piège / Ce qui coûte des points / Ce qui libère (textes fidèles au doc)
-   - CTA bridge fort : **"Aller plus loin avec un Bilan de Lucidité offert"** → scroll vers `#contact` (form déjà existant) avec message "Votre profil est un point de départ. Le Bilan de Lucidité permet d'affiner et de définir votre plan d'action personnalisé."
-   - Mention "Un récap détaillé vient d'être envoyé sur votre email."
+Ajouter sous `OffersSection` (avant `FinalCTA`) un encart **discret** (pas une section pleine, juste une bande) :
+- Conteneur centré, fond `bg-card`, bordure fine, padding modéré.
+- Label mono : `// Aussi disponible`.
+- Texte court : *"Quentin accompagne également :"*
+- Liste horizontale (3 items avec petite icône / puce orange clay) :
+  - **Équipes de Padel** — préparation collective avant compétition
+  - **Binômes Padel** — synchroniser deux mentaux sur le court
+  - **Parent + Enfant** — accompagner le jeune joueur et sa famille
+- Petit CTA texte : *"Demander un format sur mesure →"* (lien `#contact`).
+- Volontairement plus sobre que les offres principales (pas de prix, pas de glow).
 
-### Logique de scoring
-Chaque affirmation est mappée à un profil (1 à 9) selon le doc. Score = nb d'affirmations cochées par profil. Profil dominant = max. Égalité → ordre de priorité par fréquence des cochages globaux puis numéro de profil ascendant.
+## Fichiers touchés
 
-### Données stockées (Lovable Cloud)
-Table `enneagramme_leads` :
-- id (uuid), created_at
-- first_name, email, sport, ranking
-- dominant_profile (int 1–9), profile_scores (jsonb), answers (jsonb)
-- RLS : INSERT public anon autorisé (lead magnet), SELECT réservé service_role
-- GRANT INSERT anon + service_role ALL
+- `src/routes/index.tsx` — modifications sections + nouvelle section + encart
+- `src/styles.css` — ajustement `--primary` et `--accent`
+- Aucune nouvelle dépendance, aucune migration DB.
 
-Server function `submitEnneagrammeLead` (`src/lib/enneagramme.functions.ts`) :
-- inputValidator Zod (email valide, sport in enum, max lengths)
-- Insert via `supabaseAdmin` dans `enneagramme_leads`
-- Retourne `{ ok: true }`
+## Hors scope
 
-Côté UI : le calcul du profil dominant est fait côté client à partir des réponses (pas besoin d'attendre la DB pour afficher le résultat). Le storage se fait en parallèle, non bloquant.
-
-### Illustration des profils
-9 badges visuels minimalistes générés (SVG inline) — pas d'image lourde : grand chiffre du profil + motif géométrique distinctif + accent jaune ou orange terre battue selon le centre (mental/cœur/instinct). Légère animation d'apparition (Framer/CSS).
-
-## 4. Fichiers touchés
-
-- `src/styles.css` — refonte tokens light mode
-- `src/routes/index.tsx` — `SolutionSection` (ajout encarts outils), `TestWidget` réécrit, mini-ajustements de classes là où `bg-graphite-deep` est utilisé
-- `src/lib/enneagramme.functions.ts` *(nouveau)* — server fn d'insert
-- `src/lib/enneagramme-data.ts` *(nouveau)* — affirmations × profil, contenus de résultats, mapping écrans, profils metadata
-- `src/components/EnneagrammeTest.tsx` *(nouveau)* — composant client multi-étapes (sortie de `routes/index.tsx` pour la lisibilité)
-- Migration Supabase — table `enneagramme_leads` + RLS + grants
-- Activation de Lovable Cloud (prérequis)
-
-## 5. Hors scope
-
-- Pas d'envoi d'email auto (mentionné dans l'UI mais pas implémenté ce tour — peut être ajouté ensuite via Resend)
-- Pas de dashboard admin pour visualiser les leads (visibles directement dans Cloud)
-- Pas de retest / sauvegarde session (test refait à 0 si refresh)
+- Pas de témoignages réels (placeholders à valider avec Quentin).
+- Pas de modif du test ennéagramme, du Hero, du formulaire, ni des offres elles-mêmes.

@@ -55,7 +55,7 @@
   --popover-foreground: oklch(0.16 0.012 250);
 
   /* Tennis ball yellow — accent principal */
-  --primary: oklch(0.90 0.22 122);
+  --primary: oklch(0.86 0.17 118);
   --primary-foreground: oklch(0.16 0.012 250);
 
   /* Clay court orange — accent secondaire terre battue */
@@ -65,7 +65,7 @@
   --secondary-foreground: oklch(0.16 0.012 250);
   --muted: oklch(0.96 0.005 90);
   --muted-foreground: oklch(0.42 0.012 250);
-  --accent: oklch(0.90 0.22 122);
+  --accent: oklch(0.86 0.17 118);
   --accent-foreground: oklch(0.16 0.012 250);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
@@ -127,4 +127,49 @@
   .marquee-mask {
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
+
+  /* Bulles de pensée — nuage des fausses excuses */
+  .thought-bubble {
+    position: relative;
+    background: var(--card);
+    border: 1px dashed color-mix(in oklab, var(--foreground) 18%, transparent);
+    border-radius: 28px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 8px 24px -16px color-mix(in oklab, var(--foreground) 30%, transparent);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .thought-bubble:hover {
+    transform: translateY(-4px) rotate(0deg) !important;
+    border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+  }
+  .thought-bubble::before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 28px;
+    width: 14px;
+    height: 14px;
+    background: var(--card);
+    border: 1px dashed color-mix(in oklab, var(--foreground) 18%, transparent);
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 50%;
+  }
+  .thought-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -22px;
+    left: 22px;
+    width: 6px;
+    height: 6px;
+    background: var(--card);
+    border: 1px dashed color-mix(in oklab, var(--foreground) 18%, transparent);
+    border-radius: 50%;
+  }
+
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+    50% { transform: translateY(-6px) rotate(var(--rot, 0deg)); }
+  }
+  .float-soft { animation: float-soft 6s ease-in-out infinite; }
 }
