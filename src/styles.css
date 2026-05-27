@@ -42,36 +42,36 @@
 :root {
   --radius: 4px;
 
-  /* Athletic dark palette */
-  --background: oklch(0.14 0.005 240);          /* deep graphite */
-  --foreground: oklch(0.97 0 0);                 /* sharp white */
-  --graphite: oklch(0.18 0.006 240);
-  --graphite-deep: oklch(0.10 0.004 240);
-  --line: oklch(0.97 0 0);
+  /* Athletic LIGHT palette — court & terre battue */
+  --background: oklch(0.985 0.004 90);           /* blanc cassé chaud */
+  --foreground: oklch(0.16 0.012 250);           /* graphite très foncé */
+  --graphite: oklch(0.22 0.012 250);
+  --graphite-deep: oklch(0.96 0.006 90);         /* bande gris très clair */
+  --line: oklch(0.16 0.012 250);
 
-  --card: oklch(0.17 0.006 240);
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.17 0.006 240);
-  --popover-foreground: oklch(0.97 0 0);
+  --card: oklch(1 0 0);                          /* blanc pur */
+  --card-foreground: oklch(0.16 0.012 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.16 0.012 250);
 
-  /* Electric neon yellow-green accent */
-  --primary: oklch(0.92 0.22 122);
-  --primary-foreground: oklch(0.10 0.004 240);
+  /* Tennis ball yellow — accent principal */
+  --primary: oklch(0.90 0.22 122);
+  --primary-foreground: oklch(0.16 0.012 250);
 
-  /* Clay court orange */
-  --clay: oklch(0.65 0.18 45);
+  /* Clay court orange — accent secondaire terre battue */
+  --clay: oklch(0.62 0.20 45);
 
-  --secondary: oklch(0.22 0.006 240);
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.22 0.006 240);
-  --muted-foreground: oklch(0.65 0.01 240);
-  --accent: oklch(0.92 0.22 122);
-  --accent-foreground: oklch(0.10 0.004 240);
-  --destructive: oklch(0.62 0.22 25);
-  --destructive-foreground: oklch(0.97 0 0);
-  --border: oklch(0.97 0 0 / 10%);
-  --input: oklch(0.97 0 0 / 12%);
-  --ring: oklch(0.92 0.22 122);
+  --secondary: oklch(0.955 0.006 90);
+  --secondary-foreground: oklch(0.16 0.012 250);
+  --muted: oklch(0.96 0.005 90);
+  --muted-foreground: oklch(0.42 0.012 250);
+  --accent: oklch(0.90 0.22 122);
+  --accent-foreground: oklch(0.16 0.012 250);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.16 0.012 250 / 12%);
+  --input: oklch(0.16 0.012 250 / 14%);
+  --ring: oklch(0.62 0.20 45);
 }
 
 @layer base {
@@ -83,8 +83,8 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in oklab, var(--primary) 8%, transparent), transparent),
-      linear-gradient(to bottom, var(--graphite-deep), var(--background));
+      radial-gradient(ellipse 70% 40% at 50% -10%, color-mix(in oklab, var(--primary) 18%, transparent), transparent),
+      radial-gradient(ellipse 50% 40% at 100% 100%, color-mix(in oklab, var(--clay) 10%, transparent), transparent);
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 }
@@ -96,18 +96,23 @@
 
   .court-grid {
     background-image:
-      linear-gradient(to right, color-mix(in oklab, var(--line) 6%, transparent) 1px, transparent 1px),
-      linear-gradient(to bottom, color-mix(in oklab, var(--line) 6%, transparent) 1px, transparent 1px);
+      linear-gradient(to right, color-mix(in oklab, var(--line) 8%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--line) 8%, transparent) 1px, transparent 1px);
     background-size: 80px 80px;
   }
 
   .glow-primary {
-    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 40%, transparent),
-                0 10px 40px -10px color-mix(in oklab, var(--primary) 50%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--primary) 60%, transparent),
+                0 12px 40px -12px color-mix(in oklab, var(--primary) 70%, transparent);
+  }
+
+  .glow-clay {
+    box-shadow: 0 0 0 1px color-mix(in oklab, var(--clay) 35%, transparent),
+                0 12px 40px -12px color-mix(in oklab, var(--clay) 40%, transparent);
   }
 
   .text-stroke {
-    -webkit-text-stroke: 1px color-mix(in oklab, var(--foreground) 60%, transparent);
+    -webkit-text-stroke: 1px color-mix(in oklab, var(--foreground) 70%, transparent);
     color: transparent;
   }
 
