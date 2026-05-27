@@ -23,6 +23,11 @@ const fakeExcuses = [
   "Si j'arrivais à jouer en match comme à l'entraînement, je prendrais 3 classements.",
   "Je gagne jamais un super tie-break, c'est ma malédiction.",
   "J'ai pas confiance en mes coups aujourd'hui.",
+  "Je pourrai être mieux classé mais c'est parce que je fais pas beaucoup de tournois.",
+  "J'aurais dû re-corder avant le tournoi, mon cordage est rincé.",
+  "Le gars s'est auto-arbitré tout le match, il m'a volé au moins 4 points qui étaient sur la ligne.",
+  "Le match était programmé à 9h du matin, j'étais pas réveillé.",
+  "Les balles de ce tournoi, c'est des vrais cailloux, aucun contrôle.",
 ];
 
 const poisons = ["Calme-toi", "Respire", "Mets la balle dans le court", "Gagne le point !"];
