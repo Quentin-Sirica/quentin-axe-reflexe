@@ -371,6 +371,41 @@ function SolutionSection() {
           ))}
         </div>
 
+        <div className="mt-20">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                Le vocabulaire de la méthode
+              </div>
+              <h3 className="font-display font-bold text-3xl sm:text-4xl text-balance">
+                Les outils mentaux, démystifiés.
+              </h3>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-md">
+              Quatre disciplines complémentaires. Voici comment je les utilise concrètement avec vous.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {outils.map((o) => (
+              <article
+                key={o.n}
+                className="relative bg-card border border-border rounded-md p-6 hover:border-primary/60 transition-colors group"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <span className="font-display font-bold text-4xl text-primary">{o.n}</span>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
+                    Outil mental
+                  </span>
+                </div>
+                <h4 className="font-display font-bold text-xl mb-3 group-hover:text-primary transition-colors">
+                  {o.name}
+                </h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-16 grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5 relative aspect-square overflow-hidden rounded-md border border-border">
             <img src={coachImg} alt="Quentin Sirica" width={1200} height={1500} loading="lazy" className="w-full h-full object-cover grayscale" />
