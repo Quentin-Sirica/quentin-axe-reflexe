@@ -275,12 +275,12 @@ function Capture({
         Dernière étape · 100%
       </div>
       <h3 className="font-display font-bold text-3xl sm:text-4xl text-balance">
-        Vos réponses sont prêtes.
+        Merci pour vos réponses.
         <br />
-        <span className="text-primary">À qui dois-je envoyer votre profil ?</span>
+        <span className="text-primary">Nous avons identifié votre profil dominant !</span>
       </h3>
       <p className="mt-4 text-muted-foreground max-w-2xl">
-        Renseignez vos infos pour découvrir votre profil dominant et recevoir le récap détaillé sur votre email.
+        Renseignez vos infos pour découvrir votre profil dominant et recevoir un récap détaillé.
       </p>
       <div className="mt-8 grid sm:grid-cols-2 gap-5">
         <label className="block sm:col-span-1">
