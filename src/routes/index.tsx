@@ -150,8 +150,10 @@ function LandingPage() {
       <ProblemSection />
       <AgitationSection />
       <SolutionSection />
+      <ResultsSection />
       <TestWidget />
       <OffersSection />
+      <OtherAudiences />
       <FinalCTA />
       <Footer />
     </div>
