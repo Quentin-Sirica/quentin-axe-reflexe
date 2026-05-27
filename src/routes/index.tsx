@@ -32,6 +32,41 @@ const fakeExcuses = [
 
 const poisons = ["Calme-toi", "Respire", "Mets la balle dans le court", "Gagne le point !"];
 
+const objectives = [
+  { n: "01", title: "Monter de classement", body: "Franchir le palier qui résiste depuis deux saisons. Concrètement." },
+  { n: "02", title: "Viser le haut niveau", body: "Structurer un mental de compétiteur pour les tableaux régionaux et nationaux." },
+  { n: "03", title: "Devenir DE", body: "Préparer le passage en Diplôme d'État avec une exigence mentale alignée." },
+  { n: "04", title: "Casser un blocage", body: "Sortir de 3, 5, 10 ans de stagnation. Comprendre enfin ce qui coince." },
+];
+
+// témoignages réels — à compléter / remplacer par les vrais retours clients
+const testimonials = [
+  {
+    quote: "J'ai gagné mes deux premiers matchs de poule en championnat alors que je les perdais systématiquement depuis 3 ans. Rien n'avait changé techniquement.",
+    name: "Marc L.",
+    progress: "30/1 → 15/5",
+    sport: "Tennis",
+  },
+  {
+    quote: "Avant, je m'effondrais au 3ème set. Aujourd'hui c'est devenu mon set préféré. La méthode change la façon dont tu lis tes propres réactions.",
+    name: "Camille R.",
+    progress: "15/4 → 15/2",
+    sport: "Tennis",
+  },
+  {
+    quote: "On a pu jouer les phases finales en binôme sans s'engueuler une seule fois. Le mental collectif, ça se travaille.",
+    name: "Julien & Théo",
+    progress: "P500 → P250",
+    sport: "Padel",
+  },
+];
+
+const otherAudiences = [
+  { title: "Équipes de Padel", body: "Préparation collective avant compétition." },
+  { title: "Binômes Padel", body: "Synchroniser deux mentaux sur le court." },
+  { title: "Parent + Enfant", body: "Accompagner le jeune joueur et sa famille." },
+];
+
 const steps = [
   {
     n: "01",
