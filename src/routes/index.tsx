@@ -299,24 +299,7 @@ function ProblemSection() {
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-6">
             // Le nuage des fausses excuses
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 [grid-auto-flow:dense]">
-            {fakeExcuses.map((q, i) => (
-              <div
-                key={i}
-                className={`group relative bg-card border border-border rounded-md p-5 hover:border-primary/40 transition-colors ${
-                  i === 0 ? "md:col-span-2 md:row-span-2" : i === 3 ? "lg:col-span-2" : ""
-                }`}
-                style={{ transform: `rotate(${(i % 3) - 1}deg)` }}
-              >
-                <span className="absolute top-2 right-3 font-mono text-[10px] text-muted-foreground/40">
-                  #{(i + 1).toString().padStart(2, "0")}
-                </span>
-                <p className={`font-display ${i === 0 ? "text-2xl" : "text-base"} text-foreground/90 leading-snug`}>
-                  "{q}"
-                </p>
-              </div>
-            ))}
-          </div>
+          <ExcuseCloud />
         </div>
 
         <div className="mt-14 border-l-2 border-primary pl-6 max-w-3xl">
