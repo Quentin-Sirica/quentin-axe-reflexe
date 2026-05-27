@@ -324,22 +324,46 @@ function AgitationSection() {
           </h2>
         </div>
         <div className="lg:col-span-7 space-y-8">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            On vous rabâche partout que <em className="text-foreground not-italic font-semibold">"le mental c'est 80 % du travail"</em>.
-            C'est faux. Le mental tout seul ne sert à rien. Si vous n'avez pas de plan tactique ou que vous êtes
-            à bout physiquement au 3ème set, votre mental va exploser. Tout est lié :
-            <span className="text-foreground"> Mental, Technique, Physique, Tactique.</span>
-            Un blocage mental n'est parfois que la conséquence d'une défaillance tactique.
-          </p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {["Mental", "Technique", "Physique", "Tactique"].map((p) => (
-              <div key={p} className="border border-border bg-card p-4 text-center">
-                <div className="font-display font-semibold">{p}</div>
-                <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">25%</div>
-              </div>
-            ))}
+          <div className="bg-card border border-border rounded-lg p-8 space-y-6">
+            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              // L'idée reçue
+            </div>
+            <p className="font-display text-2xl sm:text-3xl leading-tight">
+              <span className="line-through decoration-destructive decoration-2 text-foreground/60">
+                "Le mental c'est 80% du travail."
+              </span>
+              <span className="ml-3 inline-block font-mono text-sm align-middle bg-destructive text-destructive-foreground px-2 py-1 rounded">
+                FAUX
+              </span>
+            </p>
+            <p className="font-display text-xl text-foreground/90">
+              Le mental tout seul ne sert à rien.
+            </p>
           </div>
+
+          <div>
+            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
+              L'équation réelle de la performance
+            </div>
+            <div className="flex items-stretch justify-between gap-2 sm:gap-3">
+              {["Mental", "Technique", "Physique", "Tactique"].map((p, i) => (
+                <div key={p} className="flex items-center gap-2 sm:gap-3 flex-1">
+                  <div className="flex-1 border border-border bg-card p-4 text-center rounded-md">
+                    <div className="font-display font-semibold">{p}</div>
+                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">25%</div>
+                  </div>
+                  {i < 3 && (
+                    <span className="font-display text-2xl text-primary shrink-0">+</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="border-l-2 border-primary pl-5 font-display text-lg sm:text-xl leading-snug text-balance">
+            Un blocage mental n'est souvent que la conséquence d'une
+            <span className="text-primary"> défaillance tactique</span>.
+          </p>
 
           <div className="relative bg-destructive/5 border border-destructive/30 rounded-md p-8">
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-4">
