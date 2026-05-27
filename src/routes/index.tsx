@@ -96,7 +96,7 @@ const outils = [
   },
   {
     n: "02",
-    name: "La PNL",
+    name: "La PNL (Programmation Neurolinguistique)",
     body: "Prendre du recul sur une situation que tu veux régler. Tu rates un coup facile, tu t'effondres, le match bascule. La PNL t'aide à comprendre ce qui s'est passé en toi à ce moment-là, et ce dont tu aurais eu besoin. La prochaine fois, tu seras capable de changer tes automatismes — parce que tu les auras identifiés.",
   },
   {
