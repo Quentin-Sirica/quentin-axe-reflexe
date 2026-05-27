@@ -55,7 +55,7 @@
   --popover-foreground: oklch(0.16 0.012 250);
 
   /* Tennis ball yellow — accent principal */
-  --primary: oklch(0.90 0.22 122);
+  --primary: oklch(0.86 0.17 118);
   --primary-foreground: oklch(0.16 0.012 250);
 
   /* Clay court orange — accent secondaire terre battue */
@@ -65,7 +65,7 @@
   --secondary-foreground: oklch(0.16 0.012 250);
   --muted: oklch(0.96 0.005 90);
   --muted-foreground: oklch(0.42 0.012 250);
-  --accent: oklch(0.90 0.22 122);
+  --accent: oklch(0.86 0.17 118);
   --accent-foreground: oklch(0.16 0.012 250);
   --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
