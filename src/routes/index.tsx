@@ -224,8 +224,11 @@ function Hero() {
             Gagnez enfin les matchs que votre <span className="text-primary">niveau technique</span> mérite.
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
-            17 ans de terrain m'ont appris une chose : le mental n'est pas une excuse magique,
-            c'est un muscle qui se pilote. Arrêtez de subir vos matchs. Reprenez les commandes de votre jeu.
+            17 ans de terrain m'ont appris une chose :{" "}
+            <mark className="bg-primary/25 text-foreground font-semibold px-1 rounded-sm box-decoration-clone">
+              le mental n'est pas une excuse magique, c'est un muscle qui se pilote
+            </mark>
+            . Arrêtez de subir vos matchs. Reprenez les commandes de votre jeu.
           </p>
           <div className="flex flex-wrap gap-4 items-center">
             <a
