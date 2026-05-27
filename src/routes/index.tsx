@@ -3,6 +3,7 @@ import { useState } from "react";
 import heroImg from "@/assets/hero-athlete.jpg";
 import courtImg from "@/assets/court-grid.jpg";
 import coachImg from "@/assets/coach-portrait.jpg";
+import { EnneagrammeTest } from "@/components/EnneagrammeTest";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -44,6 +45,29 @@ const steps = [
     tag: "Le Réflexe — Visualisation",
     title: "Le Réflexe",
     body: "L'outil ultime du terrain. On ancre des ressources solides et une stabilité émotionnelle pour savoir quoi faire dans le contexte précis du match, entre deux points.",
+  },
+];
+
+const outils = [
+  {
+    n: "01",
+    name: "L'Ennéagramme",
+    body: "Un outil pour comprendre comment tu fonctionnes. Il y a 9 profils, chacun avec ses motivations profondes, ses peurs et sa façon d'aborder les choses. Deux joueurs perdent le même point — l'un doute, l'autre s'énerve, un troisième se juge. Quand tu te connais vraiment, tout devient plus simple sur un court.",
+  },
+  {
+    n: "02",
+    name: "La PNL",
+    body: "Prendre du recul sur une situation que tu veux régler. Tu rates un coup facile, tu t'effondres, le match bascule. La PNL t'aide à comprendre ce qui s'est passé en toi à ce moment-là, et ce dont tu aurais eu besoin. La prochaine fois, tu seras capable de changer tes automatismes — parce que tu les auras identifiés.",
+  },
+  {
+    n: "03",
+    name: "La Sophrologie",
+    body: "Des outils simples et doux. Par la respiration et la connexion à tes cinq sens, elle te permet de ressentir ce qui se passe à l'intérieur de toi. Elle t'apprend à te détendre, relâcher les tensions, te booster et trouver les ressources dont tu auras besoin sur le court.",
+  },
+  {
+    n: "04",
+    name: "L'Imagerie Mentale",
+    body: "Une compétence que tu travailles de n'importe où — même depuis ton canapé. Te voir faire, te sentir faire, t'entendre faire, exactement comme tu devrais le faire. Tu conditionnes ton cerveau et ton corps avant même d'être sur le terrain. Sur le court, tu l'utilises entre chaque point pour rester dans le positif.",
   },
 ];
 
@@ -373,72 +397,10 @@ function SolutionSection() {
 }
 
 function TestWidget() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   return (
     <section id="test" className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-5xl px-6">
-        <div className="relative bg-card border border-border rounded-xl overflow-hidden">
-          <div className="absolute inset-0 court-grid opacity-50 pointer-events-none" />
-          <div
-            className="absolute -top-32 -right-32 w-80 h-80 rounded-full opacity-30 blur-3xl"
-            style={{ background: "var(--primary)" }}
-          />
-          <div className="relative p-8 sm:p-12">
-            <div className="flex items-center justify-between mb-8 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 bg-primary rounded-full" /> Test Ennéagramme · Lead Magnet</span>
-              <span>~5 min</span>
-            </div>
-            <h2 className="font-display font-bold text-3xl sm:text-5xl text-balance leading-tight">
-              Quel profil de joueur de tennis/padel <span className="text-primary">êtes-vous vraiment</span> ?
-            </h2>
-            <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-              Êtes-vous le <strong className="text-foreground">Perfectionniste</strong> qui s'autodétruit à la moindre faute ?
-              Le <strong className="text-foreground">Challenger</strong> qui s'épuise à vouloir dicter chaque échange ?
-              L'<strong className="text-foreground">Anxieux</strong> qui anticipe la défaite avant le premier service ?
-            </p>
-
-            <div className="mt-10 grid md:grid-cols-3 gap-3">
-              {["Perfectionniste", "Challenger", "Anxieux", "Loyal", "Épicurien", "Médiateur"].slice(0, 3).map((p, i) => (
-                <div key={p} className="border border-border bg-background/40 p-4 rounded-md">
-                  <div className="font-mono text-[10px] text-primary">TYPE 0{i + 1}</div>
-                  <div className="font-display font-semibold mt-1">{p}</div>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-10 text-foreground/90">
-              5 minutes pour passer mon test basé sur l'Ennéagramme, conscienciser vos vrais blocages
-              et recevoir votre premier <span className="text-primary">levier d'action personnalisé</span>.
-            </p>
-
-            {submitted ? (
-              <div className="mt-6 p-6 border border-primary/40 rounded-md bg-primary/5">
-                <div className="font-display text-xl">Reçu. Vérifiez votre boîte mail dans 2 min.</div>
-              </div>
-            ) : (
-              <form
-                onSubmit={(e) => { e.preventDefault(); if (email) setSubmitted(true); }}
-                className="mt-6 flex flex-col sm:flex-row gap-3"
-              >
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="votre@email.com"
-                  className="flex-1 bg-background border border-border rounded-md px-5 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary"
-                />
-                <button
-                  type="submit"
-                  className="bg-primary text-primary-foreground px-8 py-4 font-semibold rounded-md hover:bg-primary/90 transition-all glow-primary whitespace-nowrap"
-                >
-                  Démarrer le test →
-                </button>
-              </form>
-            )}
-          </div>
-        </div>
+        <EnneagrammeTest />
       </div>
     </section>
   );
