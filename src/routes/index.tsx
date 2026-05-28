@@ -663,11 +663,32 @@ function FinalCTA() {
                   />
                 </Field>
               </div>
+              <Field label="Votre objectif / contexte" required>
+                <textarea
+                  required
+                  minLength={10}
+                  maxLength={2000}
+                  rows={5}
+                  placeholder="Ex : Je suis 15/4 depuis 4 ans, je veux casser ce plateau cette saison. Je perds systématiquement les matchs serrés au 3e set…"
+                  value={form.context}
+                  onChange={(e) => setForm({ ...form, context: e.target.value })}
+                  className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary resize-y"
+                />
+                <span className="block mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Objectif visé, blocage actuel, contexte de jeu — soyez précis.
+                </span>
+              </Field>
+              {error && (
+                <div className="text-sm text-destructive border border-destructive/40 bg-destructive/10 rounded-md px-4 py-3">
+                  {error}
+                </div>
+              )}
               <button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground py-4 font-semibold rounded-md hover:bg-primary/90 transition-all glow-primary text-lg"
+                disabled={submitting}
+                className="w-full bg-primary text-primary-foreground py-4 font-semibold rounded-md hover:bg-primary/90 transition-all glow-primary text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Postuler pour intégrer le programme →
+                {submitting ? "Envoi…" : "Postuler pour intégrer le programme →"}
               </button>
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground text-center">
                 Réponse personnelle sous 48h · Pas de spam · Pas de blabla
