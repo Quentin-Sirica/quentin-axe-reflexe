@@ -558,8 +558,34 @@ function OffersSection() {
 }
 
 function FinalCTA() {
-  const [form, setForm] = useState({ name: "", email: "", sport: "Tennis", ranking: "" });
+  const [form, setForm] = useState({ name: "", email: "", sport: "Tennis", ranking: "", context: "" });
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const submit = useServerFn(submitProgramApplication);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submit({
+        data: {
+          first_name: form.name,
+          email: form.email,
+          sport: form.sport as "Tennis" | "Padel" | "Badminton",
+          ranking: form.ranking,
+          context: form.context,
+        },
+      });
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Une erreur est survenue.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
@@ -588,7 +614,7 @@ function FinalCTA() {
             </div>
           ) : (
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={onSubmit}
               className="bg-card border border-border rounded-lg p-8 sm:p-10 space-y-6"
             >
               <Field label="Nom complet" required>
