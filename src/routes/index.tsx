@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
+import { submitProgramApplication } from "@/lib/program.functions";
 import heroImg from "@/assets/hero-athlete.jpg";
 import courtImg from "@/assets/court-grid.jpg";
 import coachImg from "@/assets/coach-portrait.jpg";
@@ -556,8 +558,34 @@ function OffersSection() {
 }
 
 function FinalCTA() {
-  const [form, setForm] = useState({ name: "", email: "", sport: "Tennis", ranking: "" });
+  const [form, setForm] = useState({ name: "", email: "", sport: "Tennis", ranking: "", context: "" });
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const submit = useServerFn(submitProgramApplication);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submit({
+        data: {
+          first_name: form.name,
+          email: form.email,
+          sport: form.sport as "Tennis" | "Padel" | "Badminton",
+          ranking: form.ranking,
+          context: form.context,
+        },
+      });
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Une erreur est survenue.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <section id="contact" className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
@@ -586,7 +614,7 @@ function FinalCTA() {
             </div>
           ) : (
             <form
-              onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+              onSubmit={onSubmit}
               className="bg-card border border-border rounded-lg p-8 sm:p-10 space-y-6"
             >
               <Field label="Nom complet" required>
@@ -635,11 +663,32 @@ function FinalCTA() {
                   />
                 </Field>
               </div>
+              <Field label="Votre objectif / contexte" required>
+                <textarea
+                  required
+                  minLength={10}
+                  maxLength={2000}
+                  rows={5}
+                  placeholder="Ex : Je suis 15/4 depuis 4 ans, je veux casser ce plateau cette saison. Je perds systématiquement les matchs serrés au 3e set…"
+                  value={form.context}
+                  onChange={(e) => setForm({ ...form, context: e.target.value })}
+                  className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary resize-y"
+                />
+                <span className="block mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Objectif visé, blocage actuel, contexte de jeu — soyez précis.
+                </span>
+              </Field>
+              {error && (
+                <div className="text-sm text-destructive border border-destructive/40 bg-destructive/10 rounded-md px-4 py-3">
+                  {error}
+                </div>
+              )}
               <button
                 type="submit"
-                className="w-full bg-primary text-primary-foreground py-4 font-semibold rounded-md hover:bg-primary/90 transition-all glow-primary text-lg"
+                disabled={submitting}
+                className="w-full bg-primary text-primary-foreground py-4 font-semibold rounded-md hover:bg-primary/90 transition-all glow-primary text-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Postuler pour intégrer le programme →
+                {submitting ? "Envoi…" : "Postuler pour intégrer le programme →"}
               </button>
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground text-center">
                 Réponse personnelle sous 48h · Pas de spam · Pas de blabla
