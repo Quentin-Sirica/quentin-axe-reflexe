@@ -1,66 +1,55 @@
-## 1. Nuage des fausses excuses — repensé "pensée"
+## Objectif
 
-Dans `ProblemSection` (src/routes/index.tsx) :
-- Ajouter les 5 nouvelles excuses à la liste `fakeexcuses` (en plus des 7 actuelles → 12 total).
-- Abandonner la grille rectangulaire en cartes. Remplacer par une composition type **"bulles de pensée"** plus organique :
-  - Conteneur `relative` avec hauteur minimum (ex. `min-h-[600px]`), excuses positionnées en absolu avec rotations légères et tailles variables.
-  - Chaque excuse devient une **bulle de pensée** : fond `bg-card`, bordure pointillée `border-dashed border-foreground/15`, coins très arrondis (`rounded-[28px]`), petite "queue" de bulle de BD (pseudo-élément `::after` triangulaire) pointant en bas.
-  - Tailles variables (`text-sm` / `text-base` / `text-xl`) selon importance, opacités variables (0.6 → 1) pour effet de profondeur.
-  - Animation subtile au scroll (float doux via CSS keyframes ou stagger en `animate-pulse` léger).
-  - Layout fluide CSS Grid `masonry`-like sur desktop + stack vertical sur mobile.
-  - Petits "..." en typo display autour pour évoquer le flux mental.
+1. Ajouter un champ contexte obligatoire au formulaire « Postuler au programme » et persister chaque candidature en base.
+2. Créer un espace admin protégé qui liste les leads, avec deux onglets :
+   - **Programme** (candidatures formulaire)
+   - **Profil Mental** (résultats test Ennéagramme — table déjà existante)
 
-## 2. Jaune adouci
+## Plan détaillé
 
-Dans `src/styles.css` :
-- `--primary` actuel `oklch(0.90 0.22 122)` → trop fluo, agressif sur fond clair.
-- Nouveau : `oklch(0.86 0.17 118)` (moins lumineux, moins saturé, légèrement plus vert/citron).
-- Ajuster `--accent` à l'identique.
-- Vérifier `glow-primary` reste cohérent (pas de modif nécessaire, color-mix s'adapte).
-- Le radial gradient du body (18% primary) reste valide.
+### 1. Base de données (migration)
+- Nouvelle table `program_applications` : `first_name`, `email`, `sport`, `ranking`, `context` (texte long, obligatoire).
+- Enum `app_role` + table `user_roles` + fonction `has_role()` (pattern sécurisé, pas de rôle stocké sur le profil).
+- RLS :
+  - `program_applications` : INSERT public (anon + authenticated), SELECT réservé aux admins.
+  - `enneagramme_leads` : ajouter une policy SELECT admin (l'insertion existante reste via service role).
+  - `user_roles` : SELECT pour l'utilisateur connecté sur ses propres lignes.
+- GRANTs explicites pour `anon`, `authenticated`, `service_role` selon les policies.
 
-## 3. Bloc "le mental c'est 80%" — épuré
+### 2. Formulaire programme (`src/routes/index.tsx`)
+- Ajouter un champ `<textarea>` **Contexte / objectif** obligatoire (ex : « Projet de monter classement, viser DE, casser un plateau… »).
+- Soumission via un nouveau server function `submitProgramApplication` (insert via `supabaseAdmin`, validation Zod côté serveur).
+- Conserver l'écran de confirmation existant.
 
-Dans `AgitationSection`, remplacer le paragraphe dense par une mise en page UX/UI claire :
-- Citation barrée mise en avant : `"Le mental c'est 80% du travail." → FAUX` (gros, display, jaune barré).
-- Une ligne punchline : *"Le mental seul ne sert à rien."*
-- Mini-équation visuelle horizontale en 4 piliers égaux : **Mental + Technique + Physique + Tactique** (les 4 cards existantes — on les fusionne ici, plus de duplication avec le paragraphe).
-- Une seule phrase de conclusion détachée en bas : *"Un blocage mental n'est souvent que la conséquence d'une défaillance tactique."*
-- Espacement aéré, hiérarchie typo claire (display 4xl → body lg → mono caption).
+### 3. Auth
+- Activer email/mot de passe (pas d'auto-confirm, pas de Google).
+- Nouvelle route publique `/login` : connexion email + mot de passe (pas d'inscription publique — le compte admin sera créé manuellement par Quentin via la page Utilisateurs de Lovable Cloud, puis on lui attribuera le rôle `admin` via une insertion en base que je préparerai).
+- Listener `onAuthStateChange` ajouté à `__root.tsx` pour invalider le cache.
+- Wiring `attachSupabaseAuth` dans `src/start.ts` si pas déjà présent.
 
-## 4. Nouvelle section "Résultats & témoignages"
+### 4. Admin
+- Layout protégé `src/routes/_authenticated.tsx` (gate sur `context.auth.isAuthenticated`).
+- Route `src/routes/_authenticated/admin.tsx` :
+  - `beforeLoad` re-vérifie le rôle admin via un server fn `requireAdmin` (utilise `requireSupabaseAuth` + `has_role`). Redirection sinon.
+  - UI : header sobre cohérent avec le design (typo display, tokens existants), 2 onglets via `Tabs` shadcn.
+  - **Onglet Programme** : tableau (date, nom, email, sport, classement, contexte développable) + recherche basique.
+  - **Onglet Profil Mental** : tableau (date, prénom, email, sport, classement, profil dominant + scores).
+  - Bouton « Exporter CSV » par onglet (côté client).
+  - Bouton « Déconnexion ».
+- Server functions admin (`src/lib/admin.functions.ts`) :
+  - `listProgramApplications`, `listEnneagrammeLeads`, `getCurrentRole` — toutes gated par `requireSupabaseAuth` + check `has_role(admin)` côté handler.
 
-Insérer une nouvelle section `ResultsSection` entre `SolutionSection` et `TestWidget` (ou en bas de SolutionSection sous le bloc "Outils mentaux") :
-- Label section `R/03b · Résultats concrets`.
-- Titre : **"Les résultats que vous pouvez viser."**
-- Copywriting d'intro : *"Pas de promesses magiques. Des trajectoires réelles : casser un palier, viser un classement, accéder au haut niveau, devenir DE — ou simplement arrêter de stagner après 5 ans."*
-- Grille 4 colonnes (objectifs identifiables) : **Monter de classement** · **Aller vers le haut niveau** · **Devenir DE** · **Casser un blocage qui dure**.
-  - Chaque carte : icône/numéro, titre, 1 ligne descriptive.
-- Sous-grille **3 témoignages** (placeholder) en format carte :
-  - Citation (italique), nom + classement initial → classement final, sport.
-  - Note : les 3 témoignages seront en données placeholder réalistes (Quentin pourra fournir les vrais). On ajoute une note "// témoignages réels — à compléter" en commentaire.
-- CTA discret en bas : *"Votre histoire peut être la prochaine."* → lien vers `#contact`.
+### 5. Router context
+- Étendre le context auth (`isAuthenticated`, `user`) alimenté depuis le browser client Supabase + `onAuthStateChange`.
 
-## 5. Encart "Autres cibles"
+## Technique
 
-Ajouter sous `OffersSection` (avant `FinalCTA`) un encart **discret** (pas une section pleine, juste une bande) :
-- Conteneur centré, fond `bg-card`, bordure fine, padding modéré.
-- Label mono : `// Aussi disponible`.
-- Texte court : *"Quentin accompagne également :"*
-- Liste horizontale (3 items avec petite icône / puce orange clay) :
-  - **Équipes de Padel** — préparation collective avant compétition
-  - **Binômes Padel** — synchroniser deux mentaux sur le court
-  - **Parent + Enfant** — accompagner le jeune joueur et sa famille
-- Petit CTA texte : *"Demander un format sur mesure →"* (lien `#contact`).
-- Volontairement plus sobre que les offres principales (pas de prix, pas de glow).
-
-## Fichiers touchés
-
-- `src/routes/index.tsx` — modifications sections + nouvelle section + encart
-- `src/styles.css` — ajustement `--primary` et `--accent`
-- Aucune nouvelle dépendance, aucune migration DB.
+- Stack : TanStack Start, server functions (`createServerFn`) + `supabaseAdmin` pour les lectures admin, `requireSupabaseAuth` pour vérifier l'identité.
+- Pas d'Edge Function.
+- Le compte admin de Quentin sera créé après la migration : je vous donnerai la marche à suivre (créer le user dans l'onglet Utilisateurs de Lovable Cloud, puis je lance une insertion `user_roles` avec son UUID).
+- Pas de Google sign-in (vous avez choisi email/mot de passe uniquement).
 
 ## Hors scope
 
-- Pas de témoignages réels (placeholders à valider avec Quentin).
-- Pas de modif du test ennéagramme, du Hero, du formulaire, ni des offres elles-mêmes.
+- Pas d'envoi d'email automatique aux candidats (peut être ajouté plus tard).
+- Pas de pagination serveur (volumes faibles à court terme — tri/recherche côté client).
