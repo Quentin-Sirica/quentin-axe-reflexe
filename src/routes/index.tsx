@@ -223,7 +223,7 @@ function Hero() {
             Tennis · Padel · Badminton
           </div>
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[0.95] text-balance">
-            Gagnez enfin les matchs que votre <span className="text-primary">niveau technique</span> mérite.
+            Il est temps <span className="text-primary">d'aligner votre tête</span> avec la réalité du terrain
           </h1>
           <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
             17 ans de terrain m'ont appris une chose :{" "}

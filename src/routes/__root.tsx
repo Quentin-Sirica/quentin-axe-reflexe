@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Coaching mental haute performance pour joueurs de tennis, padel et badminton. Reprenez les commandes de votre jeu en match." },
       { name: "author", content: "Quentin Sirica" },
       { property: "og:title", content: "Méthode Axe-Réflexe — Quentin Sirica" },
-      { property: "og:description", content: "Gagnez enfin les matchs que votre niveau technique mérite." },
+      { property: "og:description", content: "Il est temps d'aligner votre tête avec la réalité du terrain" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
