@@ -815,21 +815,27 @@ function ExcuseCloud() {
   const row1 = fakeExcuses.slice(0, half);
   const row2 = fakeExcuses.slice(half);
 
-  const Chip = ({ q }: { q: string }) => (
-    <span className="shrink-0 inline-flex items-center gap-2 bg-card border border-dashed border-foreground/20 rounded-full px-4 py-2 mr-3 font-display text-sm sm:text-base text-foreground/80 hover:text-foreground hover:border-destructive/60 hover:line-through transition-all">
-      <span className="text-primary/60">«</span>
-      {q}
-      <span className="text-primary/60">»</span>
-    </span>
+  const Quote = ({ q, i }: { q: string; i: number }) => (
+    <figure className="shrink-0 w-[300px] sm:w-[340px] mr-4 bg-card/80 border border-border rounded-md px-4 py-3 hover:border-destructive/50 transition-colors group">
+      <div className="flex items-start gap-2">
+        <span className="font-display text-3xl leading-none text-primary/50 -mt-1 select-none">“</span>
+        <blockquote className="font-display italic text-[15px] leading-snug text-foreground/85 group-hover:line-through group-hover:text-foreground/50 transition-all">
+          {q}
+        </blockquote>
+      </div>
+      <figcaption className="mt-2 pl-7 font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+        — Joueur n°{String(i + 1).padStart(2, '0')} · vestiaire
+      </figcaption>
+    </figure>
   );
 
   return (
-    <div className="relative space-y-3 overflow-hidden marquee-mask">
+    <div className="relative space-y-4 overflow-hidden marquee-mask">
       <div className="flex w-max ticker-track">
-        {[...row1, ...row1].map((q, i) => <Chip key={'a' + i} q={q} />)}
+        {[...row1, ...row1].map((q, i) => <Quote key={'a' + i} q={q} i={i % row1.length} />)}
       </div>
       <div className="flex w-max ticker-track-reverse">
-        {[...row2, ...row2].map((q, i) => <Chip key={'b' + i} q={q} />)}
+        {[...row2, ...row2].map((q, i) => <Quote key={'b' + i} q={q} i={(i % row2.length) + row1.length} />)}
       </div>
     </div>
   );
