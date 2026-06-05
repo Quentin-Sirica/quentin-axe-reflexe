@@ -341,20 +341,20 @@ function AgitationSection() {
           </p>
         </div>
 
-        <div className="mt-10 inline-flex flex-wrap items-center gap-3 bg-card border border-border rounded-md px-4 py-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">// L'idée reçue</span>
-          <span className="line-through decoration-destructive decoration-2 text-foreground/60 font-display text-base sm:text-lg">
-            "Le mental c'est 80% du travail."
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-widest bg-destructive text-destructive-foreground px-2 py-1 rounded">
-            FAUX
-          </span>
-        </div>
-
-        <div className="mt-12">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-5 text-center">
-            L'équation réelle de la performance
+        <div className="mt-10 bg-card border border-border rounded-md p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-dashed border-border">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              L'équation réelle de la performance
+            </span>
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+              <span className="text-muted-foreground">// L'idée reçue :</span>
+              <span className="line-through decoration-destructive decoration-2 text-foreground/55 normal-case tracking-normal text-xs">
+                "Le mental c'est 80% du travail."
+              </span>
+              <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded">FAUX</span>
+            </span>
           </div>
+
           <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
             {[
               { p: 'Mental', featured: true },
@@ -367,7 +367,7 @@ function AgitationSection() {
                   className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all ${
                     item.featured
                       ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary'
-                      : 'bg-card border-border'
+                      : 'bg-background border-border'
                   }`}
                 >
                   <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
@@ -393,12 +393,19 @@ function AgitationSection() {
           </div>
         </div>
 
-        <p className="mt-14 max-w-3xl mx-auto text-center border-y border-border py-6 font-display text-xl sm:text-2xl leading-snug text-balance">
-          Un blocage mental n'est souvent que la conséquence d'une
-          <span className="text-primary"> défaillance tactique</span>.
-          <br />
-          <span className="text-muted-foreground text-base sm:text-lg">Travailler le mental sans les 3 autres, c'est repeindre une voiture sans moteur.</span>
-        </p>
+        <div className="mt-14 max-w-3xl mx-auto">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
+            // La métaphore du pilote
+          </div>
+          <p className="font-display text-xl sm:text-2xl leading-snug text-balance text-center">
+            Vous pouvez posséder toutes les armes du joueur parfait —
+            <span className="text-foreground/90"> un <span className="text-primary">physique</span> de feu, une <span className="text-primary">technique</span> chirurgicale, une <span className="text-primary">tactique</span> implacable.</span>
+          </p>
+          <p className="mt-5 font-display text-xl sm:text-2xl leading-snug text-balance text-center">
+            Sans le pilote — <span className="text-primary">le Mental</span> — le système se déconnecte au premier point important.
+            <span className="block mt-2 text-muted-foreground text-base sm:text-lg">Vous finissez le match dans les bâches. Votre potentiel reste au vestiaire.</span>
+          </p>
+        </div>
 
         <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
