@@ -474,7 +474,7 @@ function SolutionSection() {
             <img src={quentinVisio.url} alt="Quentin en séance de coaching en visio" width={1500} height={1000} loading="lazy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent" />
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/80">
-              <span>Séance · 1h30 · à distance ou présentiel</span>
+              <span>SÉANCE · 1H30 · À DISTANCE</span>
               <span className="text-primary">● VISIO</span>
             </div>
           </div>
