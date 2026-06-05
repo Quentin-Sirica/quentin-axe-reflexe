@@ -1,55 +1,63 @@
-## Objectif
+## 1. Photos de Quentin (remplacent les images générées)
 
-1. Ajouter un champ contexte obligatoire au formulaire « Postuler au programme » et persister chaque candidature en base.
-2. Créer un espace admin protégé qui liste les leads, avec deux onglets :
-   - **Programme** (candidatures formulaire)
-   - **Profil Mental** (résultats test Ennéagramme — table déjà existante)
+Upload des 3 photos via `lovable-assets` puis remplacement dans `src/routes/index.tsx` :
 
-## Plan détaillé
+- `Quentin-regarde-ses-eleves.jpeg` → **Hero** (remplace `hero-athlete.jpg`). Suppression du faux overlay "Match Point · LIVE", remplacé par une légende cohérente ("Aubagne · Session terrain").
+- `Quentin-portrait.jpeg` → **Portrait coach** (remplace `coach-portrait.jpg`), déplacé **avant** la grille des outils mentaux (cf. §4).
+- `Quentin-coaching-visio.jpeg` → intégrée dans la `SolutionSection` à côté du bloc d'intro "questionnement chirurgical" (illustre le coaching à distance).
 
-### 1. Base de données (migration)
-- Nouvelle table `program_applications` : `first_name`, `email`, `sport`, `ranking`, `context` (texte long, obligatoire).
-- Enum `app_role` + table `user_roles` + fonction `has_role()` (pattern sécurisé, pas de rôle stocké sur le profil).
-- RLS :
-  - `program_applications` : INSERT public (anon + authenticated), SELECT réservé aux admins.
-  - `enneagramme_leads` : ajouter une policy SELECT admin (l'insertion existante reste via service role).
-  - `user_roles` : SELECT pour l'utilisateur connecté sur ses propres lignes.
-- GRANTs explicites pour `anon`, `authenticated`, `service_role` selon les policies.
+Suppression des 3 anciens .jpg générés dans `src/assets/` (hero-athlete, court-grid, coach-portrait).
 
-### 2. Formulaire programme (`src/routes/index.tsx`)
-- Ajouter un champ `<textarea>` **Contexte / objectif** obligatoire (ex : « Projet de monter classement, viser DE, casser un plateau… »).
-- Soumission via un nouveau server function `submitProgramApplication` (insert via `supabaseAdmin`, validation Zod côté serveur).
-- Conserver l'écran de confirmation existant.
+## 2. Nuage des fausses excuses — version condensée
 
-### 3. Auth
-- Activer email/mot de passe (pas d'auto-confirm, pas de Google).
-- Nouvelle route publique `/login` : connexion email + mot de passe (pas d'inscription publique — le compte admin sera créé manuellement par Quentin via la page Utilisateurs de Lovable Cloud, puis on lui attribuera le rôle `admin` via une insertion en base que je préparerai).
-- Listener `onAuthStateChange` ajouté à `__root.tsx` pour invalider le cache.
-- Wiring `attachSupabaseAuth` dans `src/start.ts` si pas déjà présent.
+Remplacement de la grille 3 colonnes de bulles flottantes (~700 px de haut) par un **double ruban marquee** (2 lignes qui défilent en sens opposés) basé sur l'animation `ticker-track` déjà présente dans `styles.css`. Chaque excuse devient un chip compact `"… excuse …"` avec masque dégradé `marquee-mask`. Hauteur cible ≈ 180 px. Le composant `ExcuseCloud` est réécrit, les styles `.thought-bubble` deviennent inutiles (conservés pour compat).
 
-### 4. Admin
-- Layout protégé `src/routes/_authenticated.tsx` (gate sur `context.auth.isAuthenticated`).
-- Route `src/routes/_authenticated/admin.tsx` :
-  - `beforeLoad` re-vérifie le rôle admin via un server fn `requireAdmin` (utilise `requireSupabaseAuth` + `has_role`). Redirection sinon.
-  - UI : header sobre cohérent avec le design (typo display, tokens existants), 2 onglets via `Tabs` shadcn.
-  - **Onglet Programme** : tableau (date, nom, email, sport, classement, contexte développable) + recherche basique.
-  - **Onglet Profil Mental** : tableau (date, prénom, email, sport, classement, profil dominant + scores).
-  - Bouton « Exporter CSV » par onglet (côté client).
-  - Bouton « Déconnexion ».
-- Server functions admin (`src/lib/admin.functions.ts`) :
-  - `listProgramApplications`, `listEnneagrammeLeads`, `getCurrentRole` — toutes gated par `requireSupabaseAuth` + check `has_role(admin)` côté handler.
+## 3. AgitationSection — recentrage sur l'équation
 
-### 5. Router context
-- Étendre le context auth (`isAuthenticated`, `user`) alimenté depuis le browser client Supabase + `onAuthStateChange`.
+Réorganisation du bloc :
+
+```
+[A/02 · Agitation]
+H2 :  "Le mental tout seul ne sert à rien."
+sous-titre court : Voici l'équation réelle de la performance.
+
+→ Intro courte (encart) : ✗ "Le mental c'est 80% du travail." (FAUX)
+
+→ Équation visuelle (Mental + Technique + Physique + Tactique = 100%)
+  • Carte "Mental 25%" mise en avant (fond primary, ring, badge
+    "← Ce que pilote Quentin")
+  • 3 autres cartes en visuel secondaire
+
+→ Punch line : "Un blocage mental n'est souvent que la conséquence
+  d'une défaillance tactique."
+
+→ Sous-bloc dédié (encart destructive existant) :
+  ⚠ Anti-Bullshit · Phrases interdites
+  Titre interne conservé : "Pourquoi les conseils classiques
+  vous font perdre vos matchs."
+  + chips "phrases poison" (déjà présents)
+```
+
+## 4. Portrait avant la grille outils
+
+Le bloc portrait + citation (actuellement **après** la grille des outils, lignes 463–482) est déplacé **avant** la grille, comme transition entre les "3 étapes méthode" et les outils. Le portrait passe à `Quentin-portrait.jpeg`.
+
+## 5. Renommage + flip cards (outils)
+
+- Titre : **"Les outils que Quentin maîtrise."** Kicker : `// 17 ans à les pratiquer sur le terrain`. Sous-titre : "Pas de théorie : 4 disciplines complémentaires qu'il utilise au quotidien avec ses joueurs."
+- Les 4 cartes deviennent des **flip-cards** (CSS 3D : `perspective`, `transform-style: preserve-3d`, `rotate-y-180` au `group-hover`) :
+  - **Face avant** : numéro `o.n`, nom de l'outil, badge "Outil mental", indice "↻ survoler".
+  - **Face arrière** : description `o.body` sur fond `primary/10`, accent clay.
+- Ajout dans `src/styles.css` des utilities `@utility flip-card`, `flip-inner`, `flip-face`, `flip-back` (Tailwind v4).
+- Mobile (pas de hover) : tap → toggle via `useState` local par carte.
 
 ## Technique
 
-- Stack : TanStack Start, server functions (`createServerFn`) + `supabaseAdmin` pour les lectures admin, `requireSupabaseAuth` pour vérifier l'identité.
-- Pas d'Edge Function.
-- Le compte admin de Quentin sera créé après la migration : je vous donnerai la marche à suivre (créer le user dans l'onglet Utilisateurs de Lovable Cloud, puis je lance une insertion `user_roles` avec son UUID).
-- Pas de Google sign-in (vous avez choisi email/mot de passe uniquement).
+- Aucune logique métier touchée.
+- Modifications : `src/routes/index.tsx` + `src/styles.css` + 3 `.asset.json` créés dans `src/assets/` + 3 anciens .jpg supprimés.
+- Pas de nouveau composant routé, pas de migration DB, pas de package.
 
 ## Hors scope
 
-- Pas d'envoi d'email automatique aux candidats (peut être ajouté plus tard).
-- Pas de pagination serveur (volumes faibles à court terme — tri/recherche côté client).
+- Pas de refonte des sections Offres / Test ennéagramme / Formulaire.
+- Pas de retouche photo.

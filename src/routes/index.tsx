@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { submitProgramApplication } from "@/lib/program.functions";
-import heroImg from "@/assets/hero-athlete.jpg";
-import courtImg from "@/assets/court-grid.jpg";
-import coachImg from "@/assets/coach-portrait.jpg";
+import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
+import quentinPortrait from "@/assets/quentin-portrait.jpg.asset.json";
+import quentinVisio from "@/assets/quentin-visio.jpg.asset.json";
 import { EnneagrammeTest } from "@/components/EnneagrammeTest";
 
 export const Route = createFileRoute("/")({
@@ -259,11 +259,11 @@ function Hero() {
         </div>
         <div className="lg:col-span-5 relative">
           <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border">
-            <img src={heroImg} alt="Joueur en tension avant le service" width={1600} height={1200} className="w-full h-full object-cover" />
+            <img src={quentinCourt.url} alt="Quentin sur le court, observant ses joueurs en session" width={1456} height={1092} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70">
-              <span>Match Point · 6-5 · 30/40</span>
-              <span className="text-primary">● LIVE</span>
+              <span>Aubagne · Session terrain</span>
+              <span className="text-primary">● COACH</span>
             </div>
           </div>
           <div className="absolute -bottom-6 -left-6 hidden lg:block bg-card border border-border rounded-md p-4 max-w-[220px] shadow-2xl">
@@ -321,74 +321,97 @@ function ProblemSection() {
 function AgitationSection() {
   return (
     <section className="relative py-28 border-t border-border bg-graphite-deep">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-5">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-3xl">
           <SectionLabel n="A/02" tag="Agitation" />
-          <h2 className="font-display font-bold text-4xl sm:text-5xl text-balance">
-            Pourquoi les conseils <span className="text-stroke">classiques</span> vous font perdre vos matchs.
+          <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
+            Le mental <span className="text-stroke">tout seul</span> ne sert à rien.
           </h2>
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
+            Voici l'équation réelle de la performance — et la part exacte sur laquelle Quentin intervient.
+          </p>
         </div>
-        <div className="lg:col-span-7 space-y-8">
-          <div className="bg-card border border-border rounded-lg p-8 space-y-6">
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              // L'idée reçue
-            </div>
-            <p className="font-display text-2xl sm:text-3xl leading-tight">
-              <span className="line-through decoration-destructive decoration-2 text-foreground/60">
-                "Le mental c'est 80% du travail."
-              </span>
-              <span className="ml-3 inline-block font-mono text-sm align-middle bg-destructive text-destructive-foreground px-2 py-1 rounded">
-                FAUX
-              </span>
-            </p>
-            <p className="font-display text-xl text-foreground/90">
-              Le mental tout seul ne sert à rien.
-            </p>
-          </div>
 
-          <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
-              L'équation réelle de la performance
-            </div>
-            <div className="flex items-stretch justify-between gap-2 sm:gap-3">
-              {["Mental", "Technique", "Physique", "Tactique"].map((p, i) => (
-                <div key={p} className="flex items-center gap-2 sm:gap-3 flex-1">
-                  <div className="flex-1 border border-border bg-card p-4 text-center rounded-md">
-                    <div className="font-display font-semibold">{p}</div>
-                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">25%</div>
+        <div className="mt-10 inline-flex flex-wrap items-center gap-3 bg-card border border-border rounded-md px-4 py-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">// L'idée reçue</span>
+          <span className="line-through decoration-destructive decoration-2 text-foreground/60 font-display text-base sm:text-lg">
+            "Le mental c'est 80% du travail."
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-widest bg-destructive text-destructive-foreground px-2 py-1 rounded">
+            FAUX
+          </span>
+        </div>
+
+        <div className="mt-12">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-5 text-center">
+            L'équation réelle de la performance
+          </div>
+          <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
+            {[
+              { p: 'Mental', featured: true },
+              { p: 'Technique' },
+              { p: 'Physique' },
+              { p: 'Tactique' },
+            ].map((item, i) => (
+              <div key={item.p} className="flex items-center gap-3 sm:gap-3 flex-1 min-w-0">
+                <div
+                  className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all ${
+                    item.featured
+                      ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary'
+                      : 'bg-card border-border'
+                  }`}
+                >
+                  <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
+                    {item.p}
                   </div>
-                  {i < 3 && (
-                    <span className="font-display text-2xl text-primary shrink-0">+</span>
+                  <div className={`font-mono text-sm tracking-wider mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                    25%
+                  </div>
+                  {item.featured && (
+                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
+                      ← piloté par Quentin
+                    </div>
                   )}
                 </div>
-              ))}
-            </div>
+                {i < 3 && (
+                  <span className="font-display text-2xl text-primary shrink-0 hidden sm:inline">+</span>
+                )}
+              </div>
+            ))}
           </div>
+          <div className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
+            = 100% de performance
+          </div>
+        </div>
 
-          <p className="border-l-2 border-primary pl-5 font-display text-lg sm:text-xl leading-snug text-balance">
-            Un blocage mental n'est souvent que la conséquence d'une
-            <span className="text-primary"> défaillance tactique</span>.
+        <p className="mt-14 max-w-3xl mx-auto text-center border-y border-border py-6 font-display text-xl sm:text-2xl leading-snug text-balance">
+          Un blocage mental n'est souvent que la conséquence d'une
+          <span className="text-primary"> défaillance tactique</span>.
+          <br />
+          <span className="text-muted-foreground text-base sm:text-lg">Travailler le mental sans les 3 autres, c'est repeindre une voiture sans moteur.</span>
+        </p>
+
+        <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
+            ⚠ Anti-Bullshit · Phrases interdites
+          </div>
+          <h3 className="font-display font-bold text-2xl sm:text-3xl text-balance mb-5">
+            Pourquoi les conseils <span className="text-stroke">classiques</span> vous font perdre vos matchs.
+          </h3>
+          <p className="text-foreground/90 leading-relaxed mb-5">
+            Sur le court, les phrases toutes faites sont des poisons. Entendre…
           </p>
-
-          <div className="relative bg-destructive/5 border border-destructive/30 rounded-md p-8">
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-4">
-              ⚠ Anti-Bullshit · Phrases interdites
-            </div>
-            <p className="text-foreground/90 leading-relaxed mb-6">
-              Sur le court, les phrases toutes faites sont des poisons. Entendre…
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {poisons.map((p) => (
-                <span key={p} className="font-mono text-sm border border-destructive/40 px-3 py-1.5 line-through text-foreground/60">
-                  "{p}"
-                </span>
-              ))}
-            </div>
-            <p className="text-foreground/90 leading-relaxed">
-              …vous énerve au plus haut point, et c'est normal.
-              <span className="text-destructive font-semibold"> Ça manque de précision. Ça ne résout rien.</span>
-            </p>
+          <div className="flex flex-wrap gap-2 mb-5">
+            {poisons.map((p) => (
+              <span key={p} className="font-mono text-sm border border-destructive/40 px-3 py-1.5 line-through text-foreground/60">
+                "{p}"
+              </span>
+            ))}
           </div>
+          <p className="text-foreground/90 leading-relaxed">
+            …vous énerve au plus haut point, et c'est normal.
+            <span className="text-destructive font-semibold"> Ça manque de précision. Ça ne résout rien.</span>
+          </p>
         </div>
       </div>
     </section>
@@ -396,19 +419,30 @@ function AgitationSection() {
 }
 
 function SolutionSection() {
+  const [flipped, setFlipped] = useState<number | null>(null);
   return (
     <section id="methode" className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-3xl">
-          <SectionLabel n="S/03" tag="Solution & Méthode" />
-          <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-            Pas de recettes toutes faites. Des questions, de la
-            <span className="text-primary"> lucidité</span>, de l'action.
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Je n'arrive pas avec un manuel de leçons prémâchées. Je fonctionne par un questionnement
-            chirurgical pour vous faire prendre conscience de votre fonctionnement sous pression.
-          </p>
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <div className="lg:col-span-7">
+            <SectionLabel n="S/03" tag="Solution & Méthode" />
+            <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
+              Pas de recettes toutes faites. Des questions, de la
+              <span className="text-primary"> lucidité</span>, de l'action.
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground">
+              Je n'arrive pas avec un manuel de leçons prémâchées. Je fonctionne par un questionnement
+              chirurgical pour vous faire prendre conscience de votre fonctionnement sous pression.
+            </p>
+          </div>
+          <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-md border border-border">
+            <img src={quentinVisio.url} alt="Quentin en séance de coaching en visio" width={1500} height={1000} loading="lazy" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/80">
+              <span>Séance · 1h30 · à distance ou présentiel</span>
+              <span className="text-primary">● VISIO</span>
+            </div>
+          </div>
         </div>
 
         <div className="mt-16 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
@@ -425,44 +459,9 @@ function SolutionSection() {
           ))}
         </div>
 
-        <div className="mt-20">
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">
-                Le vocabulaire de la méthode
-              </div>
-              <h3 className="font-display font-bold text-3xl sm:text-4xl text-balance">
-                Les outils mentaux, démystifiés.
-              </h3>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-md">
-              Quatre disciplines complémentaires. Voici comment je les utilise concrètement avec vous.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {outils.map((o) => (
-              <article
-                key={o.n}
-                className="relative bg-card border border-border rounded-md p-6 hover:border-primary/60 transition-colors group"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <span className="font-display font-bold text-4xl text-primary">{o.n}</span>
-                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
-                    Outil mental
-                  </span>
-                </div>
-                <h4 className="font-display font-bold text-xl mb-3 group-hover:text-primary transition-colors">
-                  {o.name}
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16 grid lg:grid-cols-12 gap-8 items-center">
+        <div className="mt-20 grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5 relative aspect-square overflow-hidden rounded-md border border-border">
-            <img src={coachImg} alt="Quentin Sirica" width={1200} height={1500} loading="lazy" className="w-full h-full object-cover grayscale" />
+            <img src={quentinPortrait.url} alt="Quentin Sirica · portrait" width={1200} height={1500} loading="lazy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent" />
             <div className="absolute bottom-4 left-4 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
               Quentin Sirica · Préparateur mental
@@ -479,6 +478,62 @@ function SolutionSection() {
               — Quentin Sirica
             </footer>
           </blockquote>
+        </div>
+
+        <div className="mt-20">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                // 17 ans à les pratiquer sur le terrain
+              </div>
+              <h3 className="font-display font-bold text-3xl sm:text-4xl text-balance">
+                Les outils que <span className="text-primary">Quentin maîtrise</span>.
+              </h3>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-md">
+              Pas de théorie : 4 disciplines complémentaires qu'il utilise au quotidien avec ses joueurs.
+              <span className="block mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">↻ Survolez ou tapez pour révéler</span>
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {outils.map((o, idx) => (
+              <button
+                type="button"
+                key={o.n}
+                onClick={() => setFlipped(flipped === idx ? null : idx)}
+                aria-label={`Révéler ${o.name}`}
+                className={`flip-card text-left h-64 w-full ${flipped === idx ? 'is-flipped' : ''}`}
+              >
+                <div className="flip-inner">
+                  <article className="flip-face bg-card border border-border p-6 group-hover:border-primary/60">
+                    <div className="flex items-start justify-between mb-4">
+                      <span className="font-display font-bold text-4xl text-primary">{o.n}</span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
+                        Outil mental
+                      </span>
+                    </div>
+                    <h4 className="font-display font-bold text-xl mb-auto">
+                      {o.name}
+                    </h4>
+                    <div className="mt-auto pt-6 flex items-center justify-between">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                        Comment Quentin l'utilise
+                      </span>
+                      <span className="font-mono text-xs text-primary">↻</span>
+                    </div>
+                  </article>
+                  <article className="flip-face flip-back bg-primary/5 border border-primary/40 p-6 overflow-y-auto">
+                    <div className="flex items-start justify-between mb-3">
+                      <span className="font-display font-bold text-2xl text-primary">{o.n}</span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay">↻ retour</span>
+                    </div>
+                    <h4 className="font-display font-bold text-base mb-2 text-primary">{o.name}</h4>
+                    <p className="text-sm text-foreground/90 leading-relaxed">{o.body}</p>
+                  </article>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -601,9 +656,6 @@ function FinalCTA() {
             Apprenez à faire de même. Remplissez ce formulaire — je reviens vers vous sous 48h
             pour caler votre <span className="text-primary">Bilan de Lucidité</span>.
           </p>
-          <div className="mt-10 hidden lg:block aspect-[16/9] overflow-hidden rounded-md border border-border">
-            <img src={courtImg} alt="Court vue aérienne" width={1600} height={900} loading="lazy" className="w-full h-full object-cover" />
-          </div>
         </div>
 
         <div className="lg:col-span-7">
@@ -731,37 +783,26 @@ function Footer() {
 }
 
 function ExcuseCloud() {
-  // tailles & positions variées pour effet "pensées" organique
-  const sizes = ["text-sm", "text-base", "text-lg", "text-base", "text-sm", "text-xl", "text-base", "text-sm", "text-lg", "text-base", "text-sm", "text-base"];
-  const rotations = [-3, 2, -1, 3, -2, 1, -3, 2, -1, 3, -2, 1];
-  const opacities = [0.95, 0.75, 1, 0.85, 0.7, 1, 0.9, 0.75, 0.95, 0.85, 0.7, 0.9];
-  const delays = [0, 0.6, 1.2, 0.3, 0.9, 1.5, 0.2, 0.8, 1.4, 0.5, 1.1, 1.7];
+  // Split in 2 rows that scroll in opposite directions
+  const half = Math.ceil(fakeExcuses.length / 2);
+  const row1 = fakeExcuses.slice(0, half);
+  const row2 = fakeExcuses.slice(half);
+
+  const Chip = ({ q }: { q: string }) => (
+    <span className="shrink-0 inline-flex items-center gap-2 bg-card border border-dashed border-foreground/20 rounded-full px-4 py-2 mr-3 font-display text-sm sm:text-base text-foreground/80 hover:text-foreground hover:border-destructive/60 hover:line-through transition-all">
+      <span className="text-primary/60">«</span>
+      {q}
+      <span className="text-primary/60">»</span>
+    </span>
+  );
 
   return (
-    <div className="relative">
-      <div className="absolute -top-2 left-4 font-display text-3xl text-primary/40 select-none">···</div>
-      <div className="absolute -bottom-4 right-8 font-display text-4xl text-clay/40 select-none">···</div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 sm:gap-y-10">
-        {fakeExcuses.map((q, i) => {
-          const rot = rotations[i % rotations.length];
-          return (
-            <div
-              key={i}
-              className={`thought-bubble float-soft ${i % 3 === 1 ? "sm:mt-6" : ""} ${i % 3 === 2 ? "sm:mt-12" : ""}`}
-              style={{
-                ["--rot" as string]: `${rot}deg`,
-                transform: `rotate(${rot}deg)`,
-                opacity: opacities[i % opacities.length],
-                animationDelay: `${delays[i % delays.length]}s`,
-              }}
-            >
-              <p className={`font-display ${sizes[i % sizes.length]} text-foreground/90 leading-snug`}>
-                {q}
-              </p>
-            </div>
-          );
-        })}
+    <div className="relative space-y-3 overflow-hidden marquee-mask">
+      <div className="flex w-max ticker-track">
+        {[...row1, ...row1].map((q, i) => <Chip key={'a' + i} q={q} />)}
+      </div>
+      <div className="flex w-max ticker-track-reverse">
+        {[...row2, ...row2].map((q, i) => <Chip key={'b' + i} q={q} />)}
       </div>
     </div>
   );
