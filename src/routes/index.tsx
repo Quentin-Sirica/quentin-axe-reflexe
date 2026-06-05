@@ -393,19 +393,38 @@ function AgitationSection() {
           </div>
         </div>
 
-        <div className="mt-14 max-w-3xl mx-auto">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
-            // La métaphore du pilote
+        <figure className="mt-14 max-w-4xl mx-auto relative">
+          <div className="absolute -top-3 left-6 sm:left-10 z-10 flex items-center gap-3 bg-background border border-border rounded-full pl-1 pr-4 py-1">
+            <img src={quentinPortrait.url} alt="Quentin Sirica" width={64} height={64} loading="lazy" className="h-8 w-8 rounded-full object-cover border border-primary/40" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/80">
+              Quentin <span className="text-muted-foreground">· la métaphore du pilote</span>
+            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
           </div>
-          <p className="font-display text-xl sm:text-2xl leading-snug text-balance text-center">
-            Vous pouvez posséder toutes les armes du joueur parfait -
-            <span className="text-foreground/90"> un <span className="text-primary">physique</span> de feu, une <span className="text-primary">technique</span> chirurgicale, une <span className="text-primary">tactique</span> implacable.</span>
-          </p>
-          <p className="mt-5 font-display text-xl sm:text-2xl leading-snug text-balance text-center">
-            Sans le pilote - <span className="text-primary">le Mental</span> - le système se déconnecte au premier point important.
-            <span className="block mt-2 text-muted-foreground text-base sm:text-lg">Vous finissez le match dans les bâches. Votre potentiel reste au vestiaire.</span>
-          </p>
-        </div>
+          <div className="relative bg-card border border-border rounded-lg p-7 sm:p-10 pt-10 sm:pt-12 overflow-hidden">
+            <span aria-hidden className="absolute -top-2 right-6 font-display text-[120px] leading-none text-primary/10 select-none">“</span>
+            <div className="absolute left-0 top-10 bottom-10 w-[3px] bg-gradient-to-b from-transparent via-primary to-transparent" />
+            <blockquote className="relative space-y-5">
+              <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
+                Vous pouvez posséder toutes les armes du joueur parfait — un
+                <span className="text-primary"> physique</span> de feu, une
+                <span className="text-primary"> technique</span> chirurgicale, une
+                <span className="text-primary"> tactique</span> implacable.
+              </p>
+              <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
+                Sans le pilote — <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone">le Mental</mark> — le système se déconnecte au premier point important.
+              </p>
+              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed border-t border-dashed border-border pt-4">
+                Vous finissez le match dans les bâches.
+                <span className="text-foreground/80"> Votre potentiel reste au vestiaire.</span>
+              </p>
+            </blockquote>
+            <figcaption className="mt-6 flex items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              <span className="h-px w-8 bg-primary" />
+              Quentin Sirica · 17 ans de terrain
+            </figcaption>
+          </div>
+        </figure>
 
         <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
