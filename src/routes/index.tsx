@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { useQuery } from "@tanstack/react-query";
 import { Compass, Brain, Wind, Eye } from "lucide-react";
 import { submitProgramApplication } from "@/lib/program.functions";
+import { listPublicTestimonials, type PublicTestimonial } from "@/lib/testimonials.functions";
 import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
 import quentinPortrait from "@/assets/quentin-portrait.jpg.asset.json";
 import quentinVisio from "@/assets/quentin-visio.jpg.asset.json";
@@ -42,25 +44,31 @@ const objectives = [
   { n: "04", title: "Casser un blocage", body: "Sortir de 3, 5, 10 ans de stagnation. Comprendre enfin ce qui coince." },
 ];
 
-// témoignages réels — à compléter / remplacer par les vrais retours clients
-const testimonials = [
+// fallback testimonials affichés tant que rien n'est créé en BDD
+const fallbackTestimonials: PublicTestimonial[] = [
   {
+    id: "fb-1",
     quote: "J'ai gagné mes deux premiers matchs de poule en championnat alors que je les perdais systématiquement depuis 3 ans. Rien n'avait changé techniquement.",
     name: "Marc L.",
     progress: "30/1 → 15/5",
     sport: "Tennis",
+    photo_url: null,
   },
   {
+    id: "fb-2",
     quote: "Avant, je m'effondrais au 3ème set. Aujourd'hui c'est devenu mon set préféré. La méthode change la façon dont tu lis tes propres réactions.",
     name: "Camille R.",
     progress: "15/4 → 15/2",
     sport: "Tennis",
+    photo_url: null,
   },
   {
+    id: "fb-3",
     quote: "On a pu jouer les phases finales en binôme sans s'engueuler une seule fois. Le mental collectif, ça se travaille.",
     name: "Julien & Théo",
     progress: "P500 → P250",
     sport: "Padel",
+    photo_url: null,
   },
 ];
 
@@ -924,6 +932,13 @@ function ExcuseCloud() {
 }
 
 function ResultsSection() {
+  const fetchTestimonials = useServerFn(listPublicTestimonials);
+  const { data } = useQuery({
+    queryKey: ["public-testimonials"],
+    queryFn: () => fetchTestimonials(),
+    staleTime: 60_000,
+  });
+  const testimonials = data?.testimonials?.length ? data.testimonials : fallbackTestimonials;
   return (
     <section className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-7xl px-6">
@@ -964,17 +979,31 @@ function ResultsSection() {
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {testimonials.map((t, i) => (
-              <figure key={i} className="relative bg-card border border-border rounded-md p-6 flex flex-col">
+            {testimonials.map((t) => (
+              <figure key={t.id} className="relative bg-card border border-border rounded-md p-6 flex flex-col">
                 <span className="absolute -top-4 left-5 font-display text-5xl text-primary/30 leading-none select-none">"</span>
+                {t.photo_url ? (
+                  <div className="mb-4 flex">
+                    <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-primary/40 shadow-[0_0_18px_color-mix(in_oklab,var(--primary)_35%,transparent)]">
+                      <img
+                        src={t.photo_url}
+                        alt={t.name}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ) : null}
                 <blockquote className="text-foreground/90 leading-relaxed italic flex-1">
                   {t.quote}
                 </blockquote>
                 <figcaption className="mt-6 pt-4 border-t border-border">
                   <div className="font-display font-semibold">{t.name}</div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-clay mt-1">
-                    {t.progress} · {t.sport}
-                  </div>
+                  {(t.progress || t.sport) && (
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-clay mt-1">
+                      {[t.progress, t.sport].filter(Boolean).join(" · ")}
+                    </div>
+                  )}
                 </figcaption>
               </figure>
             ))}
