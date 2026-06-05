@@ -656,14 +656,14 @@ function OffersSection() {
           <SectionLabel n="O/04" tag="Rejoindre le Staff" />
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-balance">
             Je ne cherche pas à empiler les clients.
-            <span className="text-success"> Je cherche des joueurs alignés.</span>
+            <span className="text-primary"> Je cherche des joueurs alignés.</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
             Des joueuses et des joueurs motivés, investis, qui ressentent une vraie douleur à l'idée de stagner.{' '}
             <mark className="bg-destructive/25 text-foreground font-semibold px-1 rounded-sm box-decoration-clone">
               Si vous cherchez une baguette magique, passez votre chemin.
             </mark>{' '}
-            <mark className="bg-success/25 text-foreground font-semibold px-1 rounded-sm box-decoration-clone">
+              <mark className="bg-primary/25 text-foreground font-semibold px-1 rounded-sm box-decoration-clone">
               Si vous voulez créer une alliance inébranlable pour aller chercher des résultats, on est alignés.
             </mark>
           </p>
