@@ -387,9 +387,13 @@ function AgitationSection() {
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.3em] text-primary transition-all duration-300 group-hover/eq:tracking-[0.4em] group-hover/eq:text-primary">
-            = 100% de performance
-          </div>
+          <p className="mt-10 text-center text-sm sm:text-base text-foreground/85 leading-relaxed max-w-2xl mx-auto">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary block mb-2">
+              = Vision holistique
+            </span>
+            J'agis sur le mental, mais les 4 piliers sont liés.
+            <span className="text-foreground"> Je m'appuie sur la technique, le physique et la tactique</span> pour faire levier — jamais à côté.
+          </p>
         </div>
 
         <figure className="mt-14 max-w-4xl mx-auto relative">
