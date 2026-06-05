@@ -457,7 +457,32 @@ function SolutionSection() {
           </div>
         </div>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
+        <aside className="mt-12 relative border-l-2 border-destructive/50 bg-destructive/[0.03] rounded-r-md pl-5 pr-6 py-5">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive">
+              ⚠ Anti-Bullshit · Phrases interdites
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              // ce que la méthode bannit du vestiaire
+            </span>
+          </div>
+          <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-3">
+            Sur le court, les phrases toutes faites sont des poisons.
+            <span className="text-foreground"> Ça manque de précision. Ça ne résout rien.</span>
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {poisons.map((p) => (
+              <span
+                key={p}
+                className="font-mono text-xs border border-destructive/30 px-2 py-1 line-through text-foreground/55"
+              >
+                "{p}"
+              </span>
+            ))}
+          </div>
+        </aside>
+
+        <div className="mt-12 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
           {steps.map((s) => (
             <div key={s.n} className="bg-card p-8 hover:bg-secondary/50 transition-colors group">
               <div className="flex items-baseline justify-between mb-6">
