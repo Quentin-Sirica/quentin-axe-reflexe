@@ -656,9 +656,6 @@ function FinalCTA() {
             Apprenez à faire de même. Remplissez ce formulaire — je reviens vers vous sous 48h
             pour caler votre <span className="text-primary">Bilan de Lucidité</span>.
           </p>
-          <div className="mt-10 hidden lg:block aspect-[16/9] overflow-hidden rounded-md border border-border">
-            <img src={courtImg} alt="Court vue aérienne" width={1600} height={900} loading="lazy" className="w-full h-full object-cover" />
-          </div>
         </div>
 
         <div className="lg:col-span-7">
@@ -786,37 +783,26 @@ function Footer() {
 }
 
 function ExcuseCloud() {
-  // tailles & positions variées pour effet "pensées" organique
-  const sizes = ["text-sm", "text-base", "text-lg", "text-base", "text-sm", "text-xl", "text-base", "text-sm", "text-lg", "text-base", "text-sm", "text-base"];
-  const rotations = [-3, 2, -1, 3, -2, 1, -3, 2, -1, 3, -2, 1];
-  const opacities = [0.95, 0.75, 1, 0.85, 0.7, 1, 0.9, 0.75, 0.95, 0.85, 0.7, 0.9];
-  const delays = [0, 0.6, 1.2, 0.3, 0.9, 1.5, 0.2, 0.8, 1.4, 0.5, 1.1, 1.7];
+  // Split in 2 rows that scroll in opposite directions
+  const half = Math.ceil(fakeExcuses.length / 2);
+  const row1 = fakeExcuses.slice(0, half);
+  const row2 = fakeExcuses.slice(half);
+
+  const Chip = ({ q }: { q: string }) => (
+    <span className="shrink-0 inline-flex items-center gap-2 bg-card border border-dashed border-foreground/20 rounded-full px-4 py-2 mr-3 font-display text-sm sm:text-base text-foreground/80 hover:text-foreground hover:border-destructive/60 hover:line-through transition-all">
+      <span className="text-primary/60">«</span>
+      {q}
+      <span className="text-primary/60">»</span>
+    </span>
+  );
 
   return (
-    <div className="relative">
-      <div className="absolute -top-2 left-4 font-display text-3xl text-primary/40 select-none">···</div>
-      <div className="absolute -bottom-4 right-8 font-display text-4xl text-clay/40 select-none">···</div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 sm:gap-y-10">
-        {fakeExcuses.map((q, i) => {
-          const rot = rotations[i % rotations.length];
-          return (
-            <div
-              key={i}
-              className={`thought-bubble float-soft ${i % 3 === 1 ? "sm:mt-6" : ""} ${i % 3 === 2 ? "sm:mt-12" : ""}`}
-              style={{
-                ["--rot" as string]: `${rot}deg`,
-                transform: `rotate(${rot}deg)`,
-                opacity: opacities[i % opacities.length],
-                animationDelay: `${delays[i % delays.length]}s`,
-              }}
-            >
-              <p className={`font-display ${sizes[i % sizes.length]} text-foreground/90 leading-snug`}>
-                {q}
-              </p>
-            </div>
-          );
-        })}
+    <div className="relative space-y-3 overflow-hidden marquee-mask">
+      <div className="flex w-max ticker-track">
+        {[...row1, ...row1].map((q, i) => <Chip key={'a' + i} q={q} />)}
+      </div>
+      <div className="flex w-max ticker-track-reverse">
+        {[...row2, ...row2].map((q, i) => <Chip key={'b' + i} q={q} />)}
       </div>
     </div>
   );
