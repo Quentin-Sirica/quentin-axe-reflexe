@@ -150,7 +150,9 @@ const offers = [
     desc: "Le suivi dans la durée pour atteindre son objectif.",
     cta: "Postuler au pack",
     features: [
-      "→\nTarif dégressif (9 ou 18 séances)\n→\nVestiaire Virtuel (Drive)\n→\nWhatsApp debrief post-match",
+      "Tarif dégressif (9 ou 18 séances)",
+      "Vestiaire Virtuel (Drive)",
+      "WhatsApp debrief post-match",
     ],
   },
 ];
