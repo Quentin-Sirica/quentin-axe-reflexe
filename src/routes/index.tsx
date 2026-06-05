@@ -398,11 +398,11 @@ function AgitationSection() {
             // La métaphore du pilote
           </div>
           <p className="font-display text-xl sm:text-2xl leading-snug text-balance text-center">
-            Vous pouvez posséder toutes les armes du joueur parfait —
+            Vous pouvez posséder toutes les armes du joueur parfait -
             <span className="text-foreground/90"> un <span className="text-primary">physique</span> de feu, une <span className="text-primary">technique</span> chirurgicale, une <span className="text-primary">tactique</span> implacable.</span>
           </p>
           <p className="mt-5 font-display text-xl sm:text-2xl leading-snug text-balance text-center">
-            Sans le pilote — <span className="text-primary">le Mental</span> — le système se déconnecte au premier point important.
+            Sans le pilote - <span className="text-primary">le Mental</span> - le système se déconnecte au premier point important.
             <span className="block mt-2 text-muted-foreground text-base sm:text-lg">Vous finissez le match dans les bâches. Votre potentiel reste au vestiaire.</span>
           </p>
         </div>
