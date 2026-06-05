@@ -932,6 +932,13 @@ function ExcuseCloud() {
 }
 
 function ResultsSection() {
+  const fetchTestimonials = useServerFn(listPublicTestimonials);
+  const { data } = useQuery({
+    queryKey: ["public-testimonials"],
+    queryFn: () => fetchTestimonials(),
+    staleTime: 60_000,
+  });
+  const testimonials = data?.testimonials?.length ? data.testimonials : fallbackTestimonials;
   return (
     <section className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-7xl px-6">
@@ -972,17 +979,31 @@ function ResultsSection() {
             </div>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
-            {testimonials.map((t, i) => (
-              <figure key={i} className="relative bg-card border border-border rounded-md p-6 flex flex-col">
+            {testimonials.map((t) => (
+              <figure key={t.id} className="relative bg-card border border-border rounded-md p-6 flex flex-col">
                 <span className="absolute -top-4 left-5 font-display text-5xl text-primary/30 leading-none select-none">"</span>
+                {t.photo_url ? (
+                  <div className="mb-4 flex">
+                    <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-primary/40 shadow-[0_0_18px_color-mix(in_oklab,var(--primary)_35%,transparent)]">
+                      <img
+                        src={t.photo_url}
+                        alt={t.name}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ) : null}
                 <blockquote className="text-foreground/90 leading-relaxed italic flex-1">
                   {t.quote}
                 </blockquote>
                 <figcaption className="mt-6 pt-4 border-t border-border">
                   <div className="font-display font-semibold">{t.name}</div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-clay mt-1">
-                    {t.progress} · {t.sport}
-                  </div>
+                  {(t.progress || t.sport) && (
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-clay mt-1">
+                      {[t.progress, t.sport].filter(Boolean).join(" · ")}
+                    </div>
+                  )}
                 </figcaption>
               </figure>
             ))}
