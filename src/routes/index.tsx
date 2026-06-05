@@ -521,17 +521,25 @@ function SolutionSection() {
                 className={`flip-card text-left h-64 w-full ${flipped === idx ? 'is-flipped' : ''}`}
               >
                 <div className="flip-inner">
-                  <article className="flip-face bg-card border border-border p-6 group-hover:border-primary/60">
-                    <div className="flex items-start justify-between mb-4">
-                      <span className="font-display font-bold text-4xl text-primary">{o.n}</span>
-                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
-                        Outil mental
-                      </span>
+                  <article className="flip-face bg-card border border-border p-6 justify-between">
+                    <div className="flex items-start justify-between">
+                      <div className="h-14 w-14 rounded-md bg-primary/15 border border-primary/40 flex items-center justify-center text-primary">
+                        <o.icon size={28} strokeWidth={1.75} />
+                      </div>
+                      <div className="flex flex-col items-end gap-2">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
+                          Outil mental
+                        </span>
+                        <span className="font-display font-bold text-2xl text-primary/80">{o.n}</span>
+                      </div>
                     </div>
-                    <h4 className="font-display font-bold text-xl mb-auto">
-                      {o.name}
-                    </h4>
-                    <div className="mt-auto pt-6 flex items-center justify-between">
+                    <div>
+                      <h4 className="font-display font-bold text-xl leading-tight">
+                        {o.name}
+                      </h4>
+                      <p className="mt-2 text-sm text-muted-foreground leading-snug">{o.teaser}</p>
+                    </div>
+                    <div className="pt-4 border-t border-dashed border-border flex items-center justify-between">
                       <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
                         Comment Quentin l'utilise
                       </span>
@@ -540,7 +548,10 @@ function SolutionSection() {
                   </article>
                   <article className="flip-face flip-back bg-primary/5 border border-primary/40 p-6 overflow-y-auto">
                     <div className="flex items-start justify-between mb-3">
-                      <span className="font-display font-bold text-2xl text-primary">{o.n}</span>
+                      <div className="flex items-center gap-2 text-primary">
+                        <o.icon size={18} strokeWidth={2} />
+                        <span className="font-display font-bold text-2xl">{o.n}</span>
+                      </div>
                       <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay">↻ retour</span>
                     </div>
                     <h4 className="font-display font-bold text-base mb-2 text-primary">{o.name}</h4>
