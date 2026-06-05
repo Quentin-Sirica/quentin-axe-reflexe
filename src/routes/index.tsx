@@ -259,11 +259,11 @@ function Hero() {
         </div>
         <div className="lg:col-span-5 relative">
           <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border">
-            <img src={heroImg} alt="Joueur en tension avant le service" width={1600} height={1200} className="w-full h-full object-cover" />
+            <img src={quentinCourt.url} alt="Quentin sur le court, observant ses joueurs en session" width={1456} height={1092} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70">
-              <span>Match Point · 6-5 · 30/40</span>
-              <span className="text-primary">● LIVE</span>
+              <span>Aubagne · Session terrain</span>
+              <span className="text-primary">● COACH</span>
             </div>
           </div>
           <div className="absolute -bottom-6 -left-6 hidden lg:block bg-card border border-border rounded-md p-4 max-w-[220px] shadow-2xl">
