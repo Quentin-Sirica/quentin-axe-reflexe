@@ -333,7 +333,7 @@ function AgitationSection() {
         <div className="max-w-3xl">
           <SectionLabel n="A/02" tag="Agitation" />
           <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-            Le mental <span className="text-stroke">tout seul</span> ne sert à rien.
+            Le mental <span className="text-primary">tout seul</span> ne sert à rien.
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
             Voici l'équation réelle de la performance — et la part exacte sur laquelle Quentin intervient.
@@ -425,28 +425,6 @@ function AgitationSection() {
           </div>
         </figure>
 
-        <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
-            ⚠ Anti-Bullshit · Phrases interdites
-          </div>
-          <h3 className="font-display font-bold text-2xl sm:text-3xl text-balance mb-5">
-            Pourquoi les conseils <span className="text-stroke">classiques</span> vous font perdre vos matchs.
-          </h3>
-          <p className="text-foreground/90 leading-relaxed mb-5">
-            Sur le court, les phrases toutes faites sont des poisons. Entendre…
-          </p>
-          <div className="flex flex-wrap gap-2 mb-5">
-            {poisons.map((p) => (
-              <span key={p} className="font-mono text-sm border border-destructive/40 px-3 py-1.5 line-through text-foreground/60">
-                "{p}"
-              </span>
-            ))}
-          </div>
-          <p className="text-foreground/90 leading-relaxed">
-            …vous énerve au plus haut point, et c'est normal.
-            <span className="text-destructive font-semibold"> Ça manque de précision. Ça ne résout rien.</span>
-          </p>
-        </div>
       </div>
     </section>
   );
