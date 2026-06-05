@@ -321,74 +321,97 @@ function ProblemSection() {
 function AgitationSection() {
   return (
     <section className="relative py-28 border-t border-border bg-graphite-deep">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-5">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="max-w-3xl">
           <SectionLabel n="A/02" tag="Agitation" />
-          <h2 className="font-display font-bold text-4xl sm:text-5xl text-balance">
-            Pourquoi les conseils <span className="text-stroke">classiques</span> vous font perdre vos matchs.
+          <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
+            Le mental <span className="text-stroke">tout seul</span> ne sert à rien.
           </h2>
+          <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
+            Voici l'équation réelle de la performance — et la part exacte sur laquelle Quentin intervient.
+          </p>
         </div>
-        <div className="lg:col-span-7 space-y-8">
-          <div className="bg-card border border-border rounded-lg p-8 space-y-6">
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-              // L'idée reçue
-            </div>
-            <p className="font-display text-2xl sm:text-3xl leading-tight">
-              <span className="line-through decoration-destructive decoration-2 text-foreground/60">
-                "Le mental c'est 80% du travail."
-              </span>
-              <span className="ml-3 inline-block font-mono text-sm align-middle bg-destructive text-destructive-foreground px-2 py-1 rounded">
-                FAUX
-              </span>
-            </p>
-            <p className="font-display text-xl text-foreground/90">
-              Le mental tout seul ne sert à rien.
-            </p>
-          </div>
 
-          <div>
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
-              L'équation réelle de la performance
-            </div>
-            <div className="flex items-stretch justify-between gap-2 sm:gap-3">
-              {["Mental", "Technique", "Physique", "Tactique"].map((p, i) => (
-                <div key={p} className="flex items-center gap-2 sm:gap-3 flex-1">
-                  <div className="flex-1 border border-border bg-card p-4 text-center rounded-md">
-                    <div className="font-display font-semibold">{p}</div>
-                    <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mt-1">25%</div>
+        <div className="mt-10 inline-flex flex-wrap items-center gap-3 bg-card border border-border rounded-md px-4 py-3">
+          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">// L'idée reçue</span>
+          <span className="line-through decoration-destructive decoration-2 text-foreground/60 font-display text-base sm:text-lg">
+            "Le mental c'est 80% du travail."
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-widest bg-destructive text-destructive-foreground px-2 py-1 rounded">
+            FAUX
+          </span>
+        </div>
+
+        <div className="mt-12">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-5 text-center">
+            L'équation réelle de la performance
+          </div>
+          <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
+            {[
+              { p: 'Mental', featured: true },
+              { p: 'Technique' },
+              { p: 'Physique' },
+              { p: 'Tactique' },
+            ].map((item, i) => (
+              <div key={item.p} className="flex items-center gap-3 sm:gap-3 flex-1 min-w-0">
+                <div
+                  className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all ${
+                    item.featured
+                      ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary'
+                      : 'bg-card border-border'
+                  }`}
+                >
+                  <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
+                    {item.p}
                   </div>
-                  {i < 3 && (
-                    <span className="font-display text-2xl text-primary shrink-0">+</span>
+                  <div className={`font-mono text-sm tracking-wider mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                    25%
+                  </div>
+                  {item.featured && (
+                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
+                      ← piloté par Quentin
+                    </div>
                   )}
                 </div>
-              ))}
-            </div>
+                {i < 3 && (
+                  <span className="font-display text-2xl text-primary shrink-0 hidden sm:inline">+</span>
+                )}
+              </div>
+            ))}
           </div>
+          <div className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
+            = 100% de performance
+          </div>
+        </div>
 
-          <p className="border-l-2 border-primary pl-5 font-display text-lg sm:text-xl leading-snug text-balance">
-            Un blocage mental n'est souvent que la conséquence d'une
-            <span className="text-primary"> défaillance tactique</span>.
+        <p className="mt-14 max-w-3xl mx-auto text-center border-y border-border py-6 font-display text-xl sm:text-2xl leading-snug text-balance">
+          Un blocage mental n'est souvent que la conséquence d'une
+          <span className="text-primary"> défaillance tactique</span>.
+          <br />
+          <span className="text-muted-foreground text-base sm:text-lg">Travailler le mental sans les 3 autres, c'est repeindre une voiture sans moteur.</span>
+        </p>
+
+        <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
+            ⚠ Anti-Bullshit · Phrases interdites
+          </div>
+          <h3 className="font-display font-bold text-2xl sm:text-3xl text-balance mb-5">
+            Pourquoi les conseils <span className="text-stroke">classiques</span> vous font perdre vos matchs.
+          </h3>
+          <p className="text-foreground/90 leading-relaxed mb-5">
+            Sur le court, les phrases toutes faites sont des poisons. Entendre…
           </p>
-
-          <div className="relative bg-destructive/5 border border-destructive/30 rounded-md p-8">
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-4">
-              ⚠ Anti-Bullshit · Phrases interdites
-            </div>
-            <p className="text-foreground/90 leading-relaxed mb-6">
-              Sur le court, les phrases toutes faites sont des poisons. Entendre…
-            </p>
-            <div className="flex flex-wrap gap-2 mb-6">
-              {poisons.map((p) => (
-                <span key={p} className="font-mono text-sm border border-destructive/40 px-3 py-1.5 line-through text-foreground/60">
-                  "{p}"
-                </span>
-              ))}
-            </div>
-            <p className="text-foreground/90 leading-relaxed">
-              …vous énerve au plus haut point, et c'est normal.
-              <span className="text-destructive font-semibold"> Ça manque de précision. Ça ne résout rien.</span>
-            </p>
+          <div className="flex flex-wrap gap-2 mb-5">
+            {poisons.map((p) => (
+              <span key={p} className="font-mono text-sm border border-destructive/40 px-3 py-1.5 line-through text-foreground/60">
+                "{p}"
+              </span>
+            ))}
           </div>
+          <p className="text-foreground/90 leading-relaxed">
+            …vous énerve au plus haut point, et c'est normal.
+            <span className="text-destructive font-semibold"> Ça manque de précision. Ça ne résout rien.</span>
+          </p>
         </div>
       </div>
     </section>
