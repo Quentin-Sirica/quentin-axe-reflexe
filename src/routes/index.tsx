@@ -270,7 +270,7 @@ function Hero() {
           <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border">
             <img src={quentinCourt.url} alt="Quentin sur le court, observant ses joueurs en session" width={1456} height={1092} className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70">
+            <div className="absolute bottom-4 left-4 right-4 lg:hidden flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70">
               <span>Aubagne · Session terrain</span>
             </div>
           </div>
@@ -340,7 +340,7 @@ function AgitationSection() {
           </p>
         </div>
 
-        <div className="mt-10 bg-card border border-border rounded-md p-6 sm:p-8">
+        <div className="mt-10 group/eq bg-card border border-border rounded-md p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_20px_60px_-20px_hsl(var(--primary)/0.45)] hover:bg-card/95">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-dashed border-border">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               L'équation réelle de la performance
@@ -363,10 +363,10 @@ function AgitationSection() {
             ].map((item, i) => (
               <div key={item.p} className="flex items-center gap-3 sm:gap-3 flex-1 min-w-0">
                 <div
-                  className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all ${
+                  className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all duration-300 group-hover/eq:-translate-y-0.5 ${
                     item.featured
-                      ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary'
-                      : 'bg-background border-border'
+                      ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary group-hover/eq:ring-primary/70'
+                      : 'bg-background border-border group-hover/eq:border-primary/40 group-hover/eq:bg-background/60'
                   }`}
                 >
                   <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
@@ -382,12 +382,12 @@ function AgitationSection() {
                   )}
                 </div>
                 {i < 3 && (
-                  <span className="font-display text-2xl text-primary shrink-0 hidden sm:inline">+</span>
+                  <span className="font-display text-2xl text-primary shrink-0 hidden sm:inline transition-transform duration-300 group-hover/eq:scale-125">+</span>
                 )}
               </div>
             ))}
           </div>
-          <div className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.3em] text-primary">
+          <div className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.3em] text-primary transition-all duration-300 group-hover/eq:tracking-[0.4em] group-hover/eq:text-primary">
             = 100% de performance
           </div>
         </div>
@@ -841,9 +841,6 @@ function ExcuseCloud() {
           {q}
         </blockquote>
       </div>
-      <figcaption className="mt-2 pl-7 font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
-        — Joueur n°{String(i + 1).padStart(2, '0')} · vestiaire
-      </figcaption>
     </figure>
   );
 
