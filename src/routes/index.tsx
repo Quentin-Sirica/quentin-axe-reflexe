@@ -419,19 +419,30 @@ function AgitationSection() {
 }
 
 function SolutionSection() {
+  const [flipped, setFlipped] = useState<number | null>(null);
   return (
     <section id="methode" className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="max-w-3xl">
-          <SectionLabel n="S/03" tag="Solution & Méthode" />
-          <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-            Pas de recettes toutes faites. Des questions, de la
-            <span className="text-primary"> lucidité</span>, de l'action.
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground">
-            Je n'arrive pas avec un manuel de leçons prémâchées. Je fonctionne par un questionnement
-            chirurgical pour vous faire prendre conscience de votre fonctionnement sous pression.
-          </p>
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <div className="lg:col-span-7">
+            <SectionLabel n="S/03" tag="Solution & Méthode" />
+            <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
+              Pas de recettes toutes faites. Des questions, de la
+              <span className="text-primary"> lucidité</span>, de l'action.
+            </h2>
+            <p className="mt-6 text-lg text-muted-foreground">
+              Je n'arrive pas avec un manuel de leçons prémâchées. Je fonctionne par un questionnement
+              chirurgical pour vous faire prendre conscience de votre fonctionnement sous pression.
+            </p>
+          </div>
+          <div className="lg:col-span-5 relative aspect-[4/3] overflow-hidden rounded-md border border-border">
+            <img src={quentinVisio.url} alt="Quentin en séance de coaching en visio" width={1500} height={1000} loading="lazy" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/80">
+              <span>Séance · 1h30 · à distance ou présentiel</span>
+              <span className="text-primary">● VISIO</span>
+            </div>
+          </div>
         </div>
 
         <div className="mt-16 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
@@ -448,44 +459,9 @@ function SolutionSection() {
           ))}
         </div>
 
-        <div className="mt-20">
-          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">
-                Le vocabulaire de la méthode
-              </div>
-              <h3 className="font-display font-bold text-3xl sm:text-4xl text-balance">
-                Les outils mentaux, démystifiés.
-              </h3>
-            </div>
-            <p className="text-sm text-muted-foreground max-w-md">
-              Quatre disciplines complémentaires. Voici comment je les utilise concrètement avec vous.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {outils.map((o) => (
-              <article
-                key={o.n}
-                className="relative bg-card border border-border rounded-md p-6 hover:border-primary/60 transition-colors group"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <span className="font-display font-bold text-4xl text-primary">{o.n}</span>
-                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
-                    Outil mental
-                  </span>
-                </div>
-                <h4 className="font-display font-bold text-xl mb-3 group-hover:text-primary transition-colors">
-                  {o.name}
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">{o.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16 grid lg:grid-cols-12 gap-8 items-center">
+        <div className="mt-20 grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5 relative aspect-square overflow-hidden rounded-md border border-border">
-            <img src={coachImg} alt="Quentin Sirica" width={1200} height={1500} loading="lazy" className="w-full h-full object-cover grayscale" />
+            <img src={quentinPortrait.url} alt="Quentin Sirica · portrait" width={1200} height={1500} loading="lazy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent" />
             <div className="absolute bottom-4 left-4 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
               Quentin Sirica · Préparateur mental
@@ -502,6 +478,62 @@ function SolutionSection() {
               — Quentin Sirica
             </footer>
           </blockquote>
+        </div>
+
+        <div className="mt-20">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-8">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">
+                // 17 ans à les pratiquer sur le terrain
+              </div>
+              <h3 className="font-display font-bold text-3xl sm:text-4xl text-balance">
+                Les outils que <span className="text-primary">Quentin maîtrise</span>.
+              </h3>
+            </div>
+            <p className="text-sm text-muted-foreground max-w-md">
+              Pas de théorie : 4 disciplines complémentaires qu'il utilise au quotidien avec ses joueurs.
+              <span className="block mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">↻ Survolez ou tapez pour révéler</span>
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {outils.map((o, idx) => (
+              <button
+                type="button"
+                key={o.n}
+                onClick={() => setFlipped(flipped === idx ? null : idx)}
+                aria-label={`Révéler ${o.name}`}
+                className={`flip-card text-left h-64 w-full ${flipped === idx ? 'is-flipped' : ''}`}
+              >
+                <div className="flip-inner">
+                  <article className="flip-face bg-card border border-border p-6 group-hover:border-primary/60">
+                    <div className="flex items-start justify-between mb-4">
+                      <span className="font-display font-bold text-4xl text-primary">{o.n}</span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
+                        Outil mental
+                      </span>
+                    </div>
+                    <h4 className="font-display font-bold text-xl mb-auto">
+                      {o.name}
+                    </h4>
+                    <div className="mt-auto pt-6 flex items-center justify-between">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                        Comment Quentin l'utilise
+                      </span>
+                      <span className="font-mono text-xs text-primary">↻</span>
+                    </div>
+                  </article>
+                  <article className="flip-face flip-back bg-primary/5 border border-primary/40 p-6 overflow-y-auto">
+                    <div className="flex items-start justify-between mb-3">
+                      <span className="font-display font-bold text-2xl text-primary">{o.n}</span>
+                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay">↻ retour</span>
+                    </div>
+                    <h4 className="font-display font-bold text-base mb-2 text-primary">{o.name}</h4>
+                    <p className="text-sm text-foreground/90 leading-relaxed">{o.body}</p>
+                  </article>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>
