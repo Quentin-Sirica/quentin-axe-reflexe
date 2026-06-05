@@ -135,21 +135,23 @@ const offers = [
   {
     badge: "Le déclic",
     name: "Pack Service-Volée",
-    duration: "1 mois",
+    duration: "1 month",
     price: "80€ /séance",
-    desc: "L'impulsion pour débloquer un palier. Définition de votre profil Ennéagramme + 3 séances d'1h30 + outils.",
+    desc: "L'impulsion pour débloquer un palier. ",
     cta: "Postuler au pack",
     features: ["Profil Ennéagramme complet", "3 séances de 1h30", "Outils PNL & visualisation"],
     featured: true,
   },
   {
     badge: "Suivi Élite",
-    name: "Abonnement Grand Chelem",
+    name: "Pack Grand Chelem",
     duration: "3 ou 6 mois",
     price: "65€ /séance",
-    desc: "Tarifs dégressifs (65€ la séance au lieu de 80€), accès au Drive 'Vestiaire Virtuel' (ressources / vidéos) et suivi WhatsApp exclusif pour les débriefs à chaud.",
+    desc: "Le suivi dans la durée pour atteindre son objectif.",
     cta: "Postuler au pack",
-    features: ["Tarif dégressif", "Vestiaire Virtuel (Drive)", "WhatsApp exclusif post-match"],
+    features: [
+      "→\nTarif dégressif (9 ou 18 séances)\n→\nVestiaire Virtuel (Drive)\n→\nWhatsApp debrief post-match",
+    ],
   },
 ];
 
