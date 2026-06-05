@@ -430,8 +430,8 @@ function AgitationSection() {
                 Sans le pilote — <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone">le Mental</mark> — le système se déconnecte au premier point important.
               </p>
               <p className="text-muted-foreground text-base sm:text-lg leading-relaxed border-t border-dashed border-border pt-4">
-                Vous finissez le match dans les bâches.
-                <span className="text-foreground/80"> Votre potentiel reste au vestiaire.</span>
+                Le mental n'est peut-être pas la cause de vos blocages.
+                <span className="text-foreground/80"> C'est la conséquence de ce qui se joue en vous sans que vous le voyiez.</span>
               </p>
             </blockquote>
             <figcaption className="mt-6 flex items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
@@ -656,12 +656,16 @@ function OffersSection() {
           <SectionLabel n="O/04" tag="Rejoindre le Staff" />
           <h2 className="font-display font-bold text-4xl sm:text-5xl text-balance">
             Je ne cherche pas à empiler les clients.
-            <span className="text-muted-foreground"> Je cherche des joueurs alignés.</span>
+            <span className="text-success"> Je cherche des joueurs alignés.</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            Des joueuses et des joueurs motivés, investis, qui ressentent une vraie douleur à l'idée de stagner.
-            Si vous cherchez une baguette magique, passez votre chemin. Si vous voulez créer une alliance
-            inébranlable pour aller chercher des résultats, on est alignés.
+            Des joueuses et des joueurs motivés, investis, qui ressentent une vraie douleur à l'idée de stagner.{' '}
+            <mark className="bg-destructive/25 text-foreground font-semibold px-1 rounded-sm box-decoration-clone">
+              Si vous cherchez une baguette magique, passez votre chemin.
+            </mark>{' '}
+            <mark className="bg-success/25 text-foreground font-semibold px-1 rounded-sm box-decoration-clone">
+              Si vous voulez créer une alliance inébranlable pour aller chercher des résultats, on est alignés.
+            </mark>
           </p>
         </div>
 
