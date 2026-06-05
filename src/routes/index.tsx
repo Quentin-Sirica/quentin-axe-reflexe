@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { submitProgramApplication } from "@/lib/program.functions";
-import heroImg from "@/assets/hero-athlete.jpg";
-import courtImg from "@/assets/court-grid.jpg";
-import coachImg from "@/assets/coach-portrait.jpg";
+import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
+import quentinPortrait from "@/assets/quentin-portrait.jpg.asset.json";
+import quentinVisio from "@/assets/quentin-visio.jpg.asset.json";
 import { EnneagrammeTest } from "@/components/EnneagrammeTest";
 
 export const Route = createFileRoute("/")({
