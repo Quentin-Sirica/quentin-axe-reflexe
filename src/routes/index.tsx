@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { useQuery } from "@tanstack/react-query";
 import { Compass, Brain, Wind, Eye } from "lucide-react";
 import { submitProgramApplication } from "@/lib/program.functions";
+import { listPublicTestimonials, type PublicTestimonial } from "@/lib/testimonials.functions";
 import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
 import quentinPortrait from "@/assets/quentin-portrait.jpg.asset.json";
 import quentinVisio from "@/assets/quentin-visio.jpg.asset.json";
@@ -42,25 +44,31 @@ const objectives = [
   { n: "04", title: "Casser un blocage", body: "Sortir de 3, 5, 10 ans de stagnation. Comprendre enfin ce qui coince." },
 ];
 
-// témoignages réels — à compléter / remplacer par les vrais retours clients
-const testimonials = [
+// fallback testimonials affichés tant que rien n'est créé en BDD
+const fallbackTestimonials: PublicTestimonial[] = [
   {
+    id: "fb-1",
     quote: "J'ai gagné mes deux premiers matchs de poule en championnat alors que je les perdais systématiquement depuis 3 ans. Rien n'avait changé techniquement.",
     name: "Marc L.",
     progress: "30/1 → 15/5",
     sport: "Tennis",
+    photo_url: null,
   },
   {
+    id: "fb-2",
     quote: "Avant, je m'effondrais au 3ème set. Aujourd'hui c'est devenu mon set préféré. La méthode change la façon dont tu lis tes propres réactions.",
     name: "Camille R.",
     progress: "15/4 → 15/2",
     sport: "Tennis",
+    photo_url: null,
   },
   {
+    id: "fb-3",
     quote: "On a pu jouer les phases finales en binôme sans s'engueuler une seule fois. Le mental collectif, ça se travaille.",
     name: "Julien & Théo",
     progress: "P500 → P250",
     sport: "Padel",
+    photo_url: null,
   },
 ];
 
