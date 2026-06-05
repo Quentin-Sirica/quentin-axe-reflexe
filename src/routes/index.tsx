@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { Compass, Brain, Wind, Eye } from "lucide-react";
 import { submitProgramApplication } from "@/lib/program.functions";
 import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
 import quentinPortrait from "@/assets/quentin-portrait.jpg.asset.json";
@@ -94,21 +95,29 @@ const outils = [
   {
     n: "01",
     name: "L'Ennéagramme",
+    icon: Compass,
+    teaser: "Connaître ton fonctionnement profond.",
     body: "Un outil pour comprendre comment tu fonctionnes. Il y a 9 profils, chacun avec ses motivations profondes, ses peurs et sa façon d'aborder les choses. Deux joueurs perdent le même point — l'un doute, l'autre s'énerve, un troisième se juge. Quand tu te connais vraiment, tout devient plus simple sur un court.",
   },
   {
     n: "02",
     name: "La PNL (Programmation Neurolinguistique)",
+    icon: Brain,
+    teaser: "Reprogrammer les automatismes qui te coûtent des matchs.",
     body: "Prendre du recul sur une situation que tu veux régler. Tu rates un coup facile, tu t'effondres, le match bascule. La PNL t'aide à comprendre ce qui s'est passé en toi à ce moment-là, et ce dont tu aurais eu besoin. La prochaine fois, tu seras capable de changer tes automatismes — parce que tu les auras identifiés.",
   },
   {
     n: "03",
     name: "La Sophrologie",
+    icon: Wind,
+    teaser: "Respirer, relâcher, recharger entre deux points.",
     body: "Des outils simples et doux. Par la respiration et la connexion à tes cinq sens, elle te permet de ressentir ce qui se passe à l'intérieur de toi. Elle t'apprend à te détendre, relâcher les tensions, te booster et trouver les ressources dont tu auras besoin sur le court.",
   },
   {
     n: "04",
     name: "L'Imagerie Mentale",
+    icon: Eye,
+    teaser: "Pré-vivre le match avant de le jouer.",
     body: "Une compétence que tu travailles de n'importe où — même depuis ton canapé. Te voir faire, te sentir faire, t'entendre faire, exactement comme tu devrais le faire. Tu conditionnes ton cerveau et ton corps avant même d'être sur le terrain. Sur le court, tu l'utilises entre chaque point pour rester dans le positif.",
   },
 ];
