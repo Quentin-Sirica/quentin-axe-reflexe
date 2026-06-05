@@ -703,7 +703,7 @@ function OffersSection() {
 }
 
 function FinalCTA() {
-  const [form, setForm] = useState({ name: "", email: "", sport: "Tennis", ranking: "", context: "" });
+  const [form, setForm] = useState({ lastName: "", firstName: "", email: "", phone: "", sport: "Tennis", ranking: "", context: "" });
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -717,8 +717,10 @@ function FinalCTA() {
     try {
       await submit({
         data: {
-          first_name: form.name,
+          first_name: form.firstName,
+          last_name: form.lastName,
           email: form.email,
+          phone: form.phone,
           sport: form.sport as "Tennis" | "Padel" | "Badminton",
           ranking: form.ranking,
           context: form.context,
@@ -759,23 +761,43 @@ function FinalCTA() {
               onSubmit={onSubmit}
               className="bg-card border border-border rounded-lg p-8 sm:p-10 space-y-6"
             >
-              <Field label="Nom complet" required>
-                <input
-                  required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary"
-                />
-              </Field>
-              <Field label="Email" required>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary"
-                />
-              </Field>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <Field label="Nom" required>
+                  <input
+                    required
+                    value={form.lastName}
+                    onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary"
+                  />
+                </Field>
+                <Field label="Prénom" required>
+                  <input
+                    required
+                    value={form.firstName}
+                    onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary"
+                  />
+                </Field>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <Field label="Email" required>
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary"
+                  />
+                </Field>
+                <Field label="Téléphone">
+                  <input
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-primary"
+                  />
+                </Field>
+              </div>
               <div className="grid sm:grid-cols-2 gap-6">
                 <Field label="Sport" required>
                   <div className="grid grid-cols-3 gap-2">
