@@ -393,19 +393,38 @@ function AgitationSection() {
           </div>
         </div>
 
-        <div className="mt-14 max-w-3xl mx-auto">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
-            // La métaphore du pilote
+        <figure className="mt-14 max-w-4xl mx-auto relative">
+          <div className="absolute -top-3 left-6 sm:left-10 z-10 flex items-center gap-3 bg-background border border-border rounded-full pl-1 pr-4 py-1">
+            <img src={quentinPortrait.url} alt="Quentin Sirica" width={64} height={64} loading="lazy" className="h-8 w-8 rounded-full object-cover border border-primary/40" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/80">
+              Quentin <span className="text-muted-foreground">· la métaphore du pilote</span>
+            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
           </div>
-          <p className="font-display text-xl sm:text-2xl leading-snug text-balance text-center">
-            Vous pouvez posséder toutes les armes du joueur parfait -
-            <span className="text-foreground/90"> un <span className="text-primary">physique</span> de feu, une <span className="text-primary">technique</span> chirurgicale, une <span className="text-primary">tactique</span> implacable.</span>
-          </p>
-          <p className="mt-5 font-display text-xl sm:text-2xl leading-snug text-balance text-center">
-            Sans le pilote - <span className="text-primary">le Mental</span> - le système se déconnecte au premier point important.
-            <span className="block mt-2 text-muted-foreground text-base sm:text-lg">Vous finissez le match dans les bâches. Votre potentiel reste au vestiaire.</span>
-          </p>
-        </div>
+          <div className="relative bg-card border border-border rounded-lg p-7 sm:p-10 pt-10 sm:pt-12 overflow-hidden">
+            <span aria-hidden className="absolute -top-2 right-6 font-display text-[120px] leading-none text-primary/10 select-none">“</span>
+            <div className="absolute left-0 top-10 bottom-10 w-[3px] bg-gradient-to-b from-transparent via-primary to-transparent" />
+            <blockquote className="relative space-y-5">
+              <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
+                Vous pouvez posséder toutes les armes du joueur parfait — un
+                <span className="text-primary"> physique</span> de feu, une
+                <span className="text-primary"> technique</span> chirurgicale, une
+                <span className="text-primary"> tactique</span> implacable.
+              </p>
+              <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
+                Sans le pilote — <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone">le Mental</mark> — le système se déconnecte au premier point important.
+              </p>
+              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed border-t border-dashed border-border pt-4">
+                Vous finissez le match dans les bâches.
+                <span className="text-foreground/80"> Votre potentiel reste au vestiaire.</span>
+              </p>
+            </blockquote>
+            <figcaption className="mt-6 flex items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              <span className="h-px w-8 bg-primary" />
+              Quentin Sirica · 17 ans de terrain
+            </figcaption>
+          </div>
+        </figure>
 
         <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
@@ -815,21 +834,27 @@ function ExcuseCloud() {
   const row1 = fakeExcuses.slice(0, half);
   const row2 = fakeExcuses.slice(half);
 
-  const Chip = ({ q }: { q: string }) => (
-    <span className="shrink-0 inline-flex items-center gap-2 bg-card border border-dashed border-foreground/20 rounded-full px-4 py-2 mr-3 font-display text-sm sm:text-base text-foreground/80 hover:text-foreground hover:border-destructive/60 hover:line-through transition-all">
-      <span className="text-primary/60">«</span>
-      {q}
-      <span className="text-primary/60">»</span>
-    </span>
+  const Quote = ({ q, i }: { q: string; i: number }) => (
+    <figure className="shrink-0 w-[300px] sm:w-[340px] mr-4 bg-card/80 border border-border rounded-md px-4 py-3 hover:border-destructive/50 transition-colors group">
+      <div className="flex items-start gap-2">
+        <span className="font-display text-3xl leading-none text-primary/50 -mt-1 select-none">“</span>
+        <blockquote className="font-display italic text-[15px] leading-snug text-foreground/85 group-hover:line-through group-hover:text-foreground/50 transition-all">
+          {q}
+        </blockquote>
+      </div>
+      <figcaption className="mt-2 pl-7 font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+        — Joueur n°{String(i + 1).padStart(2, '0')} · vestiaire
+      </figcaption>
+    </figure>
   );
 
   return (
-    <div className="relative space-y-3 overflow-hidden marquee-mask">
+    <div className="relative space-y-4 overflow-hidden marquee-mask">
       <div className="flex w-max ticker-track">
-        {[...row1, ...row1].map((q, i) => <Chip key={'a' + i} q={q} />)}
+        {[...row1, ...row1].map((q, i) => <Quote key={'a' + i} q={q} i={i % row1.length} />)}
       </div>
       <div className="flex w-max ticker-track-reverse">
-        {[...row2, ...row2].map((q, i) => <Chip key={'b' + i} q={q} />)}
+        {[...row2, ...row2].map((q, i) => <Quote key={'b' + i} q={q} i={(i % row2.length) + row1.length} />)}
       </div>
     </div>
   );
