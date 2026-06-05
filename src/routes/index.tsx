@@ -333,7 +333,7 @@ function AgitationSection() {
         <div className="max-w-3xl">
           <SectionLabel n="A/02" tag="Agitation" />
           <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
-            Le mental <span className="text-stroke">tout seul</span> ne sert à rien.
+            Le mental <span className="text-primary">tout seul</span> ne sert à rien.
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
             Voici l'équation réelle de la performance — et la part exacte sur laquelle Quentin intervient.
@@ -425,28 +425,6 @@ function AgitationSection() {
           </div>
         </figure>
 
-        <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
-            ⚠ Anti-Bullshit · Phrases interdites
-          </div>
-          <h3 className="font-display font-bold text-2xl sm:text-3xl text-balance mb-5">
-            Pourquoi les conseils <span className="text-stroke">classiques</span> vous font perdre vos matchs.
-          </h3>
-          <p className="text-foreground/90 leading-relaxed mb-5">
-            Sur le court, les phrases toutes faites sont des poisons. Entendre…
-          </p>
-          <div className="flex flex-wrap gap-2 mb-5">
-            {poisons.map((p) => (
-              <span key={p} className="font-mono text-sm border border-destructive/40 px-3 py-1.5 line-through text-foreground/60">
-                "{p}"
-              </span>
-            ))}
-          </div>
-          <p className="text-foreground/90 leading-relaxed">
-            …vous énerve au plus haut point, et c'est normal.
-            <span className="text-destructive font-semibold"> Ça manque de précision. Ça ne résout rien.</span>
-          </p>
-        </div>
       </div>
     </section>
   );
@@ -479,7 +457,32 @@ function SolutionSection() {
           </div>
         </div>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
+        <aside className="mt-12 relative border-l-2 border-destructive/50 bg-destructive/[0.03] rounded-r-md pl-5 pr-6 py-5">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive">
+              ⚠ Anti-Bullshit · Phrases interdites
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              // ce que la méthode bannit du vestiaire
+            </span>
+          </div>
+          <p className="text-sm sm:text-base text-foreground/85 leading-relaxed mb-3">
+            Sur le court, les phrases toutes faites sont des poisons.
+            <span className="text-foreground"> Ça manque de précision. Ça ne résout rien.</span>
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {poisons.map((p) => (
+              <span
+                key={p}
+                className="font-mono text-xs border border-destructive/30 px-2 py-1 line-through text-foreground/55"
+              >
+                "{p}"
+              </span>
+            ))}
+          </div>
+        </aside>
+
+        <div className="mt-12 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
           {steps.map((s) => (
             <div key={s.n} className="bg-card p-8 hover:bg-secondary/50 transition-colors group">
               <div className="flex items-baseline justify-between mb-6">
