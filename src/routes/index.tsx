@@ -518,6 +518,40 @@ function SolutionSection() {
             <footer className="mt-6 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
               — Quentin Sirica
             </footer>
+
+            <div className="mt-10 border-t border-dashed border-border pt-8 grid sm:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="sm:col-span-2">
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary mb-2">
+                  // Le parcours
+                </div>
+                <p className="text-sm text-foreground/85 leading-relaxed">
+                  17 ans prof de tennis, devenu sophrologue et Maître Praticien PNL, formé à l'ennéagramme et à l'imagerie mentale.
+                  <span className="text-foreground"> Tout ce que je transmets, je l'ai d'abord expérimenté sur moi</span> — la compétition, le travail sur soi, les outils. Rien de théorique pour le plaisir.
+                </p>
+              </div>
+
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-3">
+                  Diplômes
+                </div>
+                <ul className="space-y-1.5 text-sm">
+                  <li className="flex gap-2"><span className="text-primary">›</span> Institut de Formation à la Sophrologie</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> EIPNL — Maître Praticien PNL</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> DEJEPS Perfectionnement Sportif</li>
+                </ul>
+              </div>
+
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-3">
+                  Expériences
+                </div>
+                <ul className="space-y-1.5 text-sm">
+                  <li className="flex gap-2"><span className="text-primary">›</span> Responsable Préparateur Mental des Compétiteurs</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> Coach en sophrologie & PNL en individuel</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> Formateur en Préparation Mentale</li>
+                </ul>
+              </div>
+            </div>
           </blockquote>
         </div>
 
