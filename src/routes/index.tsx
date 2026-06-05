@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { Compass, Brain, Wind, Eye } from "lucide-react";
 import { submitProgramApplication } from "@/lib/program.functions";
 import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
 import quentinPortrait from "@/assets/quentin-portrait.jpg.asset.json";
@@ -94,21 +95,29 @@ const outils = [
   {
     n: "01",
     name: "L'Ennéagramme",
+    icon: Compass,
+    teaser: "Connaître ton fonctionnement profond.",
     body: "Un outil pour comprendre comment tu fonctionnes. Il y a 9 profils, chacun avec ses motivations profondes, ses peurs et sa façon d'aborder les choses. Deux joueurs perdent le même point — l'un doute, l'autre s'énerve, un troisième se juge. Quand tu te connais vraiment, tout devient plus simple sur un court.",
   },
   {
     n: "02",
     name: "La PNL (Programmation Neurolinguistique)",
+    icon: Brain,
+    teaser: "Reprogrammer les automatismes qui te coûtent des matchs.",
     body: "Prendre du recul sur une situation que tu veux régler. Tu rates un coup facile, tu t'effondres, le match bascule. La PNL t'aide à comprendre ce qui s'est passé en toi à ce moment-là, et ce dont tu aurais eu besoin. La prochaine fois, tu seras capable de changer tes automatismes — parce que tu les auras identifiés.",
   },
   {
     n: "03",
     name: "La Sophrologie",
+    icon: Wind,
+    teaser: "Respirer, relâcher, recharger entre deux points.",
     body: "Des outils simples et doux. Par la respiration et la connexion à tes cinq sens, elle te permet de ressentir ce qui se passe à l'intérieur de toi. Elle t'apprend à te détendre, relâcher les tensions, te booster et trouver les ressources dont tu auras besoin sur le court.",
   },
   {
     n: "04",
     name: "L'Imagerie Mentale",
+    icon: Eye,
+    teaser: "Pré-vivre le match avant de le jouer.",
     body: "Une compétence que tu travailles de n'importe où — même depuis ton canapé. Te voir faire, te sentir faire, t'entendre faire, exactement comme tu devrais le faire. Tu conditionnes ton cerveau et ton corps avant même d'être sur le terrain. Sur le court, tu l'utilises entre chaque point pour rester dans le positif.",
   },
 ];
@@ -332,20 +341,20 @@ function AgitationSection() {
           </p>
         </div>
 
-        <div className="mt-10 inline-flex flex-wrap items-center gap-3 bg-card border border-border rounded-md px-4 py-3">
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">// L'idée reçue</span>
-          <span className="line-through decoration-destructive decoration-2 text-foreground/60 font-display text-base sm:text-lg">
-            "Le mental c'est 80% du travail."
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-widest bg-destructive text-destructive-foreground px-2 py-1 rounded">
-            FAUX
-          </span>
-        </div>
-
-        <div className="mt-12">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-5 text-center">
-            L'équation réelle de la performance
+        <div className="mt-10 bg-card border border-border rounded-md p-6 sm:p-8">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-dashed border-border">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+              L'équation réelle de la performance
+            </span>
+            <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+              <span className="text-muted-foreground">// L'idée reçue :</span>
+              <span className="line-through decoration-destructive decoration-2 text-foreground/55 normal-case tracking-normal text-xs">
+                "Le mental c'est 80% du travail."
+              </span>
+              <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded">FAUX</span>
+            </span>
           </div>
+
           <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
             {[
               { p: 'Mental', featured: true },
@@ -358,7 +367,7 @@ function AgitationSection() {
                   className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all ${
                     item.featured
                       ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary'
-                      : 'bg-card border-border'
+                      : 'bg-background border-border'
                   }`}
                 >
                   <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
@@ -384,12 +393,19 @@ function AgitationSection() {
           </div>
         </div>
 
-        <p className="mt-14 max-w-3xl mx-auto text-center border-y border-border py-6 font-display text-xl sm:text-2xl leading-snug text-balance">
-          Un blocage mental n'est souvent que la conséquence d'une
-          <span className="text-primary"> défaillance tactique</span>.
-          <br />
-          <span className="text-muted-foreground text-base sm:text-lg">Travailler le mental sans les 3 autres, c'est repeindre une voiture sans moteur.</span>
-        </p>
+        <div className="mt-14 max-w-3xl mx-auto">
+          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4 text-center">
+            // La métaphore du pilote
+          </div>
+          <p className="font-display text-xl sm:text-2xl leading-snug text-balance text-center">
+            Vous pouvez posséder toutes les armes du joueur parfait —
+            <span className="text-foreground/90"> un <span className="text-primary">physique</span> de feu, une <span className="text-primary">technique</span> chirurgicale, une <span className="text-primary">tactique</span> implacable.</span>
+          </p>
+          <p className="mt-5 font-display text-xl sm:text-2xl leading-snug text-balance text-center">
+            Sans le pilote — <span className="text-primary">le Mental</span> — le système se déconnecte au premier point important.
+            <span className="block mt-2 text-muted-foreground text-base sm:text-lg">Vous finissez le match dans les bâches. Votre potentiel reste au vestiaire.</span>
+          </p>
+        </div>
 
         <div className="mt-14 relative bg-destructive/5 border border-destructive/30 rounded-md p-8 max-w-4xl mx-auto">
           <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive mb-3">
@@ -505,17 +521,25 @@ function SolutionSection() {
                 className={`flip-card text-left h-64 w-full ${flipped === idx ? 'is-flipped' : ''}`}
               >
                 <div className="flip-inner">
-                  <article className="flip-face bg-card border border-border p-6 group-hover:border-primary/60">
-                    <div className="flex items-start justify-between mb-4">
-                      <span className="font-display font-bold text-4xl text-primary">{o.n}</span>
-                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
-                        Outil mental
-                      </span>
+                  <article className="flip-face bg-card border border-border p-6 justify-between">
+                    <div className="flex items-start justify-between">
+                      <div className="h-14 w-14 rounded-md bg-primary/15 border border-primary/40 flex items-center justify-center text-primary">
+                        <o.icon size={28} strokeWidth={1.75} />
+                      </div>
+                      <div className="flex flex-col items-end gap-2">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay bg-clay/10 px-2 py-1 rounded">
+                          Outil mental
+                        </span>
+                        <span className="font-display font-bold text-2xl text-primary/80">{o.n}</span>
+                      </div>
                     </div>
-                    <h4 className="font-display font-bold text-xl mb-auto">
-                      {o.name}
-                    </h4>
-                    <div className="mt-auto pt-6 flex items-center justify-between">
+                    <div>
+                      <h4 className="font-display font-bold text-xl leading-tight">
+                        {o.name}
+                      </h4>
+                      <p className="mt-2 text-sm text-muted-foreground leading-snug">{o.teaser}</p>
+                    </div>
+                    <div className="pt-4 border-t border-dashed border-border flex items-center justify-between">
                       <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
                         Comment Quentin l'utilise
                       </span>
@@ -524,7 +548,10 @@ function SolutionSection() {
                   </article>
                   <article className="flip-face flip-back bg-primary/5 border border-primary/40 p-6 overflow-y-auto">
                     <div className="flex items-start justify-between mb-3">
-                      <span className="font-display font-bold text-2xl text-primary">{o.n}</span>
+                      <div className="flex items-center gap-2 text-primary">
+                        <o.icon size={18} strokeWidth={2} />
+                        <span className="font-display font-bold text-2xl">{o.n}</span>
+                      </div>
                       <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-clay">↻ retour</span>
                     </div>
                     <h4 className="font-display font-bold text-base mb-2 text-primary">{o.name}</h4>
