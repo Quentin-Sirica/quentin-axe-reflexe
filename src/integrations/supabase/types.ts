@@ -86,6 +86,45 @@ export type Database = {
         }
         Relationships: []
       }
+      testimonials: {
+        Row: {
+          created_at: string
+          id: string
+          is_published: boolean
+          name: string
+          photo_url: string | null
+          progress: string | null
+          quote: string
+          sort_order: number
+          sport: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          name: string
+          photo_url?: string | null
+          progress?: string | null
+          quote: string
+          sort_order?: number
+          sport?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_published?: boolean
+          name?: string
+          photo_url?: string | null
+          progress?: string | null
+          quote?: string
+          sort_order?: number
+          sport?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
