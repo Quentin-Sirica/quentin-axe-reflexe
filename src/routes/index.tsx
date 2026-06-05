@@ -703,7 +703,7 @@ function OffersSection() {
 }
 
 function FinalCTA() {
-  const [form, setForm] = useState({ name: "", email: "", sport: "Tennis", ranking: "", context: "" });
+  const [form, setForm] = useState({ lastName: "", firstName: "", email: "", phone: "", sport: "Tennis", ranking: "", context: "" });
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
