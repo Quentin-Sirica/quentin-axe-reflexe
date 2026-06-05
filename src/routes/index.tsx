@@ -348,7 +348,7 @@ function AgitationSection() {
             Le mental <span className="text-primary">tout seul</span> ne sert à rien.
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
-            Voici l'équation réelle de la performance — et la part exacte sur laquelle Quentin intervient.
+            Voici l'équation réelle de la performance — et la part exacte sur laquelle j'interviens.
           </p>
         </div>
 
@@ -389,7 +389,7 @@ function AgitationSection() {
                   </div>
                   {item.featured && (
                     <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
-                      ← piloté par Quentin
+                      ← piloté par moi
                     </div>
                   )}
                 </div>
@@ -574,12 +574,12 @@ function SolutionSection() {
                 // 17 ans à les pratiquer sur le terrain
               </div>
               <h3 className="font-display font-bold text-3xl sm:text-4xl text-balance">
-                Les outils que <span className="text-primary">Quentin maîtrise</span>.
+                Les outils techniques de ma méthode.
               </h3>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">
-              Pas de théorie : 4 disciplines complémentaires qu'il utilise au quotidien avec ses joueurs.
-              <span className="block mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">↻ Survolez ou tapez pour révéler</span>
+              Pas de théorie : 4 disciplines complémentaires que j'utilise au quotidien avec mes joueurs.
+              <span className="block mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">↻ SURVOLEZ OU TAPEZ POUR RÉVÉLER</span>
             </p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -612,7 +612,7 @@ function SolutionSection() {
                     </div>
                     <div className="pt-4 border-t border-dashed border-border flex items-center justify-between">
                       <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                        Comment Quentin l'utilise
+                        Comment je l'utilise
                       </span>
                       <span className="font-mono text-xs text-primary">↻</span>
                     </div>
