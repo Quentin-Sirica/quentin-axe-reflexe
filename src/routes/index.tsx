@@ -246,7 +246,7 @@ function Hero() {
               href="#contact"
               className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 py-4 font-semibold rounded-md hover:bg-primary/90 transition-all glow-primary"
             >
-              Postuler pour un Bilan de Performance
+              Demandez votre Bilan de Lucidité
               <span className="font-mono text-xs bg-primary-foreground/10 px-2 py-1 rounded">15 min offertes</span>
             </a>
             <a href="#methode" className="text-sm font-mono uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
