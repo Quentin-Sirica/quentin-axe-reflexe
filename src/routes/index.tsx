@@ -272,7 +272,6 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70">
               <span>Aubagne · Session terrain</span>
-              <span className="text-primary">● COACH</span>
             </div>
           </div>
           <div className="absolute -bottom-6 -left-6 hidden lg:block bg-card border border-border rounded-md p-4 max-w-[220px] shadow-2xl">
