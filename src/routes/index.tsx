@@ -385,26 +385,33 @@ function AgitationSection() {
           </p>
         </div>
 
+        <div className="mt-8 relative max-w-3xl border-2 border-destructive/40 bg-destructive/5 rounded-md p-5 sm:p-6">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive">// L'idée reçue</span>
+            <span className="h-px flex-1 bg-destructive/30" />
+            <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.2em] bg-destructive text-destructive-foreground px-3 py-1 rounded">FAUX</span>
+          </div>
+          <p className="font-display text-2xl sm:text-3xl lg:text-4xl leading-tight line-through decoration-destructive decoration-[3px] text-foreground/55">
+            "Le mental c'est 60% du travail."
+          </p>
+        </div>
+
         <div className="mt-10 group/eq bg-card border border-border rounded-md p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_20px_60px_-20px_hsl(var(--primary)/0.45)] hover:bg-card/95">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-dashed border-border">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               L'équation réelle de la performance
             </span>
-            <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
-              <span className="text-muted-foreground">// L'idée reçue :</span>
-              <span className="line-through decoration-destructive decoration-2 text-foreground/55 normal-case tracking-normal text-xs">
-                "Le mental c'est 60% du travail."
-              </span>
-              <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded">FAUX</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+              // Vision 360°
             </span>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
             {[
-              { p: 'Mental', featured: true },
-              { p: 'Technique' },
-              { p: 'Physique' },
-              { p: 'Tactique' },
+              { p: 'Mental', level: 'ma spécialité', featured: true },
+              { p: 'Technique', level: 'expert' },
+              { p: 'Physique', level: 'je connais bien' },
+              { p: 'Tactique', level: 'expert' },
             ].map((item, i) => (
               <div key={item.p} className="flex items-center gap-3 sm:gap-3 flex-1 min-w-0">
                 <div
@@ -417,8 +424,8 @@ function AgitationSection() {
                   <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
                     {item.p}
                   </div>
-                  <div className={`font-mono text-sm tracking-wider mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
-                    25%
+                  <div className={`font-mono text-[10px] uppercase tracking-[0.18em] mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                    {item.level}
                   </div>
                   {item.featured && (
                     <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
@@ -436,8 +443,8 @@ function AgitationSection() {
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary block mb-2">
               = Vision holistique
             </span>
-            J'agis sur le mental, mais les 4 piliers sont liés.
-            <span className="text-foreground"> Je m'appuie sur la technique, le physique et la tactique</span> pour faire levier — jamais à côté.
+            Je ne suis pas un coach mental dans sa bulle. Je maîtrise les 4 piliers — j'opère sur le mental,
+            <span className="text-foreground"> en m'appuyant sur la technique, le physique et la tactique</span> pour faire levier.
           </p>
         </div>
 
@@ -452,19 +459,33 @@ function AgitationSection() {
           <div className="relative bg-card border border-border rounded-lg p-7 sm:p-10 pt-10 sm:pt-12 overflow-hidden">
             <span aria-hidden className="absolute -top-2 right-6 font-display text-[120px] leading-none text-primary/10 select-none">“</span>
             <div className="absolute left-0 top-10 bottom-10 w-[3px] bg-gradient-to-b from-transparent via-primary to-transparent" />
-            <blockquote className="relative space-y-5">
+            <blockquote className="relative space-y-6">
+              <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                {[
+                  { part: 'La technique', role: 'la carrosserie' },
+                  { part: 'Le physique', role: 'le moteur' },
+                  { part: 'La tactique', role: 'le GPS' },
+                  { part: 'Le mental', role: 'le pilote', featured: true },
+                ].map((b) => (
+                  <li
+                    key={b.part}
+                    className={`flex items-baseline gap-3 px-4 py-3 rounded-md border ${
+                      b.featured
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border bg-background/50'
+                    }`}
+                  >
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground shrink-0">{b.part}</span>
+                    <span className="font-display text-lg sm:text-xl font-bold">
+                      <span className={b.featured ? 'text-primary' : 'text-foreground/85'}>{b.role}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
-                Vous pouvez posséder toutes les armes du joueur parfait — un
-                <span className="text-primary"> physique</span> de feu, une
-                <span className="text-primary"> technique</span> chirurgicale, une
-                <span className="text-primary"> tactique</span> implacable.
-              </p>
-              <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
-                Sans le pilote — <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone">le Mental</mark> — le système se déconnecte au premier point important.
-              </p>
-              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed border-t border-dashed border-border pt-4">
-                Le mental n'est peut-être pas la cause de vos blocages.
-                <span className="text-foreground/80"> C'est la conséquence de ce qui se joue en vous sans que vous le voyiez.</span>
+                Vous pouvez avoir la meilleure machine du paddock —
+                <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone"> sans pilote lucide</mark>,
+                vous finissez dans le mur au premier virage serré.
               </p>
             </blockquote>
             <figcaption className="mt-6 flex items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
