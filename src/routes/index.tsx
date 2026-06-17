@@ -273,7 +273,7 @@ function Hero() {
         <div className="lg:col-span-7 space-y-8">
           <div className="inline-flex items-center gap-3 border border-border px-3 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             <span className="h-1.5 w-1.5 bg-primary rounded-full animate-pulse" />
-            Tennis · Padel · Badminton
+            Tennis · Padel
           </div>
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[0.95] text-balance">
             Il est temps <span className="text-primary">de piloter votre mental</span> avec la réalité du terrain
@@ -344,7 +344,7 @@ function ProblemSection() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionLabel n="P/01" tag="Le Problème" />
         <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl max-w-4xl text-balance">
-          Vous pensez jouer mieux que votre classement.
+          Vous pensez <span className="text-primary">jouer mieux que votre classement</span>.
           <br /> Pourtant vous êtes bloqué. Pourquoi ?
         </h2>
         <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
@@ -363,7 +363,7 @@ function ProblemSection() {
         <div className="mt-14 border-l-2 border-primary pl-6 max-w-3xl">
           <p className="font-display text-2xl sm:text-3xl leading-tight text-balance">
             Arrêtez d'être dans le déni, revenez à la réalité. 
-            <span className="text-primary">&nbsp;Vous savez que le problème vient de votre mental, et ça tombe bien, ça se travaille !</span>
+            <span className="text-foreground">&nbsp;Vous savez que <span className="text-success font-semibold">le problème vient de votre mental</span>, et ça tombe bien, ça se travaille !</span>
           </p>
         </div>
       </div>
