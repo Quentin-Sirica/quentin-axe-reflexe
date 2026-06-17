@@ -22,20 +22,43 @@ const navLinks = [
 
 const fakeExcuses = [
   "Je suis classé 30/1 mais je vaux 15/4.",
-  "C'est à cause du vent, des balles, du soleil…",
-  "Il a eu une chance de cocu sur les let et les lignes.",
-  "Le mec en face a un jeu pourri, il fait que des ronds, c'est pas du tennis.",
-  "Si j'arrivais à jouer en match comme à l'entraînement, je prendrais 3 classements.",
-  "Je gagne jamais un super tie-break, c'est ma malédiction.",
-  "J'ai pas confiance en mes coups aujourd'hui.",
-  "Je pourrai être mieux classé mais c'est parce que je fais pas beaucoup de tournois.",
-  "J'aurais dû re-corder avant le tournoi, mon cordage est rincé.",
-  "Le gars s'est auto-arbitré tout le match, il m'a volé au moins 4 points qui étaient sur la ligne.",
-  "Le match était programmé à 9h du matin, j'étais pas réveillé.",
-  "Les balles de ce tournoi, c'est des vrais cailloux, aucun contrôle.",
+  "Il y avait trop de vent, c'était injouable.",
+  "Les balles de ce tournoi c'est de la merde, on peut pas jouer avec ça.",
+  "C'est n'importe quoi ce soleil, on voit strictement rien.",
+  "Il fait trop chaud, j'ai les jambes molles, je peux rien faire.",
+  "C'est un chatard, il ne fait que des lets et il touche les lignes.",
+  "Le mec ne fait que des ronds, c'est même pas du tennis.",
+  "De toute façon, je gagne jamais au tie-break.",
+  "Je suis pas du matin, j'étais pas réveillé.",
+  "Je ne sens rien, j'ai pas confiance en mes coups.",
+  "Mon cordage est mort, j'aurais dû le recorder.",
+  "J'ai fait un long match la veille, je suis cuit de toute façon.",
+  "J'arrive pas à mettre une balle dans le terrain, tu veux que je gagne comment ?",
+  "On peut pas jouer sur des terrains comme ça, il y a des faux rebonds dans tous les sens.",
+  "J'ai la main qui glisse, je peux pas tenir mon grip.",
 ];
 
-const poisons = ["Calme-toi", "Respire", "Mets la balle dans le court", "Gagne le point !"];
+const poisonsExpert = [
+  {
+    phrase: "Reste concentré",
+    answer:
+      "Concentré sur quoi exactement ? Et la plupart du temps, ce sont les parasites qui t'empêchent de te concentrer. Comment fais-tu pour les dégager ?",
+  },
+  {
+    phrase: "Lâche-toi",
+    answer:
+      "C'est le genre de phrase qui ne veut strictement rien dire sous pression. Ce n'est pas en deux mots qu'on arrive à tout changer.",
+  },
+  {
+    phrase: "Fais-toi confiance",
+    answer: "Ok, mais sur quoi, et comment tu fais ça concrètement ?",
+  },
+  {
+    phrase: "Sois positif",
+    answer:
+      "L'intention est bonne. Mais comment, quand tu es dans un état émotionnel qui ne le permet pas ?",
+  },
+];
 
 const objectives = [
   { n: "01", title: "Monter de classement", body: "Franchir le palier qui résiste depuis deux saisons. Concrètement." },
