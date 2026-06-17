@@ -524,7 +524,7 @@ function SolutionSection() {
           <blockquote className="lg:col-span-7 relative">
             <span className="absolute -top-8 -left-2 font-display text-[120px] leading-none text-primary/20">"</span>
             <p className="font-display text-2xl sm:text-3xl leading-tight text-balance relative">
-              Le socle de la méthode : avant de parler de technique, on répond ensemble à la seule question
+              Le socle de la méthode : avant de parler d'outils, on répond ensemble à la seule question
               qui compte dans les moments durs —
               <span className="text-primary"> "Pourquoi tu es sur ce court aujourd'hui plutôt que de faire autre chose ?"</span>
             </p>
