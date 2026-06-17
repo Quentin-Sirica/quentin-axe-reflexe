@@ -342,7 +342,7 @@ function ProblemSection() {
   return (
     <section className="relative py-28 border-t border-border">
       <div className="mx-auto max-w-7xl px-6">
-        <SectionLabel n="P/01" tag="LE CONSTAT" />
+        <SectionLabel n="P/01" tag="LA REALITE DU JOUEUR" />
         <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl max-w-4xl text-balance">
           Vous pensez <span className="text-primary">jouer mieux que votre classement</span>.
           <br /> Pourtant vous êtes bloqué. Pourquoi ?
