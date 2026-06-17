@@ -519,16 +519,22 @@ function SolutionSection() {
             Sur le court, les phrases toutes faites sont des poisons.
             <span className="text-foreground"> Ça manque de précision. Ça ne résout rien.</span>
           </p>
-          <div className="flex flex-wrap gap-1.5">
-            {poisons.map((p) => (
-              <span
-                key={p}
-                className="font-mono text-xs border border-destructive/30 px-2 py-1 line-through text-foreground/55"
-              >
-                "{p}"
-              </span>
+          <ul className="mt-2 divide-y divide-destructive/15 border border-destructive/20 rounded-md overflow-hidden bg-background/40">
+            {poisonsExpert.map((p) => (
+              <li key={p.phrase} className="grid sm:grid-cols-[220px_1fr] gap-2 sm:gap-5 px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-destructive shrink-0">poison</span>
+                  <span className="font-display text-sm sm:text-base line-through decoration-destructive decoration-2 text-foreground/55">
+                    "{p.phrase}"
+                  </span>
+                </div>
+                <div className="flex gap-2 items-start text-sm text-foreground/85 leading-snug border-l-0 sm:border-l sm:border-destructive/20 sm:pl-5">
+                  <span className="text-primary font-mono text-xs mt-0.5">→</span>
+                  <span>{p.answer}</span>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </aside>
 
         <div className="mt-12 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
