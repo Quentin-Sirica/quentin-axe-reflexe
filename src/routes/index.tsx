@@ -376,7 +376,7 @@ function AgitationSection() {
     <section className="relative py-28 border-t border-border bg-graphite-deep">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-3xl">
-          <SectionLabel n="A/02" tag="Agitation" />
+          <SectionLabel n="A/02" tag="CE QUI BLOQUE VRAIMENT" />
           <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
             Le mental <span className="text-primary">tout seul</span> ne sert à rien.
           </h2>
