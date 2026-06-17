@@ -547,19 +547,37 @@ function SolutionSection() {
             Sur le court, les phrases toutes faites sont des poisons.
             <span className="text-foreground"> Ça manque de précision. Ça ne résout rien.</span>
           </p>
-          <ul className="mt-2 divide-y divide-destructive/15 border border-destructive/20 rounded-md overflow-hidden bg-background/40">
+          <ul className="mt-4 grid sm:grid-cols-2 gap-4">
             {poisonsExpert.map((p) => (
-              <li key={p.phrase} className="grid sm:grid-cols-[220px_1fr] gap-2 sm:gap-5 px-4 py-3">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-destructive shrink-0">poison</span>
-                  <span className="font-display text-sm sm:text-base line-through decoration-destructive decoration-2 text-foreground/55">
-                    "{p.phrase}"
+              <li
+                key={p.phrase}
+                className="group relative bg-background border border-border rounded-md p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_18px_50px_-20px_hsl(var(--primary)/0.45)]"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span aria-hidden className="text-destructive text-base leading-none">☠</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-destructive font-bold">
+                    Poison
                   </span>
                 </div>
-                <div className="flex gap-2 items-start text-sm text-foreground/85 leading-snug border-l-0 sm:border-l sm:border-destructive/20 sm:pl-5">
-                  <span className="text-primary font-mono text-xs mt-0.5">→</span>
-                  <span>{p.answer}</span>
+                <p className="font-display text-base sm:text-lg leading-snug line-through decoration-destructive decoration-2 text-foreground/55">
+                  « {p.phrase} »
+                </p>
+
+                <div className="my-4 flex items-center gap-3">
+                  <span className="h-px flex-1 bg-border" />
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">vs</span>
+                  <span className="h-px flex-1 bg-border" />
                 </div>
+
+                <div className="flex items-center gap-2 mb-2">
+                  <span aria-hidden className="text-primary text-base leading-none">⚗</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary font-bold">
+                    Antidote — Quentin
+                  </span>
+                </div>
+                <p className="text-sm sm:text-[15px] text-foreground/90 leading-relaxed">
+                  {p.answer}
+                </p>
               </li>
             ))}
           </ul>
