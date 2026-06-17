@@ -361,7 +361,7 @@ function AgitationSection() {
             <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
               <span className="text-muted-foreground">// L'idée reçue :</span>
               <span className="line-through decoration-destructive decoration-2 text-foreground/55 normal-case tracking-normal text-xs">
-                "Le mental c'est 80% du travail."
+                "Le mental c'est 60% du travail."
               </span>
               <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded">FAUX</span>
             </span>
