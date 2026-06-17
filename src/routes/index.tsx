@@ -459,7 +459,7 @@ function AgitationSection() {
           <div className="absolute -top-3 left-6 sm:left-10 z-10 flex items-center gap-3 bg-background border border-border rounded-full pl-1 pr-4 py-1">
             <img src={quentinPortrait.url} alt="Quentin Sirica" width={64} height={64} loading="lazy" className="h-8 w-8 rounded-full object-cover border border-primary/40" />
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/80">
-              Quentin <span className="text-muted-foreground">· la métaphore du chef d'orchestre</span>
+              Quentin <span className="text-muted-foreground">· la métaphore du pilote</span>
             </span>
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
           </div>
@@ -469,10 +469,10 @@ function AgitationSection() {
             <blockquote className="relative space-y-6">
               <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                 {[
-                  { part: 'La technique', role: 'le premier violon' },
-                  { part: 'Le physique', role: 'les percussions' },
-                  { part: 'La tactique', role: 'la partition' },
-                  { part: 'Le mental', role: "le chef d'orchestre", featured: true },
+                  { part: 'La technique', role: "l'avion" },
+                  { part: 'Le physique', role: 'le carburant' },
+                  { part: 'La tactique', role: 'le plan de vol' },
+                  { part: 'Le mental', role: 'le pilote', featured: true },
                 ].map((b) => (
                   <li
                     key={b.part}
@@ -490,9 +490,9 @@ function AgitationSection() {
                 ))}
               </ul>
               <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
-                Vous pouvez avoir les meilleurs virtuoses du monde —
-                <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone"> sans chef pour les diriger</mark>,
-                vous avez quatre solos qui jouent en même temps, pas une symphonie.
+                Vous pouvez avoir l'appareil le plus performant, le meilleur carburant et le plan de vol parfait —
+                <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone"> sans pilote capable de prendre les commandes</mark>,
+                vous avez une belle machine qui ne décolle jamais vraiment.
               </p>
             </blockquote>
             <figcaption className="mt-6 flex items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
