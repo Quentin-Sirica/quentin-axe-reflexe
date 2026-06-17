@@ -347,10 +347,10 @@ function ProblemSection() {
           Vous pensez <span className="text-primary">jouer mieux que votre classement</span>.
           <br /> Pourtant vous êtes bloqué. Pourquoi ?
         </h2>
-        <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
+        <p className="mt-6 text-lg text-muted-foreground max-w-3xl whitespace-pre-line">
           À l'entraînement, vous avez du potentiel, tout le monde le voit. Mais dès qu'un score compte vraiment, vous perdez vos moyens.
           {"\n"}
-          Vous savez que c'est votre mental mais vous trouvez des excuses au lieu de le travailler vraiment.
+          Vous savez que c'est votre mental et vous trouvez des excuses au lieu de le travailler.
         </p>
 
         <div className="mt-16 relative">
