@@ -312,8 +312,8 @@ function ProblemSection() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionLabel n="P/01" tag="Le Problème" />
         <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl max-w-4xl text-balance">
-          Vous valez 15/4, mais vous êtes bloqué à <span className="text-primary">30/1</span>.
-          <br /> Pourquoi ?
+          Vous pensez jouer mieux que votre classement.
+          <br /> Pourtant vous êtes bloqué. Pourquoi ?
         </h2>
         <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
           À l'entraînement, vous êtes injouable. En match, dès que le score se tend, vous perdez vos moyens.
