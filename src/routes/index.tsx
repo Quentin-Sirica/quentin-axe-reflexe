@@ -106,19 +106,19 @@ const steps = [
     n: "01",
     tag: "L'Axe — Ennéagramme",
     title: "L'Identité",
-    body: "On part de votre identité profonde. On définit votre profil parmi les 150 types de personnalité pour comprendre votre propre 'paire de lunettes' face à la compétition. C'est notre socle.",
+    body: "On part de votre identité profonde. On définit votre profil parmi les neuf types de personnalité pour comprendre votre fonctionnement face à la pression en compétition. C'est notre socle.",
   },
   {
     n: "02",
     tag: "Le Déblocage — PNL & Sophrologie",
     title: "Le Déblocage",
-    body: "Une fois qu'on sait qui vous êtes, on utilise la PNL pour faire sauter vos croyances limitantes et on va chercher le meilleur des autres profils pour enrichir votre jeu.",
+    body: "Une fois qu'on sait qui vous êtes, on travaille sur ce qui bloque concrètement. On utilise la PNL et la sophrologie pour identifier et enlever les freins et les peurs qui vous empêchent de performer quand ça compte vraiment.",
   },
   {
     n: "03",
-    tag: "Le Réflexe — Visualisation",
+    tag: "Le Réflexe — Visualisation & Sophrologie",
     title: "Le Réflexe",
-    body: "L'outil ultime du terrain. On ancre des ressources solides et une stabilité émotionnelle pour savoir quoi faire dans le contexte précis du match, entre deux points.",
+    body: "L'outil ultime du terrain. On ancre des ressources solides et une stabilité émotionnelle pour savoir quoi faire dans chaque moment clé du match.",
   },
 ];
 
@@ -170,20 +170,29 @@ const offers = [
     price: "240€ /mois",
     desc: "L'impulsion pour débloquer un palier. ",
     cta: "Postuler au pack",
-    features: ["Profil Ennéagramme complet", "3 séances de 1h30", "Outils PNL, sophrologie & visualisation\n"],
+    features: [
+      "Profil Ennéagramme complet",
+      "3 séances de 1h30",
+      "Outils PNL, sophrologie & visualisation",
+      "Suivi WhatsApp entre les séances",
+    ],
     featured: true,
   },
   {
     badge: "L'ENGAGEMENT",
     name: "Pack Grand Chelem",
     duration: "3 ou 6 mois",
-    price: "65€ /séance",
+    price: "—",
     desc: "Le suivi dans la durée pour atteindre son objectif.",
     cta: "Postuler au pack",
     features: [
-      "Tarif dégressif (9 ou 18 séances)",
       "Vestiaire Virtuel (Drive)",
       "WhatsApp debrief post-match",
+      "Bilan trimestriel",
+    ],
+    plans: [
+      { id: "3m", label: "3 mois", price: "585€", detail: "9 séances · 65€/séance" },
+      { id: "6m", label: "6 mois", price: "999€", detail: "18 séances · 55,50€/séance · -15%" },
     ],
   },
 ];
