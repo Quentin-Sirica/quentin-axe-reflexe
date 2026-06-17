@@ -363,7 +363,7 @@ function ProblemSection() {
         <div className="mt-14 border-l-2 border-primary pl-6 max-w-3xl">
           <p className="font-display text-2xl sm:text-3xl leading-tight text-balance">
             Arrêtez d'être dans le déni, revenez à la réalité. 
-            <span className="text-foreground">&nbsp;Vous savez que <span className="text-success font-semibold">le problème vient de votre mental</span>, et ça tombe bien, ça se travaille !</span>
+            <span className="text-foreground">&nbsp;Vous savez que <span className="text-primary font-semibold">le problème vient de votre mental</span>, et ça tombe bien, ça se travaille !</span>
           </p>
         </div>
       </div>
