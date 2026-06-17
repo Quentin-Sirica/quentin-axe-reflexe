@@ -428,8 +428,9 @@ function AgitationSection() {
                     {item.pct}
                   </div>
                   {item.featured && (
-                    <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
-                      ← piloté par moi
+                    <div className="inline-flex items-center gap-1.5 mt-3 font-mono text-[10px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-3 py-1.5 rounded">
+                      <span aria-hidden>←</span>
+                      piloté par moi
                     </div>
                   )}
                   {item.hover && (
