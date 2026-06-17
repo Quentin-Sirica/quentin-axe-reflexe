@@ -363,7 +363,7 @@ function ProblemSection() {
         <div className="mt-14 border-l-2 border-primary pl-6 max-w-3xl">
           <p className="font-display text-2xl sm:text-3xl leading-tight text-balance">
             Arrêtez d'être dans le déni, revenez à la réalité. 
-            <span className="text-foreground">&nbsp;Vous savez que <span className="text-success font-semibold">le problème vient de votre mental</span>, et ça tombe bien, ça se travaille !</span>
+            <span className="text-foreground">&nbsp;Vous savez que <span className="text-primary font-semibold">le problème vient de votre mental</span>, et ça tombe bien, ça se travaille !</span>
           </p>
         </div>
       </div>
@@ -408,14 +408,14 @@ function AgitationSection() {
 
           <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
             {[
-              { p: 'Mental', level: 'ma spécialité', featured: true },
-              { p: 'Technique', level: 'expert' },
-              { p: 'Physique', level: 'je connais bien' },
-              { p: 'Tactique', level: 'expert' },
+              { p: 'Mental', pct: '25%', featured: true, hover: null },
+              { p: 'Technique', pct: '25%', hover: "15 ans à analyser les gestes. Je sais lire un coup." },
+              { p: 'Physique', pct: '25%', hover: "Préparation, récup, gestion d'effort — je connais le terrain." },
+              { p: 'Tactique', pct: '25%', hover: "Lire l'adversaire, construire le point — mon ADN de coach." },
             ].map((item, i) => (
               <div key={item.p} className="flex items-center gap-3 sm:gap-3 flex-1 min-w-0">
                 <div
-                  className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all duration-300 group-hover/eq:-translate-y-0.5 ${
+                  className={`group/pillar flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all duration-300 overflow-hidden ${
                     item.featured
                       ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary group-hover/eq:ring-primary/70'
                       : 'bg-background border-border group-hover/eq:border-primary/40 group-hover/eq:bg-background/60'
@@ -424,12 +424,19 @@ function AgitationSection() {
                   <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
                     {item.p}
                   </div>
-                  <div className={`font-mono text-[10px] uppercase tracking-[0.18em] mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
-                    {item.level}
+                  <div className={`font-mono text-xs uppercase tracking-[0.18em] mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                    {item.pct}
                   </div>
                   {item.featured && (
                     <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
                       ← piloté par moi
+                    </div>
+                  )}
+                  {item.hover && (
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-3 bg-card/95 backdrop-blur-sm opacity-0 group-hover/pillar:opacity-100 transition-opacity duration-300">
+                      <p className="font-display text-xs sm:text-[13px] leading-snug text-foreground/90 text-balance italic">
+                        « {item.hover} »
+                      </p>
                     </div>
                   )}
                 </div>
@@ -452,7 +459,7 @@ function AgitationSection() {
           <div className="absolute -top-3 left-6 sm:left-10 z-10 flex items-center gap-3 bg-background border border-border rounded-full pl-1 pr-4 py-1">
             <img src={quentinPortrait.url} alt="Quentin Sirica" width={64} height={64} loading="lazy" className="h-8 w-8 rounded-full object-cover border border-primary/40" />
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/80">
-              Quentin <span className="text-muted-foreground">· la métaphore du pilote</span>
+              Quentin <span className="text-muted-foreground">· la métaphore du chef d'orchestre</span>
             </span>
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
           </div>
@@ -462,10 +469,10 @@ function AgitationSection() {
             <blockquote className="relative space-y-6">
               <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                 {[
-                  { part: 'La technique', role: 'la carrosserie' },
-                  { part: 'Le physique', role: 'le moteur' },
-                  { part: 'La tactique', role: 'le GPS' },
-                  { part: 'Le mental', role: 'le pilote', featured: true },
+                  { part: 'La technique', role: 'le premier violon' },
+                  { part: 'Le physique', role: 'les percussions' },
+                  { part: 'La tactique', role: 'la partition' },
+                  { part: 'Le mental', role: "le chef d'orchestre", featured: true },
                 ].map((b) => (
                   <li
                     key={b.part}
@@ -483,9 +490,9 @@ function AgitationSection() {
                 ))}
               </ul>
               <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
-                Vous pouvez avoir la meilleure machine du paddock —
-                <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone"> sans pilote lucide</mark>,
-                vous finissez dans le mur au premier virage serré.
+                Vous pouvez avoir les meilleurs virtuoses du monde —
+                <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone"> sans chef pour les diriger</mark>,
+                vous avez quatre solos qui jouent en même temps, pas une symphonie.
               </p>
             </blockquote>
             <figcaption className="mt-6 flex items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
@@ -540,19 +547,37 @@ function SolutionSection() {
             Sur le court, les phrases toutes faites sont des poisons.
             <span className="text-foreground"> Ça manque de précision. Ça ne résout rien.</span>
           </p>
-          <ul className="mt-2 divide-y divide-destructive/15 border border-destructive/20 rounded-md overflow-hidden bg-background/40">
+          <ul className="mt-4 grid sm:grid-cols-2 gap-4">
             {poisonsExpert.map((p) => (
-              <li key={p.phrase} className="grid sm:grid-cols-[220px_1fr] gap-2 sm:gap-5 px-4 py-3">
-                <div className="flex items-center gap-2">
-                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-destructive shrink-0">poison</span>
-                  <span className="font-display text-sm sm:text-base line-through decoration-destructive decoration-2 text-foreground/55">
-                    "{p.phrase}"
+              <li
+                key={p.phrase}
+                className="group relative bg-background border border-border rounded-md p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_18px_50px_-20px_hsl(var(--primary)/0.45)]"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span aria-hidden className="text-destructive text-base leading-none">☠</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-destructive font-bold">
+                    Poison
                   </span>
                 </div>
-                <div className="flex gap-2 items-start text-sm text-foreground/85 leading-snug border-l-0 sm:border-l sm:border-destructive/20 sm:pl-5">
-                  <span className="text-primary font-mono text-xs mt-0.5">→</span>
-                  <span>{p.answer}</span>
+                <p className="font-display text-base sm:text-lg leading-snug line-through decoration-destructive decoration-2 text-foreground/55">
+                  « {p.phrase} »
+                </p>
+
+                <div className="my-4 flex items-center gap-3">
+                  <span className="h-px flex-1 bg-border" />
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">vs</span>
+                  <span className="h-px flex-1 bg-border" />
                 </div>
+
+                <div className="flex items-center gap-2 mb-2">
+                  <span aria-hidden className="text-primary text-base leading-none">⚗</span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary font-bold">
+                    Antidote — Quentin
+                  </span>
+                </div>
+                <p className="text-sm sm:text-[15px] text-foreground/90 leading-relaxed">
+                  {p.answer}
+                </p>
               </li>
             ))}
           </ul>
