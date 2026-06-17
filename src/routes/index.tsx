@@ -469,10 +469,10 @@ function AgitationSection() {
             <blockquote className="relative space-y-6">
               <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                 {[
-                  { part: 'La technique', role: 'le premier violon' },
-                  { part: 'Le physique', role: 'les percussions' },
-                  { part: 'La tactique', role: 'la partition' },
-                  { part: 'Le mental', role: "le chef d'orchestre", featured: true },
+                  { part: 'La technique', role: "l'avion" },
+                  { part: 'Le physique', role: 'le carburant' },
+                  { part: 'La tactique', role: 'le plan de vol' },
+                  { part: 'Le mental', role: 'le pilote', featured: true },
                 ].map((b) => (
                   <li
                     key={b.part}
