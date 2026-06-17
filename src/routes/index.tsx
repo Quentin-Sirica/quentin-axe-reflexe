@@ -186,8 +186,8 @@ const offers = [
     desc: "Le suivi dans la durée pour atteindre son objectif.",
     cta: "Postuler au pack",
     features: [
-      "Vestiaire Virtuel (Drive)",
-      "WhatsApp debrief post-match",
+      "Tout ce qu'il y a dans le pack Service-Volée",
+      "Dégressivité du prix des séances",
       "Bilan trimestriel",
     ],
     plans: [
