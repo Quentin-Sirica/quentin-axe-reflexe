@@ -316,8 +316,8 @@ function ProblemSection() {
           <br /> Pourtant vous êtes bloqué. Pourquoi ?
         </h2>
         <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
-          À l'entraînement, vous êtes injouable. En match, dès que le score se tend, vous perdez vos moyens.
-          Le réflexe classique ? Se voiler la face et chercher des coupables à l'extérieur.
+          À l'entraînement, vous avez du potentiel, tout le monde le voit. Mais dès qu'un score compte vraiment, vous perdez vos moyens.
+          Vous savez que c'est votre mental mais vous trouvez des excuses au lieu de le travailler vraiment.
         </p>
 
         <div className="mt-16 relative">
