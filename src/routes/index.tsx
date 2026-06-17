@@ -515,7 +515,7 @@ function SolutionSection() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-7">
-            <SectionLabel n="S/03" tag="Solution & Méthode" />
+            <SectionLabel n="S/03" tag="LA MÉTHODE" />
             <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-balance">
               Pas de recettes toutes faites. Des questions, de la
               <span className="text-primary"> lucidité</span>, de l'action.
