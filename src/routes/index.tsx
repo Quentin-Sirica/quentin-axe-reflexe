@@ -408,14 +408,14 @@ function AgitationSection() {
 
           <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
             {[
-              { p: 'Mental', level: 'ma spécialité', featured: true },
-              { p: 'Technique', level: 'expert' },
-              { p: 'Physique', level: 'je connais bien' },
-              { p: 'Tactique', level: 'expert' },
+              { p: 'Mental', pct: '25%', featured: true, hover: null },
+              { p: 'Technique', pct: '25%', hover: "15 ans à analyser les gestes. Je sais lire un coup." },
+              { p: 'Physique', pct: '25%', hover: "Préparation, récup, gestion d'effort — je connais le terrain." },
+              { p: 'Tactique', pct: '25%', hover: "Lire l'adversaire, construire le point — mon ADN de coach." },
             ].map((item, i) => (
               <div key={item.p} className="flex items-center gap-3 sm:gap-3 flex-1 min-w-0">
                 <div
-                  className={`flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all duration-300 group-hover/eq:-translate-y-0.5 ${
+                  className={`group/pillar flex-1 relative p-5 sm:p-6 text-center rounded-md border transition-all duration-300 overflow-hidden ${
                     item.featured
                       ? 'bg-primary/15 border-primary ring-1 ring-primary/40 glow-primary group-hover/eq:ring-primary/70'
                       : 'bg-background border-border group-hover/eq:border-primary/40 group-hover/eq:bg-background/60'
@@ -424,12 +424,19 @@ function AgitationSection() {
                   <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
                     {item.p}
                   </div>
-                  <div className={`font-mono text-[10px] uppercase tracking-[0.18em] mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
-                    {item.level}
+                  <div className={`font-mono text-xs uppercase tracking-[0.18em] mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                    {item.pct}
                   </div>
                   {item.featured && (
                     <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
                       ← piloté par moi
+                    </div>
+                  )}
+                  {item.hover && (
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center p-3 bg-card/95 backdrop-blur-sm opacity-0 group-hover/pillar:opacity-100 transition-opacity duration-300">
+                      <p className="font-display text-xs sm:text-[13px] leading-snug text-foreground/90 text-balance italic">
+                        « {item.hover} »
+                      </p>
                     </div>
                   )}
                 </div>
