@@ -851,8 +851,8 @@ function FinalCTA() {
               </div>
               <div className="grid sm:grid-cols-2 gap-6">
                 <Field label="Sport" required>
-                  <div className="grid grid-cols-3 gap-2">
-                    {["Tennis", "Padel", "Badminton"].map((s) => (
+                  <div className="grid grid-cols-2 gap-2">
+                    {["Tennis", "Padel"].map((s) => (
                       <button
                         type="button"
                         key={s}
@@ -938,7 +938,7 @@ function Footer() {
           </div>
         </div>
         <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-          © {new Date().getFullYear()} · Tennis · Padel · Badminton
+          © {new Date().getFullYear()} · Tennis · Padel
         </div>
       </div>
     </footer>
