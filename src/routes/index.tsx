@@ -151,7 +151,7 @@ const offers = [
     featured: true,
   },
   {
-    badge: "Suivi Élite",
+    badge: "L'ENGAGEMENT",
     name: "Pack Grand Chelem",
     duration: "3 ou 6 mois",
     price: "65€ /séance",
