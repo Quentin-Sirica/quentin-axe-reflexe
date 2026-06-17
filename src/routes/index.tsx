@@ -459,7 +459,7 @@ function AgitationSection() {
           <div className="absolute -top-3 left-6 sm:left-10 z-10 flex items-center gap-3 bg-background border border-border rounded-full pl-1 pr-4 py-1">
             <img src={quentinPortrait.url} alt="Quentin Sirica" width={64} height={64} loading="lazy" className="h-8 w-8 rounded-full object-cover border border-primary/40" />
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/80">
-              Quentin <span className="text-muted-foreground">· la métaphore du chef d'orchestre</span>
+              Quentin <span className="text-muted-foreground">· la métaphore du pilote</span>
             </span>
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
           </div>
