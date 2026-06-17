@@ -144,10 +144,10 @@ const offers = [
     badge: "Le déclic",
     name: "Pack Service-Volée",
     duration: "1 mois",
-    price: "80€ /séance",
+    price: "240€ /mois",
     desc: "L'impulsion pour débloquer un palier. ",
     cta: "Postuler au pack",
-    features: ["Profil Ennéagramme complet", "3 séances de 1h30", "Outils PNL & visualisation"],
+    features: ["Profil Ennéagramme complet", "3 séances de 1h30", "Outils PNL, sophrologie & visualisation\n"],
     featured: true,
   },
   {
@@ -288,7 +288,7 @@ function Hero() {
           </div>
           <div className="absolute -bottom-6 -left-6 hidden lg:block bg-card border border-border rounded-md p-4 max-w-[220px] shadow-2xl">
             <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-2">Méthode</div>
-            <div className="text-sm font-display">Axe → Déblocage → Réflexe</div>
+            <div className="text-sm font-display">Axe →{"\n"} Déblocage →{"\n"} Réflexe</div>
           </div>
         </div>
       </div>
