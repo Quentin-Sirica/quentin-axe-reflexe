@@ -22,20 +22,43 @@ const navLinks = [
 
 const fakeExcuses = [
   "Je suis classé 30/1 mais je vaux 15/4.",
-  "C'est à cause du vent, des balles, du soleil…",
-  "Il a eu une chance de cocu sur les let et les lignes.",
-  "Le mec en face a un jeu pourri, il fait que des ronds, c'est pas du tennis.",
-  "Si j'arrivais à jouer en match comme à l'entraînement, je prendrais 3 classements.",
-  "Je gagne jamais un super tie-break, c'est ma malédiction.",
-  "J'ai pas confiance en mes coups aujourd'hui.",
-  "Je pourrai être mieux classé mais c'est parce que je fais pas beaucoup de tournois.",
-  "J'aurais dû re-corder avant le tournoi, mon cordage est rincé.",
-  "Le gars s'est auto-arbitré tout le match, il m'a volé au moins 4 points qui étaient sur la ligne.",
-  "Le match était programmé à 9h du matin, j'étais pas réveillé.",
-  "Les balles de ce tournoi, c'est des vrais cailloux, aucun contrôle.",
+  "Il y avait trop de vent, c'était injouable.",
+  "Les balles de ce tournoi c'est de la merde, on peut pas jouer avec ça.",
+  "C'est n'importe quoi ce soleil, on voit strictement rien.",
+  "Il fait trop chaud, j'ai les jambes molles, je peux rien faire.",
+  "C'est un chatard, il ne fait que des lets et il touche les lignes.",
+  "Le mec ne fait que des ronds, c'est même pas du tennis.",
+  "De toute façon, je gagne jamais au tie-break.",
+  "Je suis pas du matin, j'étais pas réveillé.",
+  "Je ne sens rien, j'ai pas confiance en mes coups.",
+  "Mon cordage est mort, j'aurais dû le recorder.",
+  "J'ai fait un long match la veille, je suis cuit de toute façon.",
+  "J'arrive pas à mettre une balle dans le terrain, tu veux que je gagne comment ?",
+  "On peut pas jouer sur des terrains comme ça, il y a des faux rebonds dans tous les sens.",
+  "J'ai la main qui glisse, je peux pas tenir mon grip.",
 ];
 
-const poisons = ["Calme-toi", "Respire", "Mets la balle dans le court", "Gagne le point !"];
+const poisonsExpert = [
+  {
+    phrase: "Reste concentré",
+    answer:
+      "Concentré sur quoi exactement ? Et la plupart du temps, ce sont les parasites qui t'empêchent de te concentrer. Comment fais-tu pour les dégager ?",
+  },
+  {
+    phrase: "Lâche-toi",
+    answer:
+      "C'est le genre de phrase qui ne veut strictement rien dire sous pression. Ce n'est pas en deux mots qu'on arrive à tout changer.",
+  },
+  {
+    phrase: "Fais-toi confiance",
+    answer: "Ok, mais sur quoi, et comment tu fais ça concrètement ?",
+  },
+  {
+    phrase: "Sois positif",
+    answer:
+      "L'intention est bonne. Mais comment, quand tu es dans un état émotionnel qui ne le permet pas ?",
+  },
+];
 
 const objectives = [
   { n: "01", title: "Monter de classement", body: "Franchir le palier qui résiste depuis deux saisons. Concrètement." },
@@ -83,19 +106,19 @@ const steps = [
     n: "01",
     tag: "L'Axe — Ennéagramme",
     title: "L'Identité",
-    body: "On part de votre identité profonde. On définit votre profil parmi les 150 types de personnalité pour comprendre votre propre 'paire de lunettes' face à la compétition. C'est notre socle.",
+    body: "On part de votre identité profonde. On définit votre profil parmi les neuf types de personnalité pour comprendre votre fonctionnement face à la pression en compétition. C'est notre socle.",
   },
   {
     n: "02",
     tag: "Le Déblocage — PNL & Sophrologie",
     title: "Le Déblocage",
-    body: "Une fois qu'on sait qui vous êtes, on utilise la PNL pour faire sauter vos croyances limitantes et on va chercher le meilleur des autres profils pour enrichir votre jeu.",
+    body: "Une fois qu'on sait qui vous êtes, on travaille sur ce qui bloque concrètement. On utilise la PNL et la sophrologie pour identifier et enlever les freins et les peurs qui vous empêchent de performer quand ça compte vraiment.",
   },
   {
     n: "03",
-    tag: "Le Réflexe — Visualisation",
+    tag: "Le Réflexe — Visualisation & Sophrologie",
     title: "Le Réflexe",
-    body: "L'outil ultime du terrain. On ancre des ressources solides et une stabilité émotionnelle pour savoir quoi faire dans le contexte précis du match, entre deux points.",
+    body: "L'outil ultime du terrain. On ancre des ressources solides et une stabilité émotionnelle pour savoir quoi faire dans chaque moment clé du match.",
   },
 ];
 
@@ -147,20 +170,29 @@ const offers = [
     price: "240€ /mois",
     desc: "L'impulsion pour débloquer un palier. ",
     cta: "Postuler au pack",
-    features: ["Profil Ennéagramme complet", "3 séances de 1h30", "Outils PNL, sophrologie & visualisation\n"],
+    features: [
+      "Profil Ennéagramme complet",
+      "3 séances de 1h30",
+      "Outils PNL, sophrologie & visualisation",
+      "Suivi WhatsApp entre les séances",
+    ],
     featured: true,
   },
   {
     badge: "L'ENGAGEMENT",
     name: "Pack Grand Chelem",
     duration: "3 ou 6 mois",
-    price: "65€ /séance",
+    price: "—",
     desc: "Le suivi dans la durée pour atteindre son objectif.",
     cta: "Postuler au pack",
     features: [
-      "Tarif dégressif (9 ou 18 séances)",
       "Vestiaire Virtuel (Drive)",
       "WhatsApp debrief post-match",
+      "Bilan trimestriel",
+    ],
+    plans: [
+      { id: "3m", label: "3 mois", price: "585€", detail: "9 séances · 65€/séance" },
+      { id: "6m", label: "6 mois", price: "999€", detail: "18 séances · 55,50€/séance · -15%" },
     ],
   },
 ];
@@ -241,7 +273,7 @@ function Hero() {
         <div className="lg:col-span-7 space-y-8">
           <div className="inline-flex items-center gap-3 border border-border px-3 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             <span className="h-1.5 w-1.5 bg-primary rounded-full animate-pulse" />
-            Tennis · Padel · Badminton
+            Tennis · Padel
           </div>
           <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[0.95] text-balance">
             Il est temps <span className="text-primary">de piloter votre mental</span> avec la réalité du terrain
@@ -312,7 +344,7 @@ function ProblemSection() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionLabel n="P/01" tag="Le Problème" />
         <h2 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl max-w-4xl text-balance">
-          Vous pensez jouer mieux que votre classement.
+          Vous pensez <span className="text-primary">jouer mieux que votre classement</span>.
           <br /> Pourtant vous êtes bloqué. Pourquoi ?
         </h2>
         <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
@@ -331,7 +363,7 @@ function ProblemSection() {
         <div className="mt-14 border-l-2 border-primary pl-6 max-w-3xl">
           <p className="font-display text-2xl sm:text-3xl leading-tight text-balance">
             Arrêtez d'être dans le déni, revenez à la réalité. 
-            <span className="text-primary">&nbsp;Vous savez que le problème vient de votre mental, et ça tombe bien, ça se travaille !</span>
+            <span className="text-foreground">&nbsp;Vous savez que <span className="text-success font-semibold">le problème vient de votre mental</span>, et ça tombe bien, ça se travaille !</span>
           </p>
         </div>
       </div>
@@ -353,26 +385,33 @@ function AgitationSection() {
           </p>
         </div>
 
+        <div className="mt-8 relative max-w-3xl border-2 border-destructive/40 bg-destructive/5 rounded-md p-5 sm:p-6">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-destructive">// L'idée reçue</span>
+            <span className="h-px flex-1 bg-destructive/30" />
+            <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.2em] bg-destructive text-destructive-foreground px-3 py-1 rounded">FAUX</span>
+          </div>
+          <p className="font-display text-2xl sm:text-3xl lg:text-4xl leading-tight line-through decoration-destructive decoration-[3px] text-foreground/55">
+            "Le mental c'est 60% du travail."
+          </p>
+        </div>
+
         <div className="mt-10 group/eq bg-card border border-border rounded-md p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:border-primary/60 hover:shadow-[0_20px_60px_-20px_hsl(var(--primary)/0.45)] hover:bg-card/95">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-5 border-b border-dashed border-border">
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
               L'équation réelle de la performance
             </span>
-            <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
-              <span className="text-muted-foreground">// L'idée reçue :</span>
-              <span className="line-through decoration-destructive decoration-2 text-foreground/55 normal-case tracking-normal text-xs">
-                "Le mental c'est 60% du travail."
-              </span>
-              <span className="bg-destructive text-destructive-foreground px-2 py-0.5 rounded">FAUX</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
+              // Vision 360°
             </span>
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-stretch sm:justify-between gap-4 sm:gap-3">
             {[
-              { p: 'Mental', featured: true },
-              { p: 'Technique' },
-              { p: 'Physique' },
-              { p: 'Tactique' },
+              { p: 'Mental', level: 'ma spécialité', featured: true },
+              { p: 'Technique', level: 'expert' },
+              { p: 'Physique', level: 'je connais bien' },
+              { p: 'Tactique', level: 'expert' },
             ].map((item, i) => (
               <div key={item.p} className="flex items-center gap-3 sm:gap-3 flex-1 min-w-0">
                 <div
@@ -385,8 +424,8 @@ function AgitationSection() {
                   <div className={`font-display font-bold text-lg sm:text-xl ${item.featured ? 'text-foreground' : 'text-foreground/85'}`}>
                     {item.p}
                   </div>
-                  <div className={`font-mono text-sm tracking-wider mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
-                    25%
+                  <div className={`font-mono text-[10px] uppercase tracking-[0.18em] mt-2 ${item.featured ? 'text-primary font-bold' : 'text-muted-foreground'}`}>
+                    {item.level}
                   </div>
                   {item.featured && (
                     <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.2em] bg-primary text-primary-foreground px-2 py-1 rounded">
@@ -404,8 +443,8 @@ function AgitationSection() {
             <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary block mb-2">
               = Vision holistique
             </span>
-            J'agis sur le mental, mais les 4 piliers sont liés.
-            <span className="text-foreground"> Je m'appuie sur la technique, le physique et la tactique</span> pour faire levier — jamais à côté.
+            Je ne suis pas un coach mental dans sa bulle. Je maîtrise les 4 piliers — j'opère sur le mental,
+            <span className="text-foreground"> en m'appuyant sur la technique, le physique et la tactique</span> pour faire levier.
           </p>
         </div>
 
@@ -420,19 +459,33 @@ function AgitationSection() {
           <div className="relative bg-card border border-border rounded-lg p-7 sm:p-10 pt-10 sm:pt-12 overflow-hidden">
             <span aria-hidden className="absolute -top-2 right-6 font-display text-[120px] leading-none text-primary/10 select-none">“</span>
             <div className="absolute left-0 top-10 bottom-10 w-[3px] bg-gradient-to-b from-transparent via-primary to-transparent" />
-            <blockquote className="relative space-y-5">
+            <blockquote className="relative space-y-6">
+              <ul className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                {[
+                  { part: 'La technique', role: 'la carrosserie' },
+                  { part: 'Le physique', role: 'le moteur' },
+                  { part: 'La tactique', role: 'le GPS' },
+                  { part: 'Le mental', role: 'le pilote', featured: true },
+                ].map((b) => (
+                  <li
+                    key={b.part}
+                    className={`flex items-baseline gap-3 px-4 py-3 rounded-md border ${
+                      b.featured
+                        ? 'border-primary bg-primary/10'
+                        : 'border-border bg-background/50'
+                    }`}
+                  >
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground shrink-0">{b.part}</span>
+                    <span className="font-display text-lg sm:text-xl font-bold">
+                      <span className={b.featured ? 'text-primary' : 'text-foreground/85'}>{b.role}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
-                Vous pouvez posséder toutes les armes du joueur parfait — un
-                <span className="text-primary"> physique</span> de feu, une
-                <span className="text-primary"> technique</span> chirurgicale, une
-                <span className="text-primary"> tactique</span> implacable.
-              </p>
-              <p className="font-display text-xl sm:text-2xl leading-snug text-balance">
-                Sans le pilote — <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone">le Mental</mark> — le système se déconnecte au premier point important.
-              </p>
-              <p className="text-muted-foreground text-base sm:text-lg leading-relaxed border-t border-dashed border-border pt-4">
-                Le mental n'est peut-être pas la cause de vos blocages.
-                <span className="text-foreground/80"> C'est la conséquence de ce qui se joue en vous sans que vous le voyiez.</span>
+                Vous pouvez avoir la meilleure machine du paddock —
+                <mark className="bg-primary/20 text-foreground px-1.5 rounded-sm box-decoration-clone"> sans pilote lucide</mark>,
+                vous finissez dans le mur au premier virage serré.
               </p>
             </blockquote>
             <figcaption className="mt-6 flex items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
@@ -487,16 +540,22 @@ function SolutionSection() {
             Sur le court, les phrases toutes faites sont des poisons.
             <span className="text-foreground"> Ça manque de précision. Ça ne résout rien.</span>
           </p>
-          <div className="flex flex-wrap gap-1.5">
-            {poisons.map((p) => (
-              <span
-                key={p}
-                className="font-mono text-xs border border-destructive/30 px-2 py-1 line-through text-foreground/55"
-              >
-                "{p}"
-              </span>
+          <ul className="mt-2 divide-y divide-destructive/15 border border-destructive/20 rounded-md overflow-hidden bg-background/40">
+            {poisonsExpert.map((p) => (
+              <li key={p.phrase} className="grid sm:grid-cols-[220px_1fr] gap-2 sm:gap-5 px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-destructive shrink-0">poison</span>
+                  <span className="font-display text-sm sm:text-base line-through decoration-destructive decoration-2 text-foreground/55">
+                    "{p.phrase}"
+                  </span>
+                </div>
+                <div className="flex gap-2 items-start text-sm text-foreground/85 leading-snug border-l-0 sm:border-l sm:border-destructive/20 sm:pl-5">
+                  <span className="text-primary font-mono text-xs mt-0.5">→</span>
+                  <span>{p.answer}</span>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </aside>
 
         <div className="mt-12 grid md:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
@@ -672,46 +731,79 @@ function OffersSection() {
 
         <div className="mt-16 grid md:grid-cols-3 gap-6">
           {offers.map((o) => (
-            <div
-              key={o.name}
-              className={`relative border rounded-lg p-8 flex flex-col ${
-                o.featured
-                  ? "border-primary bg-card glow-primary"
-                  : "border-border bg-card hover:border-primary/40 transition-colors"
-              }`}
-            >
-              <div className="flex items-center justify-between mb-6">
-                <span className={`font-mono text-[10px] uppercase tracking-[0.25em] px-2 py-1 rounded ${o.featured ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
-                  {o.badge}
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{o.duration}</span>
-              </div>
-              <h3 className="font-display font-bold text-2xl">{o.name}</h3>
-              <div className="mt-4 font-display text-4xl text-primary">{o.price}</div>
-              <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{o.desc}</p>
-              <ul className="mt-6 space-y-2 flex-1">
-                {o.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm">
-                    <span className="text-primary mt-1">→</span>
-                    <span className="text-foreground/90">{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#contact"
-                className={`mt-8 text-center py-3 rounded-md font-semibold text-sm transition-all ${
-                  o.featured
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "border border-border hover:border-primary text-foreground"
-                }`}
-              >
-                {o.cta}
-              </a>
-            </div>
+            <OfferCard key={o.name} offer={o} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function OfferCard({ offer }: { offer: (typeof offers)[number] }) {
+  const plans = (offer as { plans?: { id: string; label: string; price: string; detail: string }[] }).plans;
+  const [planId, setPlanId] = useState(plans?.[0]?.id ?? "");
+  const activePlan = plans?.find((p) => p.id === planId);
+  const displayPrice = activePlan?.price ?? offer.price;
+  const displayDuration = activePlan?.label ?? offer.duration;
+  return (
+    <div
+      className={`relative border rounded-lg p-8 flex flex-col ${
+        offer.featured
+          ? "border-primary bg-card glow-primary"
+          : "border-border bg-card hover:border-primary/40 transition-colors"
+      }`}
+    >
+      <div className="flex items-center justify-between mb-6">
+        <span className={`font-mono text-[10px] uppercase tracking-[0.25em] px-2 py-1 rounded ${offer.featured ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
+          {offer.badge}
+        </span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{displayDuration}</span>
+      </div>
+      <h3 className="font-display font-bold text-2xl">{offer.name}</h3>
+      <div className="mt-4 font-display text-4xl text-primary">{displayPrice}</div>
+      {activePlan && (
+        <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          {activePlan.detail}
+        </div>
+      )}
+      {plans && (
+        <div className="mt-5 grid grid-cols-2 gap-2 p-1 bg-background border border-border rounded-md">
+          {plans.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => setPlanId(p.id)}
+              className={`py-2 text-xs font-mono uppercase tracking-[0.2em] rounded transition-colors ${
+                planId === p.id
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      )}
+      <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{offer.desc}</p>
+      <ul className="mt-6 space-y-2 flex-1">
+        {offer.features.map((f) => (
+          <li key={f} className="flex items-start gap-2 text-sm">
+            <span className="text-primary mt-1">→</span>
+            <span className="text-foreground/90">{f}</span>
+          </li>
+        ))}
+      </ul>
+      <a
+        href="#contact"
+        className={`mt-8 text-center py-3 rounded-md font-semibold text-sm transition-all ${
+          offer.featured
+            ? "bg-primary text-primary-foreground hover:bg-primary/90"
+            : "border border-border hover:border-primary text-foreground"
+        }`}
+      >
+        {offer.cta}
+      </a>
+    </div>
   );
 }
 
@@ -813,8 +905,8 @@ function FinalCTA() {
               </div>
               <div className="grid sm:grid-cols-2 gap-6">
                 <Field label="Sport" required>
-                  <div className="grid grid-cols-3 gap-2">
-                    {["Tennis", "Padel", "Badminton"].map((s) => (
+                  <div className="grid grid-cols-2 gap-2">
+                    {["Tennis", "Padel"].map((s) => (
                       <button
                         type="button"
                         key={s}
@@ -900,7 +992,7 @@ function Footer() {
           </div>
         </div>
         <div className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-          © {new Date().getFullYear()} · Tennis · Padel · Badminton
+          © {new Date().getFullYear()} · Tennis · Padel
         </div>
       </div>
     </footer>
