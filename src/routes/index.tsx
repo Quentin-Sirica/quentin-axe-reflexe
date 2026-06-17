@@ -317,6 +317,7 @@ function ProblemSection() {
         </h2>
         <p className="mt-6 text-lg text-muted-foreground max-w-3xl">
           À l'entraînement, vous avez du potentiel, tout le monde le voit. Mais dès qu'un score compte vraiment, vous perdez vos moyens.
+          <br />
           Vous savez que c'est votre mental mais vous trouvez des excuses au lieu de le travailler vraiment.
         </p>
 
