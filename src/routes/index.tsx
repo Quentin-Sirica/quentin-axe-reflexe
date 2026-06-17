@@ -731,46 +731,79 @@ function OffersSection() {
 
         <div className="mt-16 grid md:grid-cols-3 gap-6">
           {offers.map((o) => (
-            <div
-              key={o.name}
-              className={`relative border rounded-lg p-8 flex flex-col ${
-                o.featured
-                  ? "border-primary bg-card glow-primary"
-                  : "border-border bg-card hover:border-primary/40 transition-colors"
-              }`}
-            >
-              <div className="flex items-center justify-between mb-6">
-                <span className={`font-mono text-[10px] uppercase tracking-[0.25em] px-2 py-1 rounded ${o.featured ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
-                  {o.badge}
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{o.duration}</span>
-              </div>
-              <h3 className="font-display font-bold text-2xl">{o.name}</h3>
-              <div className="mt-4 font-display text-4xl text-primary">{o.price}</div>
-              <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{o.desc}</p>
-              <ul className="mt-6 space-y-2 flex-1">
-                {o.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm">
-                    <span className="text-primary mt-1">→</span>
-                    <span className="text-foreground/90">{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="#contact"
-                className={`mt-8 text-center py-3 rounded-md font-semibold text-sm transition-all ${
-                  o.featured
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "border border-border hover:border-primary text-foreground"
-                }`}
-              >
-                {o.cta}
-              </a>
-            </div>
+            <OfferCard key={o.name} offer={o} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function OfferCard({ offer }: { offer: (typeof offers)[number] }) {
+  const plans = (offer as { plans?: { id: string; label: string; price: string; detail: string }[] }).plans;
+  const [planId, setPlanId] = useState(plans?.[0]?.id ?? "");
+  const activePlan = plans?.find((p) => p.id === planId);
+  const displayPrice = activePlan?.price ?? offer.price;
+  const displayDuration = activePlan?.label ?? offer.duration;
+  return (
+    <div
+      className={`relative border rounded-lg p-8 flex flex-col ${
+        offer.featured
+          ? "border-primary bg-card glow-primary"
+          : "border-border bg-card hover:border-primary/40 transition-colors"
+      }`}
+    >
+      <div className="flex items-center justify-between mb-6">
+        <span className={`font-mono text-[10px] uppercase tracking-[0.25em] px-2 py-1 rounded ${offer.featured ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>
+          {offer.badge}
+        </span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">{displayDuration}</span>
+      </div>
+      <h3 className="font-display font-bold text-2xl">{offer.name}</h3>
+      <div className="mt-4 font-display text-4xl text-primary">{displayPrice}</div>
+      {activePlan && (
+        <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          {activePlan.detail}
+        </div>
+      )}
+      {plans && (
+        <div className="mt-5 grid grid-cols-2 gap-2 p-1 bg-background border border-border rounded-md">
+          {plans.map((p) => (
+            <button
+              key={p.id}
+              type="button"
+              onClick={() => setPlanId(p.id)}
+              className={`py-2 text-xs font-mono uppercase tracking-[0.2em] rounded transition-colors ${
+                planId === p.id
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+      )}
+      <p className="mt-5 text-sm text-muted-foreground leading-relaxed">{offer.desc}</p>
+      <ul className="mt-6 space-y-2 flex-1">
+        {offer.features.map((f) => (
+          <li key={f} className="flex items-start gap-2 text-sm">
+            <span className="text-primary mt-1">→</span>
+            <span className="text-foreground/90">{f}</span>
+          </li>
+        ))}
+      </ul>
+      <a
+        href="#contact"
+        className={`mt-8 text-center py-3 rounded-md font-semibold text-sm transition-all ${
+          offer.featured
+            ? "bg-primary text-primary-foreground hover:bg-primary/90"
+            : "border border-border hover:border-primary text-foreground"
+        }`}
+      >
+        {offer.cta}
+      </a>
+    </div>
   );
 }
 
