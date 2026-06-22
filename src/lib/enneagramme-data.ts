@@ -116,7 +116,7 @@ export const PROFILES: Record<ProfileId, ProfileResult> = {
   1: {
     id: 1,
     name: "Le Perfectionniste",
-    tagline: "Si c'est pas parfait, ça ne vaut rien",
+    tagline: "Si c'est pas parfait, ça ne me va pas",
     forces:
       "Tu ne laisses rien au hasard. Tu prépares, tu structures, tu t'entraînes avec rigueur. Quand les autres improvisent, toi tu as déjà un plan. Ta discipline est une arme que peu de joueurs ont vraiment.",
     piege:
