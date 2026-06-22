@@ -56,14 +56,14 @@ const poisonsExpert = [
   {
     phrase: "Sois positif",
     answer:
-      "L'intention est bonne. Mais comment, quand tu es dans un état émotionnel qui ne le permet pas ?",
+      "L'intention est bonne. Mais pas sur que ça fonctionne dans un état émotionnel qui ne le permet pas. Comment tu t'y prends dans ce cas ?",
   },
 ];
 
 const objectives = [
   { n: "01", title: "Monter de classement", body: "Franchir le palier qui résiste depuis deux saisons. Concrètement." },
   { n: "02", title: "Viser le haut niveau", body: "Structurer un mental de compétiteur pour les tableaux régionaux et nationaux." },
-  { n: "03", title: "Devenir DE", body: "Préparer le passage en Diplôme d'État avec une exigence mentale alignée." },
+  { n: "03", title: "Devenir DE", body: "Gérer la pression pour atteindre le classement DE. \nExpérimenter la prépa mentale." },
   { n: "04", title: "Casser un blocage", body: "Sortir de 3, 5, 10 ans de stagnation. Comprendre enfin ce qui coince." },
 ];
 
