@@ -630,12 +630,12 @@ function SolutionSection() {
 
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-3">
-                  Diplômes
+                  DIPLÔMES & FORMATIONS
                 </div>
                 <ul className="space-y-1.5 text-sm">
                   <li className="flex gap-2"><span className="text-primary">›</span> Institut de Formation à la Sophrologie</li>
                   <li className="flex gap-2"><span className="text-primary">›</span> EIPNL — Maître Praticien PNL</li>
-                  <li className="flex gap-2"><span className="text-primary">›</span> DEJEPS Perfectionnement Sportif</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span><br />DEJEPS Perfectionnement Sportif</li>
                 </ul>
               </div>
 
