@@ -14,11 +14,11 @@ import { EnneagrammeTest } from "@/components/EnneagrammeTest";
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => {
-    const url = "https://axe-reflexe-mastery.lovable.app/";
+    const url = "https://quentin-axe-reflexe.lovable.app/";
     const title = "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quentin Sirica";
     const description =
       "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe : débloquez vos paliers et gagnez vos matchs sous pression.";
-    const image = `${url}og-image.jpg`;
+    const image = `https://quentin-axe-reflexe.lovable.app${ogImage.url}`;
     return {
       meta: [
         { title },
