@@ -10,6 +10,8 @@ import {
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
+import logoTennis from "@/assets/logo-tennis.png.asset.json";
+import ogImage from "@/assets/og-image.png.asset.json";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
