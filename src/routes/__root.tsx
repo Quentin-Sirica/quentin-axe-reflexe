@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import faviconAsset from "@/assets/favicon.png.asset.json";
 
 import appCss from "../styles.css?url";
 
