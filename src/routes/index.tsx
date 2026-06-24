@@ -12,6 +12,67 @@ import { EnneagrammeTest } from "@/components/EnneagrammeTest";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
+  head: () => {
+    const url = "https://axe-reflexe-mastery.lovable.app/";
+    const title = "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quentin Sirica";
+    const description =
+      "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe : débloquez vos paliers et gagnez vos matchs sous pression.";
+    const image = `${url}og-image.jpg`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "website" },
+        { property: "og:image", content: image },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: image },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Méthode Axe-Réflexe",
+            url,
+            inLanguage: "fr-FR",
+          }),
+        },
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "@id": `${url}#localbusiness`,
+            name: "Quentin Sirica — Coach mental sportif",
+            description,
+            url,
+            areaServed: ["Marseille", "Aubagne", "Provence-Alpes-Côte d'Azur"],
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Marseille",
+              addressRegion: "Provence-Alpes-Côte d'Azur",
+              addressCountry: "FR",
+            },
+            founder: { "@type": "Person", name: "Quentin Sirica" },
+            knowsAbout: [
+              "Préparation mentale",
+              "Coaching sportif",
+              "Tennis",
+              "Padel",
+              "Sophrologie",
+              "PNL",
+            ],
+          }),
+        },
+      ],
+    };
+  },
 });
 
 const navLinks = [
