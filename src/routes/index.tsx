@@ -373,7 +373,16 @@ function Hero() {
         </div>
         <div className="lg:col-span-5 relative">
           <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-border">
-            <img src={quentinCourt.url} alt="Quentin sur le court, observant ses joueurs en session" width={1456} height={1092} className="w-full h-full object-cover" />
+            <img
+              src={quentinCourt.url}
+              alt="Quentin Sirica, coach mental sportif à Marseille, en session terrain avec un joueur de tennis"
+              width={1456}
+              height={1092}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 lg:hidden flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/70">
               <span>Aubagne · Session terrain</span>
@@ -1170,11 +1179,14 @@ function ResultsSection() {
                 {t.photo_url ? (
                   <div className="mb-4 flex">
                     <div className="h-16 w-16 rounded-full overflow-hidden border-2 border-primary/40 shadow-[0_0_18px_color-mix(in_oklab,var(--primary)_35%,transparent)]">
-                      <img
+                       <img
                         src={t.photo_url}
                         alt={t.name}
+                        width={64}
+                        height={64}
                         className="h-full w-full object-cover"
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                   </div>
