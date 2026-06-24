@@ -78,6 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quent" },
       { name: "description", content: "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe de Quentin Sirica : débloquez vos paliers, gagnez vos matchs sous pression." },
+      { name: "google-site-verification", content: "Nlrh4p6r-55nFY6HohobSBK-3iFb3HcZmKybXwXCZYc" },
       { name: "author", content: "Quentin Sirica" },
       { property: "og:title", content: "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quent" },
       { property: "og:description", content: "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe de Quentin Sirica : débloquez vos paliers, gagnez vos matchs sous pression." },
