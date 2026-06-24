@@ -635,7 +635,7 @@ function SolutionSection() {
                 <ul className="space-y-1.5 text-sm">
                   <li className="flex gap-2"><span className="text-primary">›</span> Institut de Formation à la Sophrologie</li>
                   <li className="flex gap-2"><span className="text-primary">›</span> EIPNL — Maître Praticien PNL</li>
-                  <li className="flex flex-col gap-0"><span className="text-primary">›</span><span>DEJEPS Perfectionnement Sportif</span></li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> DEJEPS Perfectionnement Sportif</li>
                   <li className="flex gap-2"><span className="text-primary">›</span> Visualisation mentale avec Aymeric Guillot</li>
                 </ul>
               </div>
