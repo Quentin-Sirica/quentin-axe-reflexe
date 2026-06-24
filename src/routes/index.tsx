@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Compass, Brain, Wind, Eye } from "lucide-react";
 import { submitProgramApplication } from "@/lib/program.functions";
 import { listPublicTestimonials, type PublicTestimonial } from "@/lib/testimonials.functions";
+import ogImage from "@/assets/og-image.png.asset.json";
 import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
 import quentinPortrait from "@/assets/quentin-portrait-3.jpg.asset.json";
 import quentinVisio from "@/assets/quentin-visio.jpg.asset.json";
