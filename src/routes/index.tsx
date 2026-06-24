@@ -6,7 +6,7 @@ import { Compass, Brain, Wind, Eye } from "lucide-react";
 import { submitProgramApplication } from "@/lib/program.functions";
 import { listPublicTestimonials, type PublicTestimonial } from "@/lib/testimonials.functions";
 import quentinCourt from "@/assets/quentin-court.jpg.asset.json";
-import quentinPortrait from "@/assets/quentin-portrait-2.jpg.asset.json";
+import quentinPortrait from "@/assets/quentin-portrait-3.jpg.asset.json";
 import quentinVisio from "@/assets/quentin-visio.jpg.asset.json";
 import { EnneagrammeTest } from "@/components/EnneagrammeTest";
 
