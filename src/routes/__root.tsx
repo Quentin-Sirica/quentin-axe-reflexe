@@ -10,8 +10,6 @@ import {
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
-import logoTennis from "@/assets/logo-tennis.png.asset.json";
-import ogImage from "@/assets/og-image.png.asset.json";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -71,46 +69,32 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const BASE_URL = "https://quentin-axe-reflexe.lovable.app";
-
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quent" },
+      { name: "description", content: "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe de Quentin Sirica : débloquez vos paliers, gagnez vos matchs sous pression." },
       { name: "author", content: "Quentin Sirica" },
-      { name: "description", content: "Coach mental sportif à Marseille pour joueurs de tennis et padel. Méthode Axe-Réflexe : débloquez vos paliers et gagnez vos matchs sous pression." },
+      { property: "og:title", content: "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quent" },
+      { property: "og:description", content: "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe de Quentin Sirica : débloquez vos paliers, gagnez vos matchs sous pression." },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Méthode Axe-Réflexe" },
-      { property: "og:locale", content: "fr_FR" },
-      { property: "og:image", content: `${BASE_URL}${ogImage.url}` },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@QuentinSirica" },
-      { name: "twitter:image", content: `${BASE_URL}${ogImage.url}` },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quent" },
+      { name: "twitter:description", content: "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe de Quentin Sirica : débloquez vos paliers, gagnez vos matchs sous pression." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/m4Bl4nD0MxOlaqQSzeW7ls6fl9x2/social-images/social-1782298560325-Quentin-regarde-ses-eleves-banner.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/m4Bl4nD0MxOlaqQSzeW7ls6fl9x2/social-images/social-1782298560325-Quentin-regarde-ses-eleves-banner.webp" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", type: "image/png", href: logoTennis.url, sizes: "1024x1024" },
-      { rel: "apple-touch-icon", href: logoTennis.url, sizes: "1024x1024" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Quentin Sirica — Méthode Axe-Réflexe",
-          url: BASE_URL,
-          founder: { "@type": "Person", name: "Quentin Sirica" },
-          areaServed: "Marseille, Aubagne, Provence-Alpes-Côte d'Azur",
-        }),
-      },
     ],
   }),
   shellComponent: RootShell,
@@ -121,7 +105,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
