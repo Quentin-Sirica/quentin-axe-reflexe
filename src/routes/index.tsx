@@ -600,7 +600,7 @@ function SolutionSection() {
 
         <div className="mt-20 grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5 relative aspect-square overflow-hidden rounded-md border border-border">
-            <img src={quentinPortrait.url} alt="Quentin Sirica · portrait" width={1200} height={1500} loading="lazy" className="w-full h-full object-cover" />
+            <img src={quentinPortrait.url} alt="Quentin Sirica · portrait" width={1023} height={1023} loading="lazy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent" />
             <div className="absolute bottom-4 left-4 font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
               Quentin Sirica · Préparateur mental
