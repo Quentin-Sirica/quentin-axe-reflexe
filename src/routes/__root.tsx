@@ -10,6 +10,7 @@ import {
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import faviconAsset from "@/assets/favicon.png.asset.json";
+import ogBanner from "@/assets/og-banner.jpg.asset.json";
 
 import appCss from "../styles.css?url";
 
@@ -81,12 +82,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quent" },
       { property: "og:description", content: "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe de Quentin Sirica : débloquez vos paliers, gagnez vos matchs sous pression." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quent" },
       { name: "twitter:description", content: "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe de Quentin Sirica : débloquez vos paliers, gagnez vos matchs sous pression." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/m4Bl4nD0MxOlaqQSzeW7ls6fl9x2/social-images/social-1782298560325-Quentin-regarde-ses-eleves-banner.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/m4Bl4nD0MxOlaqQSzeW7ls6fl9x2/social-images/social-1782298560325-Quentin-regarde-ses-eleves-banner.webp" },
+      { property: "og:image", content: `https://www.axereflexe.fr${ogBanner.url}` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:url", content: "https://www.axereflexe.fr/" },
+      { property: "og:site_name", content: "Axe-Réflexe" },
+      { name: "twitter:image", content: `https://www.axereflexe.fr${ogBanner.url}` },
     ],
     links: [
       {
