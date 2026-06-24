@@ -633,22 +633,10 @@ function SolutionSection() {
                   DIPLÔMES & FORMATIONS
                 </div>
                 <ul className="space-y-1.5 text-sm">
-                  <li className="flex flex-col gap-0">
-                    <span className="text-primary">›</span>
-                    <span>Institut de Formation à la Sophrologie (2022)</span>
-                  </li>
-                  <li className="flex flex-col gap-0">
-                    <span className="text-primary">›</span>
-                    <span>EIPNL — Maître Praticien PNL (2024)</span>
-                  </li>
-                  <li className="flex flex-col gap-0">
-                    <span className="text-primary">›</span>
-                    <span>DEJEPS Perfectionnement Sportif (2012)</span>
-                  </li>
-                  <li className="flex flex-col gap-0">
-                    <span className="text-primary">›</span>
-                    <span>Visualisation mentale avec Aymeric Guillot (2025)</span>
-                  </li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> Institut de Formation à la Sophrologie (2022)</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> EIPNL — Maître Praticien PNL (2024)</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> DEJEPS Perfectionnement Sportif (2012)</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> Visualisation mentale avec Aymeric Guillot (2025)</li>
                 </ul>
               </div>
 
@@ -657,18 +645,9 @@ function SolutionSection() {
                   Expériences
                 </div>
                 <ul className="space-y-1.5 text-sm">
-                  <li className="flex flex-col gap-0">
-                    <span className="text-primary">›</span>
-                    <span>Responsable Préparateur Mental des Compétiteurs (TCA depuis 2022)</span>
-                  </li>
-                  <li className="flex flex-col gap-0">
-                    <span className="text-primary">›</span>
-                    <span>Coach en sophrologie & PNL en individuel (+150 joueurs accompagnés)</span>
-                  </li>
-                  <li className="flex flex-col gap-0">
-                    <span className="text-primary">›</span>
-                    <span>Formateur en Préparation Mentale (2024)</span>
-                  </li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> Responsable Préparateur Mental des Compétiteurs (TCA depuis 2022)</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> Coach en sophrologie & PNL en individuel (+150 joueurs accompagnés)</li>
+                  <li className="flex gap-2"><span className="text-primary">›</span> Formateur en Préparation Mentale (2024)</li>
                 </ul>
               </div>
             </div>
