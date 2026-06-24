@@ -1,18 +1,7 @@
-## Plan : Mise à jour des phrases de profil du test Ennéagramme
+Replace the current Quentin portrait on the homepage with the new photo attached to the chat.
 
-### Contexte
-Les phrases `tagline` associées à chaque profil du Tennis Mental Profile (dans `src/lib/enneagramme-data.ts`) doivent être ajustées pour coller à l'ADN de Quentin.
-
-### Modifications demandées
-1. **PROFIL 01 — Le Perfectionniste**  
-   Remplacer `"Si c'est pas parfait, ça ne vaut rien"` par `"Si c'est pas parfait, ça ne me va pas"`.
-2. **PROFIL 03 — Le Performeur**  
-   Garder `"Perdre n'est pas une option"` (déjà à jour dans le code).
-3. **PROFIL 09 — Le Médiateur**  
-   Garder `"Que ça reste cool — pas de tension"` (déjà à jour dans le code).
-
-### Fichier concerné
-- `src/lib/enneagramme-data.ts` (ligne 119, champ `tagline` du profil `1`).
-
-### Validation
-Vérifier visuellement dans le test intégré que la phrase du Perfectionniste s'affiche correctement après la soumission du questionnaire.
+Plan:
+1. Upload the attached image `Quentin-portrait-2.jpeg` via the `lovable-assets` CLI to create a CDN asset pointer in `src/assets/`.
+2. Update the import in `src/routes/index.tsx` (line 9) to reference the new asset pointer instead of `quentin-portrait.jpg.asset.json`.
+3. Delete the old `quentin-portrait.jpg.asset.json` pointer and its CDN asset once it is no longer referenced anywhere.
+4. Verify the new portrait renders correctly in both the small avatar (≈line 461) and the main about-section image (≈line 603).
