@@ -4,6 +4,13 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
+  head: () => ({
+    meta: [
+      { title: "Connexion — Espace admin | Quentin Sirica" },
+      { name: "description", content: "Accès réservé à l'administration du site Méthode Axe-Réflexe." },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
 });
 
 function LoginPage() {
