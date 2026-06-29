@@ -14,7 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
-import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/_bootstrap-admin'
+import { Route as ApiPublicBootstrapAdminRouteImport } from './routes/api/public/bootstrap-admin'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -41,8 +41,8 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 const ApiPublicBootstrapAdminRoute = ApiPublicBootstrapAdminRouteImport.update({
-  id: '/api/public/_bootstrap-admin',
-  path: '/api/public',
+  id: '/api/public/bootstrap-admin',
+  path: '/api/public/bootstrap-admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -51,14 +51,14 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
-  '/api/public': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
-  '/api/public': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,13 +67,18 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
-  '/api/public/_bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
+  '/api/public/bootstrap-admin': typeof ApiPublicBootstrapAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/sitemap.xml' | '/admin' | '/api/public'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/sitemap.xml'
+    | '/admin'
+    | '/api/public/bootstrap-admin'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/sitemap.xml' | '/admin' | '/api/public'
+  to: '/' | '/login' | '/sitemap.xml' | '/admin' | '/api/public/bootstrap-admin'
   id:
     | '__root__'
     | '/'
@@ -81,7 +86,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/sitemap.xml'
     | '/_authenticated/admin'
-    | '/api/public/_bootstrap-admin'
+    | '/api/public/bootstrap-admin'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -129,10 +134,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/api/public/_bootstrap-admin': {
-      id: '/api/public/_bootstrap-admin'
-      path: '/api/public'
-      fullPath: '/api/public'
+    '/api/public/bootstrap-admin': {
+      id: '/api/public/bootstrap-admin'
+      path: '/api/public/bootstrap-admin'
+      fullPath: '/api/public/bootstrap-admin'
       preLoaderRoute: typeof ApiPublicBootstrapAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
