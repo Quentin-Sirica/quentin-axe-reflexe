@@ -28,5 +28,21 @@ export const submitProgramApplication = createServerFn({ method: "POST" })
       console.error("[program] insert failed:", error.message);
       throw new Error("Impossible d'enregistrer votre candidature. Réessayez dans un instant.");
     }
+
+    const { sendLeadEmail, leadEmailHtml, leadRow } = await import("@/lib/lead-email.server");
+    const fullName = [data.first_name, data.last_name].filter(Boolean).join(" ");
+    await sendLeadEmail(
+      `Nouvelle candidature — ${fullName} (${data.sport})`,
+      leadEmailHtml(
+        "Nouvelle candidature au programme",
+        leadRow("Nom", fullName) +
+          leadRow("Email", data.email.toLowerCase()) +
+          leadRow("Téléphone", data.phone) +
+          leadRow("Sport", data.sport) +
+          leadRow("Classement", data.ranking) +
+          leadRow("Contexte", data.context),
+      ),
+    );
+
     return { ok: true as const };
   });

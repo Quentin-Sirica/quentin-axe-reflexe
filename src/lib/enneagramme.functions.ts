@@ -28,5 +28,20 @@ export const submitEnneagrammeLead = createServerFn({ method: "POST" })
       console.error("[enneagramme] insert failed:", error.message);
       throw new Error("Impossible d'enregistrer votre profil. Réessayez dans un instant.");
     }
+
+    const { sendLeadEmail, leadEmailHtml, leadRow } = await import("@/lib/lead-email.server");
+    await sendLeadEmail(
+      `Nouveau test ennéagramme — ${data.first_name} (profil ${data.dominant_profile})`,
+      leadEmailHtml(
+        "Nouveau lead — test ennéagramme",
+        leadRow("Prénom", data.first_name) +
+          leadRow("Email", data.email.toLowerCase()) +
+          leadRow("Sport", data.sport) +
+          leadRow("Classement", data.ranking) +
+          leadRow("Profil dominant", `Profil ${data.dominant_profile}`) +
+          leadRow("Scores", JSON.stringify(data.profile_scores)),
+      ),
+    );
+
     return { ok: true as const };
   });
