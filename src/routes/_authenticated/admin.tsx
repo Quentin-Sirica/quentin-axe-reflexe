@@ -6,6 +6,8 @@ import {
   checkIsAdmin,
   listProgramApplications,
   listEnneagrammeLeads,
+  deleteProgramApplication,
+  deleteEnneagrammeLead,
 } from "@/lib/admin.functions";
 import {
   listTestimonialsAdmin,
@@ -79,13 +81,39 @@ function downloadCSV(filename: string, rows: Record<string, unknown>[]) {
 
 function AdminPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const fetchApps = useServerFn(listProgramApplications);
   const fetchLeads = useServerFn(listEnneagrammeLeads);
+  const deleteApp = useServerFn(deleteProgramApplication);
+  const deleteLead = useServerFn(deleteEnneagrammeLead);
 
   const appsQ = useQuery({ queryKey: ["admin", "program"], queryFn: () => fetchApps() });
   const leadsQ = useQuery({ queryKey: ["admin", "enneagramme"], queryFn: () => fetchLeads() });
 
   const [search, setSearch] = useState("");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const onDeleteApp = async (id: string) => {
+    if (!window.confirm("Supprimer définitivement cette candidature ?")) return;
+    setDeletingId(id);
+    try {
+      await deleteApp({ data: { id } });
+      await queryClient.invalidateQueries({ queryKey: ["admin", "program"] });
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  const onDeleteLead = async (id: string) => {
+    if (!window.confirm("Supprimer définitivement ce lead ?")) return;
+    setDeletingId(id);
+    try {
+      await deleteLead({ data: { id } });
+      await queryClient.invalidateQueries({ queryKey: ["admin", "enneagramme"] });
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   const filteredApps = useMemo(() => {
     const list = (appsQ.data?.applications ?? []) as ProgramApp[];
@@ -182,6 +210,15 @@ function AdminPage() {
                         Objectif / contexte
                       </div>
                       <p className="text-sm whitespace-pre-wrap text-foreground/90">{a.context}</p>
+                      <div className="mt-4 flex justify-end">
+                        <button
+                          onClick={() => onDeleteApp(a.id)}
+                          disabled={deletingId === a.id}
+                          className="font-mono text-[10px] uppercase tracking-[0.2em] border border-destructive/50 text-destructive rounded-md px-3 py-2 hover:bg-destructive/10 disabled:opacity-50"
+                        >
+                          {deletingId === a.id ? "Suppression…" : "Supprimer"}
+                        </button>
+                      </div>
                     </div>
                   </details>
                 ))}
@@ -224,6 +261,7 @@ function AdminPage() {
                       <th className="px-4 py-3">Sport</th>
                       <th className="px-4 py-3">Classement</th>
                       <th className="px-4 py-3">Profil</th>
+                      <th className="px-4 py-3 text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -237,6 +275,15 @@ function AdminPage() {
                         <td className="px-4 py-3">{l.sport}</td>
                         <td className="px-4 py-3">{l.ranking ?? "—"}</td>
                         <td className="px-4 py-3 font-semibold">Type {l.dominant_profile}</td>
+                        <td className="px-4 py-3 text-right">
+                          <button
+                            onClick={() => onDeleteLead(l.id)}
+                            disabled={deletingId === l.id}
+                            className="font-mono text-[10px] uppercase tracking-[0.2em] border border-destructive/50 text-destructive rounded-md px-2 py-1 hover:bg-destructive/10 disabled:opacity-50"
+                          >
+                            {deletingId === l.id ? "…" : "Supprimer"}
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
