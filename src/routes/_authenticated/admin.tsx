@@ -210,6 +210,15 @@ function AdminPage() {
                         Objectif / contexte
                       </div>
                       <p className="text-sm whitespace-pre-wrap text-foreground/90">{a.context}</p>
+                      <div className="mt-4 flex justify-end">
+                        <button
+                          onClick={() => onDeleteApp(a.id)}
+                          disabled={deletingId === a.id}
+                          className="font-mono text-[10px] uppercase tracking-[0.2em] border border-destructive/50 text-destructive rounded-md px-3 py-2 hover:bg-destructive/10 disabled:opacity-50"
+                        >
+                          {deletingId === a.id ? "Suppression…" : "Supprimer"}
+                        </button>
+                      </div>
                     </div>
                   </details>
                 ))}
@@ -252,6 +261,7 @@ function AdminPage() {
                       <th className="px-4 py-3">Sport</th>
                       <th className="px-4 py-3">Classement</th>
                       <th className="px-4 py-3">Profil</th>
+                      <th className="px-4 py-3 text-right">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -265,6 +275,15 @@ function AdminPage() {
                         <td className="px-4 py-3">{l.sport}</td>
                         <td className="px-4 py-3">{l.ranking ?? "—"}</td>
                         <td className="px-4 py-3 font-semibold">Type {l.dominant_profile}</td>
+                        <td className="px-4 py-3 text-right">
+                          <button
+                            onClick={() => onDeleteLead(l.id)}
+                            disabled={deletingId === l.id}
+                            className="font-mono text-[10px] uppercase tracking-[0.2em] border border-destructive/50 text-destructive rounded-md px-2 py-1 hover:bg-destructive/10 disabled:opacity-50"
+                          >
+                            {deletingId === l.id ? "…" : "Supprimer"}
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
