@@ -4,7 +4,7 @@ const RECIPIENTS = ["sirica.sophrologie@gmail.com", "davhuin@gmail.com"];
 const FROM = "Axe Réflexe <notifications@axereflexe.fr>";
 
 export async function sendLeadEmail(subject: string, html: string): Promise<void> {
-  const apiKey = process.env["RESEND_API_KEY"];
+  const apiKey = process.env["RESEND_API_KEY"] || process.env["API_KEY_AXEREFLEXE"];
   if (!apiKey) {
     console.error("[lead-email] RESEND_API_KEY manquante");
     return;
