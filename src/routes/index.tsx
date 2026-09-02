@@ -14,11 +14,11 @@ import { EnneagrammeTest } from "@/components/EnneagrammeTest";
 export const Route = createFileRoute("/")({
   component: LandingPage,
   head: () => {
-    const url = "https://quentin-axe-reflexe.lovable.app/";
-    const title = "Coach mental sportif Marseille — Méthode Axe-Réflexe | Quentin Sirica";
+    const url = "https://www.axereflexe.fr/";
+    const title = "Coach mental tennis & padel à Marseille | Axe-Réflexe";
     const description =
       "Coach mental sportif à Marseille pour joueurs de tennis & padel. Méthode Axe-Réflexe : débloquez vos paliers et gagnez vos matchs sous pression.";
-    const image = `https://quentin-axe-reflexe.lovable.app${ogImage.url}`;
+    const image = `https://www.axereflexe.fr${ogImage.url}`;
     return {
       meta: [
         { title },
@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "LocalBusiness",
+            "@type": ["LocalBusiness", "ProfessionalService"],
             "@id": `${url}#localbusiness`,
             name: "Quentin Sirica — Coach mental sportif",
             description,
@@ -61,6 +61,8 @@ export const Route = createFileRoute("/")({
               addressCountry: "FR",
             },
             founder: { "@type": "Person", name: "Quentin Sirica" },
+            logo: `https://www.axereflexe.fr${ogImage.url}`,
+            image: `https://www.axereflexe.fr${ogImage.url}`,
             knowsAbout: [
               "Préparation mentale",
               "Coaching sportif",
