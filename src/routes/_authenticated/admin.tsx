@@ -27,7 +27,17 @@ export const Route = createFileRoute("/_authenticated/admin")({
     }
   },
   component: AdminPage,
+  head: () => ({
+    meta: [
+      { title: "Administration — Axe-Réflexe" },
+      { name: "description", content: "Tableau de bord privé : candidatures, leads et témoignages Axe-Réflexe." },
+      { name: "robots", content: "noindex, nofollow" },
+      { property: "og:title", content: "Administration — Axe-Réflexe" },
+      { property: "og:description", content: "Tableau de bord privé : candidatures, leads et témoignages Axe-Réflexe." },
+    ],
+  }),
 });
+
 
 type ProgramApp = {
   id: string;

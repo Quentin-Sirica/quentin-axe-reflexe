@@ -9,6 +9,8 @@ export const Route = createFileRoute("/login")({
       { title: "Connexion — Espace admin | Quentin Sirica" },
       { name: "description", content: "Accès réservé à l'administration du site Méthode Axe-Réflexe." },
       { name: "robots", content: "noindex, nofollow" },
+      { property: "og:title", content: "Connexion — Espace admin | Axe-Réflexe" },
+      { property: "og:description", content: "Accès réservé à l'administration du site Méthode Axe-Réflexe." },
     ],
   }),
 });
