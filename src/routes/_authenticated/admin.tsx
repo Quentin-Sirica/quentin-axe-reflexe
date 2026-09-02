@@ -6,6 +6,8 @@ import {
   checkIsAdmin,
   listProgramApplications,
   listEnneagrammeLeads,
+  deleteProgramApplication,
+  deleteEnneagrammeLead,
 } from "@/lib/admin.functions";
 import {
   listTestimonialsAdmin,
@@ -79,13 +81,39 @@ function downloadCSV(filename: string, rows: Record<string, unknown>[]) {
 
 function AdminPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const fetchApps = useServerFn(listProgramApplications);
   const fetchLeads = useServerFn(listEnneagrammeLeads);
+  const deleteApp = useServerFn(deleteProgramApplication);
+  const deleteLead = useServerFn(deleteEnneagrammeLead);
 
   const appsQ = useQuery({ queryKey: ["admin", "program"], queryFn: () => fetchApps() });
   const leadsQ = useQuery({ queryKey: ["admin", "enneagramme"], queryFn: () => fetchLeads() });
 
   const [search, setSearch] = useState("");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  const onDeleteApp = async (id: string) => {
+    if (!window.confirm("Supprimer définitivement cette candidature ?")) return;
+    setDeletingId(id);
+    try {
+      await deleteApp({ data: { id } });
+      await queryClient.invalidateQueries({ queryKey: ["admin", "program"] });
+    } finally {
+      setDeletingId(null);
+    }
+  };
+
+  const onDeleteLead = async (id: string) => {
+    if (!window.confirm("Supprimer définitivement ce lead ?")) return;
+    setDeletingId(id);
+    try {
+      await deleteLead({ data: { id } });
+      await queryClient.invalidateQueries({ queryKey: ["admin", "enneagramme"] });
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   const filteredApps = useMemo(() => {
     const list = (appsQ.data?.applications ?? []) as ProgramApp[];
